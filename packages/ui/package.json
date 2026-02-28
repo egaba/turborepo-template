@@ -1,0 +1,52 @@
+{
+  "name": "@repo/ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "files": ["dist"],
+  "exports": {
+    "./styles.css": "./dist/index.css",
+    "./*": "./dist/*.js"
+  },
+  "scripts": {
+    "build": "npm run build:styles && npm run build:components",
+    "build:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --minify",
+    "build:components": "tsc",
+    "dev": "npm run dev:styles & npm run dev:components",
+    "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+    "dev:components": "tsc --watch",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "clean": "rm -rf dist storybook-static node_modules"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/cli": "4.1.5",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "@storybook/addon-essentials": "8.5.3",
+    "@storybook/addon-themes": "8.5.3",
+    "@storybook/addon-viewport": "8.5.3",
+    "@storybook/blocks": "8.5.3",
+    "@storybook/react": "8.5.3",
+    "@storybook/react-vite": "8.5.3",
+    "@tailwindcss/vite": "4.1.5",
+    "@vitejs/plugin-react": "4.3.4",
+    "daisyui": "5.0.4",
+    "eslint": "9.17.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "storybook": "8.5.3",
+    "tailwindcss": "4.1.5",
+    "typescript": "5.7.3"
+  }
+}

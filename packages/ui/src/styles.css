@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: skillcraft-light --default, skillcraft-dark --prefersdark;
+}
+
+/* ============================================================
+   Skillcraft Light Theme
+   ============================================================ */
+@plugin "daisyui/theme" {
+  name: "skillcraft-light";
+  default: true;
+  color-scheme: light;
+
+  --color-primary: oklch(56.76% 0.2021 283.08);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(58.76% 0.1389 241.97);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(59.60% 0.1274 163.23);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(22.84% 0.0384 282.93);
+  --color-neutral-content: oklch(92.19% 0 0);
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97.07% 0.0027 286.35);
+  --color-base-300: oklch(92.33% 0.0067 286.27);
+  --color-base-content: oklch(20.46% 0 0);
+  --color-info: oklch(54.61% 0.2152 262.88);
+  --color-info-content: oklch(100% 0 0);
+  --color-success: oklch(62.71% 0.1699 149.21);
+  --color-success-content: oklch(100% 0 0);
+  --color-warning: oklch(66.58% 0.1574 58.32);
+  --color-warning-content: oklch(20.46% 0 0);
+  --color-error: oklch(63.68% 0.2078 25.33);
+  --color-error-content: oklch(100% 0 0);
+
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ============================================================
+   Skillcraft Dark Theme
+   ============================================================ */
+@plugin "daisyui/theme" {
+  name: "skillcraft-dark";
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-primary: oklch(65.69% 0.1758 286.11);
+  --color-primary-content: oklch(14.73% 0.0107 285.01);
+  --color-secondary: oklch(75.35% 0.1390 232.66);
+  --color-secondary-content: oklch(14.73% 0.0107 285.01);
+  --color-accent: oklch(77.29% 0.1535 163.22);
+  --color-accent-content: oklch(14.73% 0.0107 285.01);
+  --color-neutral: oklch(17.08% 0.0103 285.25);
+  --color-neutral-content: oklch(71.09% 0.0231 285.80);
+  --color-base-100: oklch(14.73% 0.0107 285.01);
+  --color-base-200: oklch(20.35% 0.0139 285.10);
+  --color-base-300: oklch(28.97% 0.0199 285.09);
+  --color-base-content: oklch(94.61% 0 0);
+  --color-info: oklch(71.37% 0.1434 254.62);
+  --color-info-content: oklch(14.73% 0.0107 285.01);
+  --color-success: oklch(80.03% 0.1821 151.71);
+  --color-success-content: oklch(14.73% 0.0107 285.01);
+  --color-warning: oklch(83.69% 0.1644 84.43);
+  --color-warning-content: oklch(20.46% 0 0);
+  --color-error: oklch(71.06% 0.1661 22.22);
+  --color-error-content: oklch(14.73% 0.0107 285.01);
+
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

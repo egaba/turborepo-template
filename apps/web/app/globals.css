@@ -1,0 +1,10 @@
+@import "@repo/tailwind-config";
+@source "../../packages/ui/src";
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}

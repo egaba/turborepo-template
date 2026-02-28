@@ -1,0 +1,226 @@
+# Automated Dependency Vulnerability Monitoring
+#
+# Runs daily (or on-demand) to audit npm dependencies for vulnerabilities.
+# Uses advisory ID tracking to prevent duplicate JIRA tickets across runs.
+# Claude Code assesses new vulnerabilities and creates JIRA tickets automatically.
+#
+# CUSTOMIZE: Replace placeholders before using:
+#   {YOUR_ORG}           - GitHub org name
+#   {YOUR_REPO}          - GitHub repo name
+#   {JIRA_PROJECT_KEY}   - JIRA project key (e.g., POW, ENG)
+#   {JIRA_PARENT_EPIC}   - Parent epic for vulnerability tickets
+#   {JIRA_USER_EMAIL}    - Service account email for JIRA API
+#   {RUNNER_LABEL}       - GitHub Actions runner label (or use ubuntu-latest)
+
+name: Monitor Dependencies
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry run — assess vulnerabilities but do not create JIRA tickets'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '0 16 * * *' # Daily at 4 PM UTC
+concurrency: ${{ github.workflow }}
+jobs:
+  audit-dependencies:
+    runs-on: '{RUNNER_LABEL}' # CUSTOMIZE: e.g., ubuntu-latest or self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc' # Or pin a version
+
+      # --- Audit Phase ---
+      # Run both prod-only and full audits.
+      # The full audit captures ALL vulnerabilities at any severity.
+      # The prod JSON classifies dependencies for priority assignment.
+      - name: Run pnpm audit
+        id: audit
+        continue-on-error: true
+        run: |
+          pnpm audit > pnpm-audit.log || true
+          pnpm audit --json > pnpm-audit-all.json || true
+          pnpm audit --json --prod > pnpm-audit-prod.json || true
+          # Exit with failure if any vulnerabilities found
+          pnpm audit --audit-level=low > /dev/null
+
+      - name: Post audit report to summary
+        if: steps.audit.outcome == 'failure'
+        run: |
+          echo "### Audit Report" >> $GITHUB_STEP_SUMMARY
+          cat pnpm-audit.log >> $GITHUB_STEP_SUMMARY
+
+      # --- Advisory ID Tracking ---
+      # Tracks individual advisory IDs to prevent duplicate ticket creation.
+      # Only NEW advisories (not previously seen) trigger Claude assessment.
+      # The processed set is uploaded BEFORE Claude runs, so even if ticket
+      # creation fails, the IDs are recorded — preventing duplicates on retry.
+
+      - name: Extract and annotate advisory IDs
+        if: steps.audit.outcome == 'failure'
+        run: |
+          node -e "
+            const all = JSON.parse(require('fs').readFileSync('pnpm-audit-all.json', 'utf8'));
+            const prod = JSON.parse(require('fs').readFileSync('pnpm-audit-prod.json', 'utf8'));
+            const prodIds = new Set(Object.keys(prod.advisories || {}));
+            const allIds = Object.keys(all.advisories || {}).sort();
+
+            // Annotate each advisory with whether it's a production dependency
+            for (const [id, adv] of Object.entries(all.advisories || {})) {
+              adv._isProd = prodIds.has(id);
+            }
+            require('fs').writeFileSync('pnpm-audit-annotated.json', JSON.stringify(all, null, 2));
+            require('fs').writeFileSync('current-advisories.json', JSON.stringify(allIds));
+          "
+
+      # CUSTOMIZE: Replace with your GitHub token generation method.
+      # Options: secrets.GITHUB_TOKEN, a GitHub App, or a PAT.
+      - name: Get GitHub Token
+        if: steps.audit.outcome == 'failure'
+        id: github-token
+        run: echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+
+      - name: Find previous advisory artifact
+        if: steps.audit.outcome == 'failure'
+        id: find-artifact
+        run: |
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ steps.github-token.outputs.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts?name=processed-advisories&per_page=1" > artifacts.json
+          RUN_ID=$(jq -r '.artifacts[0].workflow_run.id // empty' artifacts.json)
+          if [ -n "$RUN_ID" ]; then
+            echo "RUN_ID=$RUN_ID" >> $GITHUB_OUTPUT
+            echo "EXPECTED=true" >> $GITHUB_OUTPUT
+            echo "Found previous artifact from run $RUN_ID"
+          else
+            echo "No previous artifact found (first run)"
+          fi
+
+      - name: Download previous advisory IDs
+        if: steps.audit.outcome == 'failure' && steps.find-artifact.outputs.RUN_ID
+        id: download-prev
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: processed-advisories
+          github-token: ${{ steps.github-token.outputs.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ steps.find-artifact.outputs.RUN_ID }}
+          path: previous-advisories
+
+      # Safety: if we EXPECTED an artifact but the download failed,
+      # abort rather than silently treating all advisories as new (duplicates).
+      - name: Verify artifact download
+        if: steps.audit.outcome == 'failure' && steps.find-artifact.outputs.EXPECTED == 'true' && steps.download-prev.outcome == 'failure'
+        run: |
+          echo "::error::Previous advisory artifact existed but download failed. Aborting to prevent duplicate tickets."
+          echo "Re-run the workflow to retry. If this persists, the artifact may have expired."
+          exit 1
+
+      - name: Determine new advisories
+        if: steps.audit.outcome == 'failure'
+        id: diff
+        run: |
+          node -e "
+            const current = JSON.parse(require('fs').readFileSync('current-advisories.json', 'utf8'));
+            let previous = [];
+            try {
+              previous = JSON.parse(require('fs').readFileSync('previous-advisories/processed-advisories.json', 'utf8'));
+            } catch {}
+
+            const newIds = current.filter(id => !previous.includes(id));
+
+            if (newIds.length > 0) {
+              const audit = JSON.parse(require('fs').readFileSync('pnpm-audit-annotated.json', 'utf8'));
+              const filtered = {};
+              for (const id of newIds) {
+                if (audit.advisories[id]) filtered[id] = audit.advisories[id];
+              }
+              require('fs').writeFileSync('new-advisories.json', JSON.stringify(filtered, null, 2));
+              const fs = require('fs');
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, 'HAS_NEW=true\n');
+            }
+
+            // Persist the union of previous + current as the new processed set
+            const union = [...new Set([...previous, ...current])].sort();
+            require('fs').writeFileSync('processed-advisories.json', JSON.stringify(union));
+          "
+
+      # Upload BEFORE Claude runs — if Claude fails, IDs are still recorded.
+      - name: Upload processed advisory IDs
+        if: steps.audit.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-advisories
+          path: processed-advisories.json
+          overwrite: true
+
+      # --- Claude Assessment + JIRA Ticket Creation ---
+      # Only runs when NEW (previously unseen) advisories are detected.
+      # Claude reads advisory data from files to avoid shell injection.
+
+      # CUSTOMIZE: Replace with your secret management approach.
+      - name: Set API keys
+        if: steps.audit.outcome == 'failure' && steps.diff.outputs.HAS_NEW == 'true'
+        run: |
+          # CUSTOMIZE: Set these from your secret store (Vault, GitHub Secrets, etc.)
+          echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> $GITHUB_ENV
+          echo "JIRA_API_KEY=${{ secrets.JIRA_API_KEY }}" >> $GITHUB_ENV
+
+      - name: Assess vulnerabilities and create JIRA tickets
+        if: steps.audit.outcome == 'failure' && steps.diff.outputs.HAS_NEW == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ env.ANTHROPIC_API_KEY }}
+          JIRA_API_KEY: ${{ env.JIRA_API_KEY }}
+          JIRA_USER: '{JIRA_USER_EMAIL}' # CUSTOMIZE
+          JIRA_BASE_URL: 'https://{YOUR_ORG}.atlassian.net' # CUSTOMIZE
+          DRY_RUN: ${{ inputs.dry-run || 'false' }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            DRY_RUN_MSG="## DRY RUN MODE — Do NOT create any JIRA tickets. Instead, output exactly what you WOULD create (title, priority, description summary) as a dry-run report."
+          else
+            DRY_RUN_MSG=""
+          fi
+
+          # Pass data via files to avoid shell injection from advisory content
+          npx -y @anthropic-ai/claude-code -p "
+          ${DRY_RUN_MSG}
+
+          You are running an automated vulnerability audit for a monorepo.
+
+          ## Instructions
+          1. Read the file 'new-advisories.json' for NEW vulnerabilities to create tickets for.
+             Each advisory has an '_isProd' field: true = production dependency, false = devDependency.
+          2. Read 'pnpm-audit.log' for the full human-readable audit output (for context).
+          3. For each NEW advisory, determine: severity, bump type (patch/minor/major), fix method.
+          4. Run 'pnpm why <package>' for each vulnerable package to understand dependency chains.
+          5. Group related advisories into tickets (same package or same fix).
+          6. Determine JIRA priority:
+             - Production dependencies: high severity -> Medium, critical -> High
+             - Dev dependencies: always Low priority regardless of severity
+          7. Note in the ticket description whether vulnerabilities are in production or dev dependencies.
+          8. Create JIRA ticket(s) under Epic {JIRA_PARENT_EPIC} via the JIRA REST API.
+
+          ## JIRA API Details
+          Create tickets with curl using these details:
+          - URL: \${JIRA_BASE_URL}/rest/api/3/issue
+          - Auth: Basic auth — user \${JIRA_USER}, password from \${JIRA_API_KEY} env var
+          - Project key: {JIRA_PROJECT_KEY}
+          - Issue type: use {\"name\": \"Task\"}
+          - Parent: {\"key\": \"{JIRA_PARENT_EPIC}\"}
+          - Labels: [\"appsec\"]
+          - Priority: {\"name\": \"High\"} for critical prod, {\"name\": \"Medium\"} for high prod, {\"name\": \"Low\"} for dev deps
+
+          The ticket description should use Atlassian Document Format (ADF) and include:
+          - A vulnerability table (package, severity, current version, fix version, bump type, dep path, prod/dev)
+          - Fix plan (which pnpm overrides to update, which direct deps to bump)
+          - Risk assessment (note if all vulnerabilities are dev-only)
+          - Acceptance criteria
+
+          Print the created ticket key(s) at the end.
+          " --model claude-sonnet-4-6 --allowedTools Read,Bash
