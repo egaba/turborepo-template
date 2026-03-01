@@ -98,3 +98,4 @@ fetch('/api/auth/session')
 - [Role-Based Permissions](references/permissions-groups.md) -- Roles, hooks, API wrappers, ProtectedComponent
 - [Auth Debugging](references/auth-debugging.md) -- Debugging table, mock sessions, testing patterns
 - [Security Hardening](references/security-hardening.md) -- CSP, headers, input validation, checklists
+- [owasp-nextjs.md](references/owasp-nextjs.md) -- OWASP Top 10 mapped to Next.js patterns

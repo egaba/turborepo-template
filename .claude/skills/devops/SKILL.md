@@ -18,7 +18,7 @@ How to ship code: from local development through Git to CI to deployment.
 | `pnpm turbo run test --filter={app-name}`        | Test (watch mode)                         |
 | `pnpm turbo run test:ci --filter={app-name}`     | Test (CI, non-interactive)                |
 | `pnpm turbo run lint --filter={app-name}`        | Lint                                      |
-| `pnpm turbo run check:types --filter={app-name}` | Type check                                |
+| `pnpm turbo run check-types --filter={app-name}` | Type check                                |
 
 **Cache troubleshooting:** `pnpm turbo run build --force` | `rm -rf .turbo` | `pnpm clean && pnpm install` | `pnpm turbo run build --dry-run`
 
@@ -29,7 +29,7 @@ How to ship code: from local development through Git to CI to deployment.
 - **Branch:** `{TICKET-KEY}.<short-summary-dasherized>` (e.g. `PROJ-1234.add-password-strength`)
 - **Commit:** `{TICKET-KEY}: {concise summary}` (imperative, lowercase)
 - **PRs:** Create as drafts until CI passes. Use `gh pr create --draft`
-- **Pre-commit:** `git status && git diff --cached` → `pnpm turbo run check:types` → `pnpm turbo run lint`
+- **Pre-commit:** `git status && git diff --cached` → `pnpm turbo run check-types` → `pnpm turbo run lint`
 
 See [git-patterns.md](references/git-patterns.md) for stacked PRs, hotfix branches, release flow.
 
@@ -48,7 +48,7 @@ See [github-actions.md](references/github-actions.md) for workflows, matrix, cac
 Run in order (fast-fail):
 
 ```bash
-pnpm turbo run check:types
+pnpm turbo run check-types
 pnpm turbo run lint
 pnpm turbo run test:ci
 pnpm turbo run build
@@ -61,3 +61,4 @@ pnpm turbo run build
 - **[monorepo-typescript-deps.md](references/monorepo-typescript-deps.md)** — tsconfig, pnpm overrides, vulnerability audit
 - **[git-patterns.md](references/git-patterns.md)** — Stacked PRs, hotfix branches, release flow
 - **[github-actions.md](references/github-actions.md)** — CI/CD workflows, matrix, deployments, caching
+- **[claude-hooks.md](references/claude-hooks.md)** — Claude Code hooks for workflow automation

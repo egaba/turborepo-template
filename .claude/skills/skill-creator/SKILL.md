@@ -53,6 +53,30 @@ To audit a skill, check criteria in `references/quality-criteria.md` and run thr
 
 Related topics belong in a single skill. Separate skills for unrelated domains only.
 
+## Agent vs Skill
+
+| Use Case | Choose |
+|---|---|
+| Knowledge, patterns, how-to guides | Skill |
+| Automated review/audit process | Agent |
+| Multi-step workflow with structured output | Agent |
+| Reference material for building | Skill |
+
+## Agent Anatomy
+
+```
+.claude/agents/
+└── agent-name.md    # Role, process, output format, rules
+```
+
+Agents are markdown files. Keep under 100 lines. Include:
+- **Role definition** -- what the agent does and when to spawn it
+- **Step-by-step process** -- numbered phases the agent follows
+- **Structured output format** -- markdown template for the report/result
+- **Rules/constraints** -- what to include, exclude, and how to handle edge cases
+
+Agents can specify which tools they need and which model to use. Name agents by their function: `reviewer`, `planner`, `security-reviewer`.
+
 ## References
 
 - **[quality-criteria.md](references/quality-criteria.md)** -- Metadata, token efficiency, structure, scope

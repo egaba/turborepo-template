@@ -120,45 +120,24 @@ function CreateProductForm() {
 
 ## Multi-Step Form
 
+Use per-step Zod schemas with `useState` tracking current step and accumulated data:
+
 ```tsx
 const stepSchemas = {
   personal: z.object({ firstName: z.string().min(1), lastName: z.string().min(1) }),
   contact: z.object({ email: z.string().email(), phone: z.string().optional() }),
-  review: z.object({}),
 }
 type StepKey = keyof typeof stepSchemas
 
-function MultiStepForm() {
-  const [step, setStep] = useState<StepKey>('personal')
-  const [formData, setFormData] = useState({})
-  const steps: StepKey[] = ['personal', 'contact', 'review']
-  const currentIndex = steps.indexOf(step)
-
-  function handleStepSubmit(data: Record<string, unknown>) {
-    setFormData((prev) => ({ ...prev, ...data }))
-    if (currentIndex < steps.length - 1) setStep(steps[currentIndex + 1])
-    else submitFinalForm({ ...formData, ...data })
-  }
-
-  return (
-    <div>
-      <ul className="steps mb-8 w-full">
-        {steps.map((s, i) => (
-          <li key={s} className={`step ${i <= currentIndex ? 'step-primary' : ''}`}>
-            {s}
-          </li>
-        ))}
-      </ul>
-      <StepForm schema={stepSchemas[step]} onSubmit={handleStepSubmit} />
-    </div>
-  )
-}
+// Track step + accumulated formData in state
+// On each step submit: merge data, advance step or submit final
+// Use DaisyUI `steps` component for progress indicator
 ```
 
 ## Shared Zod Schemas (Client + Server)
 
 ```typescript
-// lib/schemas/product.ts
+// features/{feature}/schemas/{name}.ts — single source of truth
 export const createProductSchema = z.object({
   name: z.string().min(1).max(200),
   price: z.number().positive(),

@@ -64,7 +64,7 @@ MCP tool reference: [browser-verification.md](references/browser-verification.md
 
 Write Playwright E2E tests for P0/P1 features. E2E tests live in `apps/web/e2e/`. Run with `pnpm test:e2e`.
 
-When to write an E2E test vs. rely on unit tests + browser check → [e2e-testing.md](references/e2e-testing.md)
+When to write an E2E test vs. rely on unit tests + browser check -> [e2e-testing.md](references/e2e-testing.md)
 
 ## Testing Pyramid
 
@@ -96,7 +96,7 @@ test('should login successfully', async ({ page }) => {
 })
 ```
 
-Full setup, API mocking, CI/CD, and commands → [e2e-testing.md](references/e2e-testing.md)
+Full setup, API mocking, CI/CD, and commands -> [e2e-testing.md](references/e2e-testing.md)
 
 ## Anti-Flakiness Patterns
 
@@ -104,49 +104,28 @@ Full setup, API mocking, CI/CD, and commands → [e2e-testing.md](references/e2e
 - **Test isolation**: Each test independent — no shared state. Use `beforeEach` for setup.
 - **Disable animations in E2E**: Inject CSS to set `animation-duration: 0s` and `transition-duration: 0s`.
 
+## Verification Loop
+
+After any code change, run the minimum verification set before moving on:
+1. `pnpm turbo run check-types --filter={affected-app}` — catch type errors immediately
+2. `pnpm turbo run test:ci --filter={affected-app}` — catch regressions
+3. Browser verify if UI changed (see browser-verification.md)
+Never skip steps 1-2. Step 3 is required for any visual change.
+
 ## Visual Regression
 
-Playwright `toHaveScreenshot` detects unintended UI changes. Update baselines: `npx playwright test --update-snapshots`. Full examples → [e2e-testing.md](references/e2e-testing.md)
+Playwright `toHaveScreenshot` detects unintended UI changes. Update baselines: `npx playwright test --update-snapshots`. Full examples -> [e2e-testing.md](references/e2e-testing.md)
 
-## Automated Accessibility (catches ~30-50% — pair with manual testing)
+## Automated Accessibility (catches ~30-50% -- pair with manual testing)
 
-### Playwright + axe-core (E2E)
+- **E2E**: `@axe-core/playwright` with `AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()`
+- **Component**: `jest-axe` with `expect(await axe(container)).toHaveNoViolations()`
 
-```typescript
-import AxeBuilder from '@axe-core/playwright'
-
-test('homepage is accessible', async ({ page }) => {
-  await page.goto('/')
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-    .analyze()
-  expect(results.violations).toEqual([])
-})
-```
-
-### Jest + jest-axe (Component-Level)
-
-```typescript
-import { axe, toHaveNoViolations } from 'jest-axe'
-expect.extend(toHaveNoViolations)
-
-it('has no a11y violations', async () => {
-  const { container } = render(<Button>Click me</Button>)
-  expect(await axe(container)).toHaveNoViolations()
-})
-```
+Full examples -> [component-testing.md](references/component-testing.md) and [e2e-testing.md](references/e2e-testing.md)
 
 ## Pre-Release Checklist
 
-- [ ] All tests pass (unit, integration, E2E)
-- [ ] Cross-browser: Chrome, Firefox, Safari, Edge
-- [ ] Responsive: 375px, 768px, 1024px, 1920px
-- [ ] Keyboard navigation works (Tab, Enter, Escape)
-- [ ] No console errors or warnings
-- [ ] Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms
-- [ ] Security headers present (CSP, HSTS, X-Content-Type-Options)
-- [ ] Accessibility audit passed (axe-core or Lighthouse)
-- [ ] Visual regression baselines updated (if UI changed)
+Full checklist -> [pre-release-checklist.md](references/pre-release-checklist.md)
 
 ## References
 
@@ -154,4 +133,5 @@ it('has no a11y violations', async () => {
 - [msw.md](references/msw.md) — Server setup, v2 syntax (preferred), v1 legacy, handlers
 - [browser-verification.md](references/browser-verification.md) — Chrome DevTools MCP, Cursor Browser MCP, Next.js DevTools
 - [e2e-testing.md](references/e2e-testing.md) — Playwright setup, visual regression, CI/CD
-- [performance-testing.md](references/performance-testing.md) — Core Web Vitals, Lighthouse CI, Next.js optimizations
+- For Core Web Vitals and performance optimization, see the **performance** skill
+- [pre-release-checklist.md](references/pre-release-checklist.md) — Full pre-release verification checklist

@@ -60,7 +60,7 @@ Signs of an architectural problem:
 - Fixes require "massive refactoring" to implement
 - Each fix creates new symptoms elsewhere
 
-Discuss with the user before attempting more fixes.
+Discuss with the user before attempting more fixes. If the issue is structural, consider spawning the `planner` agent to decompose the problem into smaller, independently fixable pieces.
 
 ## Root-Cause Tracing
 

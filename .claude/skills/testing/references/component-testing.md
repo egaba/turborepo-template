@@ -142,13 +142,6 @@ it('POST creates a product', async () => {
 })
 ```
 
-## Test Organization & Commands
+## Test Organization
 
-Structure: `__tests__/{components,pages,api,hooks}/` with `*.test.tsx` files.
-
-```bash
-pnpm turbo run test --filter=my-app                                    # watch mode
-pnpm turbo run test:ci --filter=my-app                                 # CI mode
-pnpm turbo run test --filter=my-app -- --testPathPatterns="Button.test" # single file
-pnpm turbo run test:coverage --filter=my-app                           # coverage
-```
+Structure: `features/{feature}/components/*.test.tsx` colocated with components, or `__tests__/` for cross-cutting tests. Commands: see devops skill.
