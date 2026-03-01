@@ -17,7 +17,7 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
-| `reviewer` | Reviews diffs against CLAUDE.md conventions, runs verification gates (`check:types`, `lint`, `test:ci`) | Before committing/merging — spawn to get a structured code review |
+| `reviewer` | Reviews diffs against CLAUDE.md conventions, runs verification gates (`check-types`, `lint`, `test:ci`) | Before committing/merging — spawn to get a structured code review |
 
 ## Code Quality Conventions
 
@@ -113,7 +113,7 @@ pnpm turbo run test:ci --filter={app-name}           # CI mode (non-interactive)
 
 pnpm turbo run lint --filter={app-name}
 
-pnpm turbo run check:types --filter={app-name}
+pnpm turbo run check-types --filter={app-name}
 ```
 
 ## MCP Servers

@@ -55,7 +55,7 @@ export const handlers = [
   }),
 
   http.get('/api/tasks/:id', ({ params }) => {
-    const task = mockTasks.find((t) => t.id === params.id)
+    const task = mockTasks.find((t) => t.id === params['id'])
     if (!task) {
       return HttpResponse.json(
         { error: 'Task not found', code: 'NOT_FOUND' },
@@ -81,13 +81,12 @@ export const handlers = [
     }
 
     const now = new Date().toISOString()
+    const { dueDate, description, ...required } = parsed.data
     const newTask: Task = {
+      ...required,
       id: crypto.randomUUID(),
-      title: parsed.data.title,
-      status: parsed.data.status,
-      priority: parsed.data.priority,
-      dueDate: parsed.data.dueDate,
-      description: parsed.data.description ?? undefined,
+      ...(dueDate !== undefined ? { dueDate } : {}),
+      ...(description !== undefined ? { description } : {}),
       createdAt: now,
       updatedAt: now,
     }
@@ -96,7 +95,7 @@ export const handlers = [
   }),
 
   http.patch('/api/tasks/:id', async ({ params, request }) => {
-    const index = mockTasks.findIndex((t) => t.id === params.id)
+    const index = mockTasks.findIndex((t) => t.id === params['id'])
     if (index === -1) {
       return HttpResponse.json(
         { error: 'Task not found', code: 'NOT_FOUND' },
@@ -119,17 +118,20 @@ export const handlers = [
     }
 
     const existing = mockTasks[index]!
+    const definedUpdates = Object.fromEntries(
+      Object.entries(parsed.data).filter(([, v]) => v !== undefined),
+    )
     const updated: Task = {
       ...existing,
-      ...parsed.data,
+      ...definedUpdates,
       updatedAt: new Date().toISOString(),
-    }
+    } as Task
     mockTasks[index] = updated
     return HttpResponse.json({ data: updated, status: 'success' })
   }),
 
   http.delete('/api/tasks/:id', ({ params }) => {
-    const index = mockTasks.findIndex((t) => t.id === params.id)
+    const index = mockTasks.findIndex((t) => t.id === params['id'])
     if (index === -1) {
       return HttpResponse.json(
         { error: 'Task not found', code: 'NOT_FOUND' },

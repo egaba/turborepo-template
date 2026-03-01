@@ -26,7 +26,7 @@ async function request<T>(url: string, options: RequestOptions = {}): Promise<T>
   const response = await fetch(url, {
     ...rest,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
   })
 
   if (!response.ok) {

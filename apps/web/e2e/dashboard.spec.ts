@@ -10,9 +10,9 @@ test.describe('Dashboard Page', () => {
   })
 
   test('displays stat cards', async ({ page }) => {
-    await expect(page.getByText('Total Skills')).toBeVisible()
+    await expect(page.getByText('Total Tasks')).toBeVisible()
     await expect(page.getByText('In Progress')).toBeVisible()
-    await expect(page.getByText('Mastered')).toBeVisible()
+    await expect(page.getByText('Completed')).toBeVisible()
   })
 
   test('has sidebar navigation', async ({ page }) => {

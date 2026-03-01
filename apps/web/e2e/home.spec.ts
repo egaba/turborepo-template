@@ -5,13 +5,13 @@ test.describe('Home Page', () => {
     await page.goto('/')
   })
 
-  test('renders the page title', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /my skills/i, level: 1 })).toBeVisible()
+  test('renders the hero heading', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: /craft something worth bookmarking/i, level: 1 })).toBeVisible()
   })
 
-  test('displays Getting Started and Components cards', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Getting Started' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Components' })).toBeVisible()
+  test('displays feature section and CTA section', async ({ page }) => {
+    await expect(page.getByRole('heading', { name: /the good stuff/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /convinced yet/i })).toBeVisible()
   })
 
   test('has a header with navigation', async ({ page }) => {

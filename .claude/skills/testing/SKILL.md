@@ -99,11 +99,9 @@ Full setup, API mocking, CI/CD, and commands → [e2e-testing.md](references/e2e
 
 ## Visual Regression
 
-Playwright screenshot comparison (`toHaveScreenshot`) detects unintended UI changes. Use after component library updates, theme changes, or layout refactors. Update baselines with `npx playwright test --update-snapshots`. Full examples → [e2e-testing.md](references/e2e-testing.md)
+Playwright `toHaveScreenshot` detects unintended UI changes. Update baselines: `npx playwright test --update-snapshots`. Full examples → [e2e-testing.md](references/e2e-testing.md)
 
-## Automated Accessibility
-
-Automation catches ~30-50% of a11y issues — pair with manual keyboard/screen-reader testing.
+## Automated Accessibility (catches ~30-50% — pair with manual testing)
 
 ### Playwright + axe-core (E2E)
 
@@ -145,8 +143,8 @@ it('has no a11y violations', async () => {
 
 ## References
 
-- **[component-testing.md](references/component-testing.md)** — Custom render, assertions, forms, React Query, App Router testing
-- **[msw.md](references/msw.md)** — Server setup, v2 syntax (preferred), v1 legacy, handler organization
-- **[browser-verification.md](references/browser-verification.md)** — Chrome DevTools MCP, Cursor Browser MCP, Next.js DevTools, context management
-- **[e2e-testing.md](references/e2e-testing.md)** — Playwright setup, visual regression, agent verification checklist, CI/CD
-- **[performance-testing.md](references/performance-testing.md)** — Core Web Vitals thresholds, Playwright perf tests, Lighthouse CI, Next.js optimizations
+- [component-testing.md](references/component-testing.md) — Custom render, assertions, forms, React Query, App Router
+- [msw.md](references/msw.md) — Server setup, v2 syntax (preferred), v1 legacy, handlers
+- [browser-verification.md](references/browser-verification.md) — Chrome DevTools MCP, Cursor Browser MCP, Next.js DevTools
+- [e2e-testing.md](references/e2e-testing.md) — Playwright setup, visual regression, CI/CD
+- [performance-testing.md](references/performance-testing.md) — Core Web Vitals, Lighthouse CI, Next.js optimizations

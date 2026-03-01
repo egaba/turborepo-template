@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "next-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    },
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest", "--", "--isolated", "--headless"],
+      "description": "Chrome DevTools MCP for browser automation and debugging"
+    }
+  },
+  "allowedTools": [
+    "mcp__chrome-devtools__*",
+    "mcp__next-devtools__*"
+  ]
+}

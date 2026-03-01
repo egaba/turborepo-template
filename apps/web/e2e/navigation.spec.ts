@@ -10,7 +10,7 @@ test.describe('Navigation', () => {
 
   test('navigates from dashboard to home via logo', async ({ page }) => {
     await page.goto('/dashboard')
-    await page.locator('aside').getByRole('link', { name: /my skills/i }).click()
+    await page.locator('aside').getByRole('link', { name: /project/i }).click()
     await expect(page).toHaveURL('/')
   })
 

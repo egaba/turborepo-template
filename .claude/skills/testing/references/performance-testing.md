@@ -143,19 +143,4 @@ jobs:
 
 ## Bundle Size
 
-```bash
-# Analyze bundle (after build)
-ANALYZE=true pnpm turbo run build --filter=web
-```
-
-Requires `@next/bundle-analyzer` in `next.config.ts`:
-
-```typescript
-import bundleAnalyzer from '@next/bundle-analyzer'
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env['ANALYZE'] === 'true',
-})
-
-export default withBundleAnalyzer(nextConfig)
-```
+Analyze after build: `ANALYZE=true pnpm turbo run build --filter=web` (requires `@next/bundle-analyzer` configured in `next.config.ts` with `bundleAnalyzer({ enabled: process.env['ANALYZE'] === 'true' })`).

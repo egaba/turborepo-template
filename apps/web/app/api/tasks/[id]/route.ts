@@ -36,7 +36,10 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     )
   }
 
-  const task = taskStore.update(id, parsed.data)
+  const definedUpdates = Object.fromEntries(
+    Object.entries(parsed.data).filter(([, v]) => v !== undefined),
+  ) as Partial<Omit<import('@/features/tasks/types').Task, 'id' | 'createdAt' | 'updatedAt'>>
+  const task = taskStore.update(id, definedUpdates)
   if (!task) {
     return NextResponse.json(
       { error: 'Task not found', code: 'NOT_FOUND' },

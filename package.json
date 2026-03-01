@@ -12,15 +12,18 @@
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "prettier": "^3.6.0",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "turbo": "^2.6.1"
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "turbo": "^2.8.12"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "@parcel/watcher",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "@eslint/plugin-kit": "0.3.4"
+    }
   }
 }

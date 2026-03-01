@@ -146,6 +146,5 @@ export function renderWithQuery(ui: React.ReactElement) {
     <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>,
   )
 }
+// Mock mode: set staleTime: Infinity and retry: false to prevent refetching over mock data
 ```
-
-**Mock mode:** When running with MSW, set `staleTime: Infinity` and `retry: false` to prevent refetching over mock data.

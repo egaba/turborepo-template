@@ -55,33 +55,33 @@ function GlobeIcon() {
 const FEATURES = [
   {
     icon: <LightningIcon />,
-    heading: 'Turborepo',
-    description: 'Optimized build system with remote caching, parallel execution, and smart task scheduling.',
+    heading: 'Stupid Fast',
+    description: 'Snappy enough to make your old site feel like dialup. We obsess over milliseconds so you can obsess over aesthetics.',
   },
   {
     icon: <CodeIcon />,
-    heading: 'TypeScript',
-    description: 'End-to-end type safety across your entire monorepo with strict TypeScript configuration.',
+    heading: 'Actually Typesafe',
+    description: 'No more "undefined is not a function" at 2am. Catch the dumb mistakes before your users do.',
   },
   {
     icon: <PaletteIcon />,
-    heading: 'DaisyUI',
-    description: 'Beautiful, accessible components with semantic color system and automatic dark mode support.',
+    heading: 'Dark Mode Native',
+    description: 'Themes that switch smoother than a barista pulling a single-origin pour-over. Your eyeballs will thank you.',
   },
   {
     icon: <RocketIcon />,
-    heading: 'Next.js 15',
-    description: 'React Server Components, App Router, and optimized performance out of the box.',
+    heading: 'Ship It Yesterday',
+    description: 'Go from vibes to production before your cortado gets cold. No boilerplate rituals required.',
   },
   {
     icon: <ShieldIcon />,
-    heading: 'Testing',
-    description: 'Comprehensive testing setup with Jest, React Testing Library, MSW, and Playwright.',
+    heading: 'Battle Tested',
+    description: 'We broke things so you don\'t have to. Every edge case has been lovingly argued about in a pull request.',
   },
   {
     icon: <GlobeIcon />,
-    heading: 'Deploy Anywhere',
-    description: 'Production-ready configuration for Vercel, Docker, and any Node.js hosting platform.',
+    heading: 'Runs Everywhere',
+    description: 'Deploy to the cloud, a raspberry pi, or that ThinkPad you found at a flea market. We don\'t judge.',
   },
 ] as const
 
@@ -90,17 +90,17 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <Hero
-        eyebrow="Open Source"
-        heading="Build faster. Ship with confidence."
-        description="A production-ready monorepo template with Next.js, Turborepo, and DaisyUI. Start building modern web applications in minutes."
-        primaryCta={<Button variant="primary" size="lg">Get Started</Button>}
-        secondaryCta={<Button variant="ghost" size="lg">View on GitHub</Button>}
+        eyebrow="Now in Season"
+        heading="Craft something worth bookmarking."
+        description="For the makers who'd rather ship a side project than scroll another thread. Opinionated tools, zero hand-wringing, and just enough magic to feel dangerous."
+        primaryCta={<Button variant="primary" size="lg">Start Making</Button>}
+        secondaryCta={<Button variant="ghost" size="lg">Browse the Source</Button>}
       />
 
       {/* Features */}
       <Section
-        heading="Everything you need"
-        description="Built on modern tools and best practices, so you can focus on building great products."
+        heading="The good stuff"
+        description="Less config, more craft. We sweat the details so you can focus on the thing that actually matters — your product."
         className="bg-base-200"
       >
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -118,16 +118,16 @@ export default function HomePage() {
       {/* CTA */}
       <Section>
         <CtaSection
-          heading="Ready to get started?"
-          description="Start building your next project with a production-ready foundation. No configuration needed."
+          heading="Convinced yet?"
+          description="Stop researching. Start building. Your future self will high-five you for this one."
           primaryCta={
-            <button className="btn btn-lg border-0 bg-white text-black hover:bg-white/90">
-              Get Started
+            <button className="btn btn-primary btn-lg">
+              Let&apos;s Go
             </button>
           }
           secondaryCta={
-            <button className="btn btn-ghost btn-lg border-white/20 text-white/80 hover:bg-white/10 hover:text-white">
-              Read the Docs
+            <button className="btn btn-ghost btn-lg text-primary-content/80 hover:text-primary-content">
+              Kick the Tires First
             </button>
           }
         />
