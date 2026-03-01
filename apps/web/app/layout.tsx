@@ -18,8 +18,17 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Project',
+  title: {
+    default: 'Project',
+    template: '%s | Project',
+  },
   description: 'Next.js monorepo template with Turborepo and DaisyUI',
+  metadataBase: new URL(process.env['NEXT_PUBLIC_APP_URL'] ?? 'http://localhost:3000'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Project',
+  },
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

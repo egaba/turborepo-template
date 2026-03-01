@@ -1,68 +1,98 @@
-# Next.js Monorepo Skills Template
+# Next.js Monorepo Template
 
-Reusable AI agent skills for Next.js + Turborepo projects with DaisyUI v5 and TailwindCSS v4.
+Opinionated starting template for Next.js projects with Turborepo, DaisyUI v5, and TailwindCSS v4. Includes AI agent skills for Claude Code.
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router, Turbopack) |
+| UI | DaisyUI v5 + TailwindCSS v4 |
+| State | React Query, react-hook-form + Zod |
+| Testing | Jest + RTL + MSW (unit), Playwright (E2E) |
+| Monorepo | Turborepo + pnpm |
+| Node | 22 LTS |
 
 ## Quick Start
 
-1. Clone or copy this repo as your project starting point
-2. Customize `CLAUDE.md` -- fill in project name, structure, and commands
-3. Find-and-replace all template placeholders (see below)
-4. Remove skills you don't need (each skill in `.claude/skills/` is self-contained)
-
-## Template Placeholders
-
-Replace these placeholders across all skill and agent files before use:
-
-| Placeholder | Where Used | Description |
-|-------------|------------|-------------|
-| `{project-name}` | CLAUDE.md | Your project name (e.g., `Acme Dashboard`) |
-| `{YOUR_APP}` | orchestration-playbook.md, workflow-guide.md | Primary application name in the monorepo (e.g., `web`, `dashboard`) |
-| `{YOUR_SITE}` | qa.md, orchestration-playbook.md | Your domain for staging URLs (e.g., `myapp.com`) |
-| `{YOUR_SHARED_PACKAGE}` | orchestration-playbook.md | Shared package for pre-flight type checks (e.g., `@myorg/ui`) |
-| `{app-name}` | CLAUDE.md, dev.md, qa.md | Turborepo filter name for app-specific commands |
-| `{app-1}`, `{app-2}` | CLAUDE.md | Application directory names under `apps/` |
-| `{PORT}` | dev.md, qa.md, orchestration-playbook.md | Dev server port number (e.g., `3000`) |
-| `@{your-org}/ui` | typescript references | Your scoped npm org for shared packages |
-
-**Quick find-and-replace:**
-
 ```bash
-rg -l '{YOUR_APP}' .claude/ | xargs sed -i '' 's/{YOUR_APP}/web/g'
-rg -l '{YOUR_SITE}' .claude/ | xargs sed -i '' 's/{YOUR_SITE}/myapp.com/g'
-rg -l '{app-name}' .claude/ CLAUDE.md | xargs sed -i '' 's/{app-name}/web/g'
-rg -l '{PORT}' .claude/ | xargs sed -i '' 's/{PORT}/3000/g'
+pnpm install
+pnpm turbo run dev --filter=web
+# Ready at http://localhost:3000
 ```
 
-## Skills Overview
+## Project Structure
 
-| Skill | What It Covers |
-|-------|---------------|
-| **ui** | DaisyUI v5 component patterns, semantic colors, variant maps, accessibility |
-| **data** | React Query, API routes, Server Actions, forms (react-hook-form + Zod), caching/revalidation |
-| **nextjs** | App Router, Server Components, routing, performance (next/image, next/font), SEO (metadata API) |
-| **auth** | NextAuth.js authentication, session management, permissions |
-| **security** | CSP, security headers, env var safety, CSRF/XSS prevention, defense-in-depth |
-| **testing** | Jest + RTL + MSW (unit/integration), Playwright (E2E), browser verification, pre-release checklist |
-| **typescript** | Strict mode, type conventions, discriminated unions, path aliases |
-| **debugging** | Systematic 4-phase debugging, root-cause tracing, verification-before-completion |
-| **devops** | Turborepo, Git workflow, GitHub Actions, Docker builds, observability, health checks |
-| **tasks** | Task orchestration with dev/QA/reviewer/deploy subagents |
+```
+apps/
+  web/                    # Primary Next.js application
+    app/                  # App Router routes
+    features/             # Feature modules (tasks, etc.)
+    lib/                  # Shared utilities
+    e2e/                  # Playwright E2E tests
+packages/
+  ui/                     # Shared component library (Storybook)
+  eslint-config/          # ESLint flat config
+  tailwind-config/        # TailwindCSS + DaisyUI theme
+  typescript-config/      # Shared tsconfig
+```
 
-## Agents
+## Essential Commands
 
-| Agent | Role |
-|-------|------|
-| **dev** | Developer subagent -- implements features following project conventions |
-| **qa** | QA subagent -- writes tests, runs browser verification |
-| **reviewer** | Code reviewer subagent -- reviews diffs against conventions, runs verification gates |
-| **deploy** | Deployment subagent -- runs deployment commands, verifies health |
+```bash
+pnpm turbo run dev --filter=web          # Dev server (port 3000)
+pnpm turbo run build                     # Production build
+pnpm turbo run check-types               # TypeScript check
+pnpm turbo run lint                      # ESLint
+pnpm turbo run test:ci --filter=web      # Unit tests (CI mode)
+pnpm turbo run test:e2e --filter=web     # Playwright E2E
+pnpm format:check                        # Prettier check
+```
 
-## Specializing This Template
+## AI Agent Skills
 
-When adopting for a specific project, you can ask your AI agent to:
+This template includes 8 Claude Code skills in `.claude/skills/`:
 
-- Read the project structure and update `CLAUDE.md` with actual paths
-- Update Essential Commands with real package names and ports
-- Replace all placeholders with project-specific values
-- Remove unused skills (e.g., `auth` if not using NextAuth)
-- Add project-specific conventions to Code Quality Conventions
+| Skill | Concern | What It Covers |
+|-------|---------|---------------|
+| **ui** | Build | DaisyUI v5 components, semantic colors, variant maps, accessibility |
+| **data** | Build | React Query, API routes, Server Actions, forms (react-hook-form + Zod) |
+| **nextjs** | Build | App Router, Server Components, routing, performance, SEO |
+| **auth** | Build | NextAuth.js, session management, security headers, CSP |
+| **testing** | Verify | Jest + RTL + MSW, Playwright E2E, browser verification |
+| **debugging** | Process | Systematic 4-phase debugging, root-cause tracing |
+| **devops** | Ship | Turborepo, Git workflow, GitHub Actions CI/CD |
+| **skill-creator** | Meta | Create, validate, and improve agent skills |
+
+### Agent
+
+| Agent | Purpose |
+|-------|---------|
+| **reviewer** | Code review against CLAUDE.md conventions + verification gates |
+
+## Customizing for Your Project
+
+1. **Replace placeholders** in `CLAUDE.md`:
+   - `{project-name}` — your project name
+   - `{app-name}` — Turborepo filter name (e.g., `web`)
+   - `{app-1}`, `{app-2}` — app directory names under `apps/`
+
+2. **Update branding** — search for "Project" in the codebase and replace with your project name (sidebar, header, footer, metadata)
+
+3. **Remove unused skills** — each skill in `.claude/skills/` is self-contained. Delete directories you don't need.
+
+4. **Configure environment** — copy `.env.example` to `.env.local` and fill in values.
+
+## CI/CD
+
+Two GitHub Actions workflows:
+
+- **ci.yaml** — Runs on PRs and pushes to main: format check, types, lint, unit tests, build, E2E tests
+- **monitor-dependencies.yaml** — Daily vulnerability scanning with `pnpm audit`
+
+## MCP Servers
+
+Configured in `.claude/settings.json`:
+
+- **chrome-devtools** — Headless browser automation for visual verification
+- **next-devtools** — Next.js 16 runtime diagnostics via `/_next/mcp` endpoint
