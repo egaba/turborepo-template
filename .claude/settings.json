@@ -12,8 +12,5 @@
       "description": "Chrome DevTools MCP for browser automation and debugging"
     }
   },
-  "allowedTools": [
-    "mcp__chrome-devtools__*",
-    "mcp__next-devtools__*"
-  ]
+  "allowedTools": ["mcp__chrome-devtools__*", "mcp__next-devtools__*"]
 }

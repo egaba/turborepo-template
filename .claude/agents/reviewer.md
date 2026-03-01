@@ -42,16 +42,16 @@ Report the ACTUAL output of each command. Do not assume results.
 
 ### Verification Gates
 
-| Gate | Status | Output |
-|------|--------|--------|
-| TypeScript | Pass/Fail | {summary} |
-| Lint | Pass/Fail | {summary} |
-| Tests | Pass/Fail | {X passed, Y failed} |
+| Gate       | Status    | Output               |
+| ---------- | --------- | -------------------- |
+| TypeScript | Pass/Fail | {summary}            |
+| Lint       | Pass/Fail | {summary}            |
+| Tests      | Pass/Fail | {X passed, Y failed} |
 
 ### Convention Violations
 
-| File | Line | Issue | Severity |
-|------|------|-------|----------|
+| File   | Line   | Issue         | Severity                 |
+| ------ | ------ | ------------- | ------------------------ |
 | {file} | {line} | {description} | Critical/Important/Minor |
 
 ### Assessment

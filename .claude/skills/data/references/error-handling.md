@@ -16,13 +16,16 @@ export default function Error({ error, reset }: Readonly<{ error: Error; reset: 
   return (
     <div className="alert alert-error" role="alert">
       <p>{error.message || 'Something went wrong'}</p>
-      <button className="btn btn-ghost btn-sm" onClick={reset}>Try again</button>
+      <button className="btn btn-ghost btn-sm" onClick={reset}>
+        Try again
+      </button>
     </div>
   )
 }
 ```
 
 **Placement rules:**
+
 - `app/error.tsx` — global fallback for unhandled errors
 - `app/{route}/error.tsx` — route-specific error UI (e.g., product not found vs generic)
 - `app/global-error.tsx` — catches root layout errors (must include `<html>` and `<body>`)
@@ -64,7 +67,7 @@ const queryClient = new QueryClient({
 ```tsx
 // app/products/page.tsx (Server Component wrapper)
 <Suspense fallback={<Loading />}>
-  <ProductList />   {/* uses useSuspenseQuery — errors bubble to error.tsx */}
+  <ProductList /> {/* uses useSuspenseQuery — errors bubble to error.tsx */}
 </Suspense>
 ```
 
@@ -94,7 +97,9 @@ export async function createProduct(formData: FormData) {
 ### Display with react-hook-form
 
 ```tsx
-{errors.name && <p className="text-error text-sm">{errors.name.message}</p>}
+{
+  errors.name && <p className="text-error text-sm">{errors.name.message}</p>
+}
 ```
 
 For Server Action errors without react-hook-form, use `useActionState`:

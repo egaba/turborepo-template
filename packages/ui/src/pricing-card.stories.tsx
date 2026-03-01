@@ -16,13 +16,12 @@ export const Free: Story = {
     name: 'Hobby',
     price: '$0',
     period: 'month',
-    features: [
-      'Up to 3 projects',
-      '1 GB storage',
-      'Community support',
-      'Basic analytics',
-    ],
-    cta: <Button variant="ghost" className="w-full">Get Started</Button>,
+    features: ['Up to 3 projects', '1 GB storage', 'Community support', 'Basic analytics'],
+    cta: (
+      <Button variant="ghost" className="w-full">
+        Get Started
+      </Button>
+    ),
   },
 }
 
@@ -40,7 +39,11 @@ export const Popular: Story = {
       'Custom domains',
       'Team collaboration',
     ],
-    cta: <Button variant="primary" className="w-full">Start Free Trial</Button>,
+    cta: (
+      <Button variant="primary" className="w-full">
+        Start Free Trial
+      </Button>
+    ),
   },
 }
 
@@ -51,13 +54,12 @@ export const PricingTiers: Story = {
         name="Hobby"
         price="$0"
         period="month"
-        features={[
-          'Up to 3 projects',
-          '1 GB storage',
-          'Community support',
-          'Basic analytics',
-        ]}
-        cta={<Button variant="ghost" className="w-full">Get Started</Button>}
+        features={['Up to 3 projects', '1 GB storage', 'Community support', 'Basic analytics']}
+        cta={
+          <Button variant="ghost" className="w-full">
+            Get Started
+          </Button>
+        }
       />
       <PricingCard
         name="Pro"
@@ -72,7 +74,11 @@ export const PricingTiers: Story = {
           'Custom domains',
           'Team collaboration',
         ]}
-        cta={<Button variant="primary" className="w-full">Start Free Trial</Button>}
+        cta={
+          <Button variant="primary" className="w-full">
+            Start Free Trial
+          </Button>
+        }
       />
       <PricingCard
         name="Enterprise"
@@ -87,7 +93,11 @@ export const PricingTiers: Story = {
           'SLA guarantee',
           'Audit logs',
         ]}
-        cta={<Button variant="secondary" className="w-full">Contact Sales</Button>}
+        cta={
+          <Button variant="secondary" className="w-full">
+            Contact Sales
+          </Button>
+        }
       />
     </div>
   ),

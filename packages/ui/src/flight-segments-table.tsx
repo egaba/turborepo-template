@@ -30,9 +30,7 @@ const columns = [
     key: 'segNumber',
     header: '#',
     className: 'w-12',
-    render: (row: FlightSegment) => (
-      <span className="text-base-content/50">{row.segNumber}</span>
-    ),
+    render: (row: FlightSegment) => <span className="text-base-content/50">{row.segNumber}</span>,
   },
   {
     key: 'code',
@@ -41,9 +39,7 @@ const columns = [
       <div className="flex items-center gap-2">
         <span className="font-medium">{row.code}</span>
         {row.codeType && (
-          <span
-            className={`rounded px-1.5 py-0.5 text-xs ${codeTypeClass[row.codeType]}`}
-          >
+          <span className={`rounded px-1.5 py-0.5 text-xs ${codeTypeClass[row.codeType]}`}>
             {row.codeType === 'positioning' ? 'POS' : 'REV'}
           </span>
         )}
@@ -81,22 +77,11 @@ const columns = [
     key: 'pax',
     header: 'PAX',
     render: (row: FlightSegment) => (
-      <span className={row.pax === 0 ? 'text-base-content/40' : ''}>
-        {row.pax}
-      </span>
+      <span className={row.pax === 0 ? 'text-base-content/40' : ''}>{row.pax}</span>
     ),
   },
 ]
 
-export function FlightSegmentsTable({
-  segments,
-  className = '',
-}: FlightSegmentsTableProps) {
-  return (
-    <DataTable<FlightSegment>
-      columns={columns}
-      data={segments}
-      className={className}
-    />
-  )
+export function FlightSegmentsTable({ segments, className = '' }: FlightSegmentsTableProps) {
+  return <DataTable<FlightSegment> columns={columns} data={segments} className={className} />
 }

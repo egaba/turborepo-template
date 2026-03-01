@@ -39,12 +39,7 @@ function FilterIcon() {
 function PlusIcon() {
   return (
     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 4v16m8-8H4"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
     </svg>
   )
 }
@@ -55,7 +50,7 @@ function EmailList({
   emails: typeof MOCK_EMAILS
 }>) {
   const [starredIds, setStarredIds] = useState<Set<string>>(
-    new Set(MOCK_EMAILS.filter((e) => e.starred).map((e) => e.id))
+    new Set(MOCK_EMAILS.filter((e) => e.starred).map((e) => e.id)),
   )
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
 
@@ -84,7 +79,7 @@ function EmailList({
   }
 
   return (
-    <div className="rounded-lg border border-base-300 bg-base-100">
+    <div className="border-base-300 bg-base-100 rounded-lg border">
       {emails.map((email) => (
         <EmailListItem
           key={email.id}
@@ -108,9 +103,7 @@ function EmailList({
   )
 }
 
-const newRequestEmails = MOCK_EMAILS.filter(
-  (e) => e.statusVariant === 'new-request'
-)
+const newRequestEmails = MOCK_EMAILS.filter((e) => e.statusVariant === 'new-request')
 const notificationEmails = MOCK_EMAILS.filter((e) => !e.tripId)
 
 export default function InboxPage() {

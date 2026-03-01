@@ -49,11 +49,12 @@ it('toggles state on click', async () => {
 ```
 
 **Assertion cheat sheet:**
+
 ```typescript
-screen.getByRole('button', { name: /submit/i })       // role first
-screen.getByLabelText(/email address/i)                // label second
-await screen.findByText('Success message')             // async: findBy*
-expect(screen.queryByText('Error')).not.toBeInTheDocument()  // absence: queryBy*
+screen.getByRole('button', { name: /submit/i }) // role first
+screen.getByLabelText(/email address/i) // label second
+await screen.findByText('Success message') // async: findBy*
+expect(screen.queryByText('Error')).not.toBeInTheDocument() // absence: queryBy*
 ```
 
 ## Form Testing
@@ -108,7 +109,10 @@ it('renders fallback on error', () => {
 
 ```typescript
 jest.mock('@/lib/api', () => ({
-  getProducts: jest.fn().mockResolvedValue([{ id: '1', name: 'Product 1' }, { id: '2', name: 'Product 2' }]),
+  getProducts: jest.fn().mockResolvedValue([
+    { id: '1', name: 'Product 1' },
+    { id: '2', name: 'Product 2' },
+  ]),
 }))
 
 it('renders products from server component', async () => {
@@ -130,7 +134,8 @@ it('GET returns product list', async () => {
 
 it('POST creates a product', async () => {
   const req = new Request('http://localhost:3000/api/products', {
-    method: 'POST', body: JSON.stringify({ name: 'New Product', price: 10 }),
+    method: 'POST',
+    body: JSON.stringify({ name: 'New Product', price: 10 }),
   })
   const response = await POST(req)
   expect(response.status).toBe(201)

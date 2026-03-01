@@ -2,12 +2,12 @@
 
 ## Branch Types
 
-| Type | Pattern | Example | Purpose |
-|------|---------|---------|---------|
-| Feature | `{TICKET}.<summary>` | `PROJ-123.add-auth` | New features |
-| Bugfix | `{TICKET}.<summary>` | `FIX-456.login-crash` | Bug fixes |
-| Hotfix | `hotfix/{TICKET}.<summary>` | `hotfix/FIX-789.prod-500` | Urgent production fixes |
-| Release | `release/{version}` | `release/2.1.0` | Release preparation |
+| Type    | Pattern                     | Example                   | Purpose                 |
+| ------- | --------------------------- | ------------------------- | ----------------------- |
+| Feature | `{TICKET}.<summary>`        | `PROJ-123.add-auth`       | New features            |
+| Bugfix  | `{TICKET}.<summary>`        | `FIX-456.login-crash`     | Bug fixes               |
+| Hotfix  | `hotfix/{TICKET}.<summary>` | `hotfix/FIX-789.prod-500` | Urgent production fixes |
+| Release | `release/{version}`         | `release/2.1.0`           | Release preparation     |
 
 ## Stacked PRs
 
@@ -21,6 +21,7 @@ main
 ```
 
 **Rules:**
+
 - Each PR should be independently reviewable
 - Base each stacked branch on the previous one, not main
 - Merge in order: part-1 first, rebase part-2, merge part-2, etc.
@@ -34,9 +35,9 @@ main
 
 ## Protected Branch Rules
 
-| Branch | Merge Requirements |
-|--------|-------------------|
-| `main` | PR required, CI passing, 1+ approval |
+| Branch      | Merge Requirements                    |
+| ----------- | ------------------------------------- |
+| `main`      | PR required, CI passing, 1+ approval  |
 | `release/*` | PR required, CI passing, 2+ approvals |
 
 ## Cleanup

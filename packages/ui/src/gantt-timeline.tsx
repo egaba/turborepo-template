@@ -19,11 +19,7 @@ const blockVariantClass: Record<TimelineVariant, string> = {
   active: 'bg-accent/20 text-accent',
 }
 
-export function GanttTimeline({
-  dates,
-  blocks,
-  className = '',
-}: GanttTimelineProps) {
+export function GanttTimeline({ dates, blocks, className = '' }: GanttTimelineProps) {
   return (
     <div className={`overflow-x-auto ${className}`.trim()}>
       <div
@@ -35,17 +31,14 @@ export function GanttTimeline({
         {dates.map((date) => (
           <div
             key={date}
-            className="border-b border-r border-base-300 px-2 py-1.5 text-center text-xs font-medium text-base-content/60"
+            className="border-base-300 text-base-content/60 border-b border-r px-2 py-1.5 text-center text-xs font-medium"
           >
             {date}
           </div>
         ))}
 
         {dates.map((date) => (
-          <div
-            key={`bg-${date}`}
-            className="h-12 border-r border-base-300/50"
-          />
+          <div key={`bg-${date}`} className="border-base-300/50 h-12 border-r" />
         ))}
       </div>
 

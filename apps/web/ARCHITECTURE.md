@@ -33,11 +33,11 @@ apps/web/
 
 ## Testing
 
-| Layer | Tool | Runs |
-|-------|------|------|
-| Unit/component | Jest + RTL | `pnpm test:ci` |
-| E2E | Playwright | `pnpm test:e2e` |
-| Visual (dev) | Browser MCP | Agent-driven during development |
+| Layer          | Tool        | Runs                            |
+| -------------- | ----------- | ------------------------------- |
+| Unit/component | Jest + RTL  | `pnpm test:ci`                  |
+| E2E            | Playwright  | `pnpm test:e2e`                 |
+| Visual (dev)   | Browser MCP | Agent-driven during development |
 
 ## Agent-Specific Documentation
 

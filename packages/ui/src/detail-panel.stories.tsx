@@ -21,13 +21,13 @@ export const Default: Story = {
         <p className="text-base-content/70">
           This is the detail panel body content. It scrolls when content overflows.
         </p>
-        <div className="rounded-lg bg-base-200 p-4">
+        <div className="bg-base-200 rounded-lg p-4">
           <h3 className="font-medium">Route</h3>
-          <p className="text-sm text-base-content/60">LFPG → KJFK</p>
+          <p className="text-base-content/60 text-sm">LFPG → KJFK</p>
         </div>
-        <div className="rounded-lg bg-base-200 p-4">
+        <div className="bg-base-200 rounded-lg p-4">
           <h3 className="font-medium">Passengers</h3>
-          <p className="text-sm text-base-content/60">4 PAX, 2 luggage</p>
+          <p className="text-base-content/60 text-sm">4 PAX, 2 luggage</p>
         </div>
       </div>
     ),
@@ -48,11 +48,9 @@ export const WithTabs: Story = {
     ),
     children: (
       <div className="space-y-4">
-        <div className="rounded-lg bg-base-200 p-4">
+        <div className="bg-base-200 rounded-lg p-4">
           <h3 className="font-medium">Overview content</h3>
-          <p className="text-sm text-base-content/60">
-            Quote details and summary information.
-          </p>
+          <p className="text-base-content/60 text-sm">Quote details and summary information.</p>
         </div>
       </div>
     ),
@@ -67,11 +65,7 @@ export const Interactive: Story = {
         <button className="btn btn-primary" onClick={() => setOpen(true)}>
           Open Panel
         </button>
-        <DetailPanel
-          title="Interactive Panel"
-          open={open}
-          onClose={() => setOpen(false)}
-        >
+        <DetailPanel title="Interactive Panel" open={open} onClose={() => setOpen(false)}>
           <p className="text-base-content/70">Click the X or overlay to close.</p>
         </DetailPanel>
       </div>

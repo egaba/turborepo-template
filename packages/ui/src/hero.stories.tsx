@@ -16,8 +16,16 @@ export const WithEyebrow: Story = {
     heading: 'Ship faster with confidence',
     description:
       'The developer platform that scales with your team. Build, test, and deploy modern web applications with zero configuration.',
-    primaryCta: <Button variant="primary" size="lg">Start Building</Button>,
-    secondaryCta: <Button variant="ghost" size="lg">View Demo</Button>,
+    primaryCta: (
+      <Button variant="primary" size="lg">
+        Start Building
+      </Button>
+    ),
+    secondaryCta: (
+      <Button variant="ghost" size="lg">
+        View Demo
+      </Button>
+    ),
   },
 }
 
@@ -26,7 +34,11 @@ export const Simple: Story = {
     heading: 'Build the future of the web',
     description:
       'A complete toolkit for modern web development. From prototype to production in minutes, not months.',
-    primaryCta: <Button variant="primary" size="lg">Get Started Free</Button>,
+    primaryCta: (
+      <Button variant="primary" size="lg">
+        Get Started Free
+      </Button>
+    ),
   },
 }
 
@@ -36,7 +48,15 @@ export const LongDescription: Story = {
     heading: 'Your entire backend, managed',
     description:
       'Authentication, database, storage, and edge functions — everything you need to build production-ready applications. No DevOps expertise required.',
-    primaryCta: <Button variant="primary" size="lg">Start Your Project</Button>,
-    secondaryCta: <Button variant="ghost" size="lg">Read Documentation</Button>,
+    primaryCta: (
+      <Button variant="primary" size="lg">
+        Start Your Project
+      </Button>
+    ),
+    secondaryCta: (
+      <Button variant="ghost" size="lg">
+        Read Documentation
+      </Button>
+    ),
   },
 }

@@ -6,18 +6,18 @@ Shared tsconfig, pnpm workspace patterns, overrides, and audit workflow.
 
 ```yaml
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
 ```
 
-## workspace:* References
+## workspace:\* References
 
 ```jsonc
 // apps/my-app/package.json
 {
   "dependencies": {
-    "@my-org/ui": "workspace:*"
-  }
+    "@my-org/ui": "workspace:*",
+  },
 }
 ```
 
@@ -59,9 +59,9 @@ save-exact=true
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
 ```
 
@@ -69,7 +69,7 @@ save-exact=true
 // packages/ts-config/nextjs.json
 {
   "extends": "./base.json",
-  "compilerOptions": { "noEmit": true }
+  "compilerOptions": { "noEmit": true },
 }
 ```
 
@@ -79,10 +79,10 @@ save-exact=true
   "extends": "@my-org/ts-config/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./src/*"] },
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
 ```
 
@@ -102,10 +102,10 @@ pnpm turbo run build
 pnpm turbo run test:ci --filter=<affected-apps>
 ```
 
-| Severity | Dep Type | Action |
-|----------|----------|--------|
-| critical | production | Fix immediately |
-| critical | devDependency | Fix within current sprint |
-| high | production | Fix within current sprint |
-| high | devDependency | Fix within current sprint |
-| moderate/low | any | Batch into next audit |
+| Severity     | Dep Type      | Action                    |
+| ------------ | ------------- | ------------------------- |
+| critical     | production    | Fix immediately           |
+| critical     | devDependency | Fix within current sprint |
+| high         | production    | Fix within current sprint |
+| high         | devDependency | Fix within current sprint |
+| moderate/low | any           | Batch into next audit     |

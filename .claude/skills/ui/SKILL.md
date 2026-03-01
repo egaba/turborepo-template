@@ -1,7 +1,8 @@
 ---
 name: ui
 description: Component styling, theming, and accessibility patterns. DaisyUI v5 + TailwindCSS v4 semantic color system, variant maps, responsive design, and ARIA/keyboard accessibility.
-globs: ['**/shared-styles.css', '**/tailwind.config.*', '**/components/common/*', '**/packages/ui/**/*']
+globs:
+  ['**/shared-styles.css', '**/tailwind.config.*', '**/components/common/*', '**/packages/ui/**/*']
 ---
 
 # UI — Styling, Components & Accessibility
@@ -69,16 +70,16 @@ Use explicit `Record` maps for variant-to-class lookups -- never template litera
 
 ## DaisyUI Component Reference
 
-| Component | Base Class | Key Variants |
-|-----------|-----------|----------|
-| Button | `btn` | `btn-primary`, `btn-secondary`, `btn-accent`, `btn-ghost`, `btn-link`, `btn-outline` |
-| Card | `card` | `bg-base-100 shadow-xl`, `card-bordered`, `card-compact` |
-| Badge | `badge` | `badge-primary`, `badge-info`, `badge-success`, `badge-warning`, `badge-error` |
-| Alert | `alert` | `alert-info`, `alert-success`, `alert-warning`, `alert-error` |
-| Modal | `modal` | Use `<dialog>` with `modal-box`, `modal-action` |
-| Input | `input` | `input-bordered`, `input-primary`, `input-ghost` |
-| Tabs | `tabs` | `tabs-boxed`, `tabs-bordered`, `tabs-lifted` |
-| Loading | `loading` | `loading-spinner`, `loading-dots`, `loading-ring` |
+| Component | Base Class | Key Variants                                                                         |
+| --------- | ---------- | ------------------------------------------------------------------------------------ |
+| Button    | `btn`      | `btn-primary`, `btn-secondary`, `btn-accent`, `btn-ghost`, `btn-link`, `btn-outline` |
+| Card      | `card`     | `bg-base-100 shadow-xl`, `card-bordered`, `card-compact`                             |
+| Badge     | `badge`    | `badge-primary`, `badge-info`, `badge-success`, `badge-warning`, `badge-error`       |
+| Alert     | `alert`    | `alert-info`, `alert-success`, `alert-warning`, `alert-error`                        |
+| Modal     | `modal`    | Use `<dialog>` with `modal-box`, `modal-action`                                      |
+| Input     | `input`    | `input-bordered`, `input-primary`, `input-ghost`                                     |
+| Tabs      | `tabs`     | `tabs-boxed`, `tabs-bordered`, `tabs-lifted`                                         |
+| Loading   | `loading`  | `loading-spinner`, `loading-dots`, `loading-ring`                                    |
 
 ## Design Thinking
 

@@ -1,7 +1,14 @@
 ---
 name: testing
-description: "Quality verification — unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, testing pyramid, and pre-release checklist."
-globs: ['**/*.{test,spec}.{ts,tsx,js,jsx}', '**/mocks/**/*', '**/test-utils/**/*', '**/__tests__/**/*', '**/factories/**/*']
+description: 'Quality verification — unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, testing pyramid, and pre-release checklist.'
+globs:
+  [
+    '**/*.{test,spec}.{ts,tsx,js,jsx}',
+    '**/mocks/**/*',
+    '**/test-utils/**/*',
+    '**/__tests__/**/*',
+    '**/factories/**/*',
+  ]
 ---
 
 # Testing — Unit, Integration & Browser Verification
@@ -61,20 +68,20 @@ When to write an E2E test vs. rely on unit tests + browser check → [e2e-testin
 
 ## Testing Pyramid
 
-| Context | Unit | Integration | E2E | Rationale |
-|---------|------|-------------|-----|-----------|
-| Classic | 70% | 20% | 10% | Most apps |
-| Heavy frontend | 60% | 25% | 15% | UI-heavy with complex interactions |
-| API-heavy | 75% | 15% | 10% | Backend-focused |
+| Context        | Unit | Integration | E2E | Rationale                          |
+| -------------- | ---- | ----------- | --- | ---------------------------------- |
+| Classic        | 70%  | 20%         | 10% | Most apps                          |
+| Heavy frontend | 60%  | 25%         | 15% | UI-heavy with complex interactions |
+| API-heavy      | 75%  | 15%         | 10% | Backend-focused                    |
 
 ### Priority Matrix
 
-| Priority | Category | Examples |
-|----------|----------|----------|
-| P0 | Critical flows | Signup, login, checkout, payment |
-| P1 | Major features | Search, CRUD, navigation |
-| P2 | Secondary | Filters, sorting, preferences |
-| P3 | Edge cases | Empty states, boundary values |
+| Priority | Category       | Examples                         |
+| -------- | -------------- | -------------------------------- |
+| P0       | Critical flows | Signup, login, checkout, payment |
+| P1       | Major features | Search, CRUD, navigation         |
+| P2       | Secondary      | Filters, sorting, preferences    |
+| P3       | Edge cases     | Empty states, boundary values    |
 
 ## E2E Testing (Playwright)
 

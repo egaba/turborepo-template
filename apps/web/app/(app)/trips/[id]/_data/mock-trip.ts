@@ -90,10 +90,7 @@ export const MOCK_TRIP: TripDetail = {
       suggested: false,
       price: '$76,800',
       availability: { available: 2, total: 4 },
-      insights: [
-        'Slightly smaller cabin',
-        'Lower operating cost',
-      ],
+      insights: ['Slightly smaller cabin', 'Lower operating cost'],
     },
     {
       name: 'Global 6000',
@@ -101,22 +98,10 @@ export const MOCK_TRIP: TripDetail = {
       suggested: false,
       price: '$124,500',
       availability: { available: 1, total: 3 },
-      insights: [
-        'Premium cabin experience',
-        'Intercontinental range',
-        'Higher price point',
-      ],
+      insights: ['Premium cabin experience', 'Intercontinental range', 'Higher price point'],
     },
   ],
-  timelineDates: [
-    'Mar 10',
-    'Mar 11',
-    'Mar 12',
-    'Mar 13',
-    'Mar 14',
-    'Mar 15',
-    'Mar 16',
-  ],
+  timelineDates: ['Mar 10', 'Mar 11', 'Mar 12', 'Mar 13', 'Mar 14', 'Mar 15', 'Mar 16'],
   timelineBlocks: [
     { label: 'Positioning KTEB-KPBI', startCol: 0, spanCols: 1, variant: 'positioning' },
     { label: 'Revenue KPBI-KTEB', startCol: 2, spanCols: 2, variant: 'revenue' },
@@ -164,11 +149,7 @@ export const MOCK_TRIP: TripDetail = {
     status: 'Quotes in progress',
     type: 'Multi-leg charter',
     departure: 'Mar 12, 2026',
-    team: [
-      { alt: 'Tom Anderson' },
-      { alt: 'Lisa Park' },
-      { alt: 'Mike Chen' },
-    ],
+    team: [{ alt: 'Tom Anderson' }, { alt: 'Lisa Park' }, { alt: 'Mike Chen' }],
   },
   itinerary: [
     {

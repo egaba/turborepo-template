@@ -53,10 +53,7 @@ export const WithForm: Story = {
               <button className="btn btn-ghost" onClick={() => setOpen(false)}>
                 Cancel
               </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => setOpen(false)}
-              >
+              <button className="btn btn-primary" onClick={() => setOpen(false)}>
                 Save
               </button>
             </div>
@@ -67,11 +64,7 @@ export const WithForm: Story = {
               <div className="label">
                 <span className="label-text">Name</span>
               </div>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="input input-bordered w-full"
-              />
+              <input type="text" placeholder="John Doe" className="input input-bordered w-full" />
             </label>
             <label className="form-control w-full">
               <div className="label">
@@ -107,18 +100,15 @@ export const Confirmation: Story = {
               <button className="btn btn-ghost" onClick={() => setOpen(false)}>
                 Cancel
               </button>
-              <button
-                className="btn btn-error"
-                onClick={() => setOpen(false)}
-              >
+              <button className="btn btn-error" onClick={() => setOpen(false)}>
                 Delete
               </button>
             </div>
           }
         >
           <p>
-            This action cannot be undone. This will permanently delete your
-            account and remove all associated data.
+            This action cannot be undone. This will permanently delete your account and remove all
+            associated data.
           </p>
         </Modal>
       </>
@@ -144,10 +134,7 @@ export const ScrollableContent: Story = {
               <button className="btn btn-ghost" onClick={() => setOpen(false)}>
                 Decline
               </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => setOpen(false)}
-              >
+              <button className="btn btn-primary" onClick={() => setOpen(false)}>
                 Accept
               </button>
             </div>
@@ -156,9 +143,9 @@ export const ScrollableContent: Story = {
           <div className="overflow-y-auto">
             {Array.from({ length: 20 }, (_, i) => (
               <p key={i} className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris.
               </p>
             ))}
           </div>

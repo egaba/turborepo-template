@@ -44,16 +44,14 @@ const SIDEBAR_SECTIONS = [
   },
 ]
 
-export default function AppLayout({
-  children,
-}: Readonly<{ children: ReactNode }>) {
+export default function AppLayout({ children }: Readonly<{ children: ReactNode }>) {
   const pathname = usePathname()
 
   return (
     <div className="drawer lg:drawer-open">
       <input id={DRAWER_ID} type="checkbox" className="drawer-toggle" />
 
-      <div className="drawer-content flex min-h-screen flex-col bg-base-200">
+      <div className="drawer-content bg-base-200 flex min-h-screen flex-col">
         <div className="flex items-center gap-2 p-4 lg:hidden">
           <label
             htmlFor={DRAWER_ID}
@@ -81,16 +79,15 @@ export default function AppLayout({
       </div>
 
       <div className="drawer-side">
-        <label
-          htmlFor={DRAWER_ID}
-          className="drawer-overlay"
-          aria-label="Close navigation"
-        />
+        <label htmlFor={DRAWER_ID} className="drawer-overlay" aria-label="Close navigation" />
         <AppSidebar
           sections={SIDEBAR_SECTIONS}
           currentPath={pathname}
           logo={
-            <Link href="/" className="text-lg font-bold tracking-tight text-base-content no-underline">
+            <Link
+              href="/"
+              className="text-base-content text-lg font-bold tracking-tight no-underline"
+            >
               Project
             </Link>
           }

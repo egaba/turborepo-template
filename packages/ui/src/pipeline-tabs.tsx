@@ -22,10 +22,7 @@ export function PipelineTabs({
   className = '',
 }: PipelineTabsProps) {
   return (
-    <div
-      className={`flex items-stretch overflow-x-auto ${className}`.trim()}
-      role="tablist"
-    >
+    <div className={`flex items-stretch overflow-x-auto ${className}`.trim()} role="tablist">
       {stages.map((stage, index) => {
         const isActive = index === activeIndex
 
@@ -36,10 +33,10 @@ export function PipelineTabs({
               role="tab"
               aria-selected={isActive}
               onClick={() => onStageClick(index)}
-              className={`flex items-center gap-2 px-4 py-3 text-sm transition-smooth-fast ${
+              className={`transition-smooth-fast flex items-center gap-2 px-4 py-3 text-sm ${
                 isActive
-                  ? 'border-b-2 border-accent font-medium text-accent'
-                  : 'border-b-2 border-transparent text-base-content/60 hover:text-base-content'
+                  ? 'border-accent text-accent border-b-2 font-medium'
+                  : 'text-base-content/60 hover:text-base-content border-b-2 border-transparent'
               }`}
             >
               {stage.icon && (
@@ -50,9 +47,7 @@ export function PipelineTabs({
               <span>{stage.label}</span>
               <span
                 className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                  isActive
-                    ? 'bg-accent/15 text-accent'
-                    : 'bg-base-300 text-base-content/50'
+                  isActive ? 'bg-accent/15 text-accent' : 'bg-base-300 text-base-content/50'
                 }`}
               >
                 {stage.count}
@@ -60,9 +55,14 @@ export function PipelineTabs({
             </button>
 
             {index < stages.length - 1 && (
-              <div className="flex items-center px-1 text-base-content/20">
+              <div className="text-base-content/20 flex items-center px-1">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </div>
             )}

@@ -35,11 +35,7 @@ const spinnerSizeClass: Record<SpinnerSize, string> = {
   lg: 'loading-lg',
 }
 
-export function Spinner({
-  size = 'md',
-  variant = 'spinner',
-  className = '',
-}: SpinnerProps) {
+export function Spinner({ size = 'md', variant = 'spinner', className = '' }: SpinnerProps) {
   return (
     <span
       className={`loading ${spinnerVariantClass[variant]} ${spinnerSizeClass[size]} ${className}`.trim()}
@@ -51,16 +47,12 @@ export function Skeleton({ className = '' }: SkeletonProps) {
   return <div className={`skeleton ${className}`.trim()} />
 }
 
-export function LoadingOverlay({
-  loading,
-  children,
-  className = '',
-}: LoadingOverlayProps) {
+export function LoadingOverlay({ loading, children, className = '' }: LoadingOverlayProps) {
   return (
     <div className={`relative ${className}`.trim()}>
       {children}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-base-100/60 rounded-inherit">
+        <div className="bg-base-100/60 rounded-inherit absolute inset-0 flex items-center justify-center">
           <Spinner size="lg" variant="spinner" />
         </div>
       )}

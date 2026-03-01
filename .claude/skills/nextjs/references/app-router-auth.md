@@ -51,12 +51,9 @@ export default function ProfileBadge() {
 import { withPermission } from 'helpers/auth/server'
 import { permissions } from 'constants/auth'
 
-export const POST = withPermission(
-  async (req: NextRequest) => {
-    const body = await req.json()
-    // ... handler logic
-    return NextResponse.json({ success: true })
-  },
-  permissions.MANAGE_PRODUCTS,
-)
+export const POST = withPermission(async (req: NextRequest) => {
+  const body = await req.json()
+  // ... handler logic
+  return NextResponse.json({ success: true })
+}, permissions.MANAGE_PRODUCTS)
 ```

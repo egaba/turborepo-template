@@ -24,9 +24,7 @@ export const Default: Story = {
 export const SingleBlock: Story = {
   args: {
     dates: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    blocks: [
-      { label: 'Active Trip', startCol: 1, spanCols: 3, variant: 'active' },
-    ],
+    blocks: [{ label: 'Active Trip', startCol: 1, spanCols: 3, variant: 'active' }],
   },
 }
 

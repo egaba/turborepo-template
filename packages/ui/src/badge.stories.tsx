@@ -45,9 +45,15 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex items-center gap-3">
-      <Badge variant="primary" size="sm">Small</Badge>
-      <Badge variant="primary" size="md">Medium</Badge>
-      <Badge variant="primary" size="lg">Large</Badge>
+      <Badge variant="primary" size="sm">
+        Small
+      </Badge>
+      <Badge variant="primary" size="md">
+        Medium
+      </Badge>
+      <Badge variant="primary" size="lg">
+        Large
+      </Badge>
     </div>
   ),
 }
@@ -92,9 +98,15 @@ export const AllStatuses: Story = {
 export const StatusSizes: Story = {
   render: () => (
     <div className="flex items-center gap-3">
-      <Badge status="new-request" size="sm">SM</Badge>
-      <Badge status="new-request" size="md">MD</Badge>
-      <Badge status="new-request" size="lg">LG</Badge>
+      <Badge status="new-request" size="sm">
+        SM
+      </Badge>
+      <Badge status="new-request" size="md">
+        MD
+      </Badge>
+      <Badge status="new-request" size="lg">
+        LG
+      </Badge>
     </div>
   ),
 }

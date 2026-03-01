@@ -1,6 +1,6 @@
 ---
 name: debugging
-description: "Process skill: systematic 4-phase debugging, root-cause tracing, and verification-before-completion. Stack-agnostic — works across all technologies."
+description: 'Process skill: systematic 4-phase debugging, root-cause tracing, and verification-before-completion. Stack-agnostic — works across all technologies.'
 globs: []
 ---
 
@@ -55,6 +55,7 @@ Run once -> analyze evidence -> identify failing component -> investigate
 If 3+ fixes fail for the same issue, **STOP**. The problem is likely architectural, not a bug.
 
 Signs of an architectural problem:
+
 - Each fix reveals new shared state or coupling
 - Fixes require "massive refactoring" to implement
 - Each fix creates new symptoms elsewhere
@@ -93,17 +94,18 @@ Skip any step = not verified
 
 ### What Counts as Verification
 
-| Claim | Requires | NOT Sufficient |
-|-------|----------|----------------|
-| Tests pass | Test output showing 0 failures | Previous run, "should pass" |
-| Build succeeds | Build command exit 0 | Linter passing |
-| Bug fixed | Test original symptom passes | "Code changed, assumed fixed" |
-| Linter clean | Linter output: 0 errors | Partial check |
-| Requirements met | Line-by-line checklist verified | "Tests passing" |
+| Claim            | Requires                        | NOT Sufficient                |
+| ---------------- | ------------------------------- | ----------------------------- |
+| Tests pass       | Test output showing 0 failures  | Previous run, "should pass"   |
+| Build succeeds   | Build command exit 0            | Linter passing                |
+| Bug fixed        | Test original symptom passes    | "Code changed, assumed fixed" |
+| Linter clean     | Linter output: 0 errors         | Partial check                 |
+| Requirements met | Line-by-line checklist verified | "Tests passing"               |
 
 ### Red Flags — STOP and Verify
 
 If you catch yourself thinking:
+
 - "Should work now" / "Probably passes"
 - "Just try changing X and see"
 - "Quick fix for now, investigate later"

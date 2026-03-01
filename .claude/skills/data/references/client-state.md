@@ -46,12 +46,12 @@ export const useThemeStore = create<ThemeStore>()(
 
 ### When to Use Zustand vs Other Options
 
-| Scenario | Tool |
-|----------|------|
-| Sidebar open/closed, theme, global UI toggles | Zustand |
-| Server-fetched data that needs caching | React Query |
-| Filters, search, pagination (URL-shareable) | URL state (`useSearchParams`) |
-| Data scoped to a component subtree | React Context |
+| Scenario                                      | Tool                          |
+| --------------------------------------------- | ----------------------------- |
+| Sidebar open/closed, theme, global UI toggles | Zustand                       |
+| Server-fetched data that needs caching        | React Query                   |
+| Filters, search, pagination (URL-shareable)   | URL state (`useSearchParams`) |
+| Data scoped to a component subtree            | React Context                 |
 
 ## URL State
 

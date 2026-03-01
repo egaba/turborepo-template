@@ -16,8 +16,8 @@ export const Basic: Story = {
     title: 'Deploy in seconds',
     children: (
       <p className="text-base-content/70">
-        Push your code and watch it go live instantly. Zero configuration required
-        for most frameworks.
+        Push your code and watch it go live instantly. Zero configuration required for most
+        frameworks.
       </p>
     ),
   },
@@ -30,8 +30,12 @@ export const WithActions: Story = {
         Get unlimited deployments, team collaboration, and priority support.
       </p>
       <div className="card-actions mt-4 justify-end">
-        <Button variant="ghost" size="sm">Maybe Later</Button>
-        <Button variant="primary" size="sm">Upgrade Now</Button>
+        <Button variant="ghost" size="sm">
+          Maybe Later
+        </Button>
+        <Button variant="primary" size="sm">
+          Upgrade Now
+        </Button>
       </div>
     </Card>
   ),

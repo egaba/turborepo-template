@@ -35,15 +35,27 @@ export function ContactForm({ onSubmit }: { onSubmit: (data: ContactFormData) =>
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-4">
       <FormField label="Name" error={errors.name?.message}>
-        <input {...register('name')} className={`input input-bordered ${errors.name ? 'input-error' : ''}`} />
+        <input
+          {...register('name')}
+          className={`input input-bordered ${errors.name ? 'input-error' : ''}`}
+        />
       </FormField>
       <FormField label="Email" error={errors.email?.message}>
-        <input {...register('email')} type="email" className={`input input-bordered ${errors.email ? 'input-error' : ''}`} />
+        <input
+          {...register('email')}
+          type="email"
+          className={`input input-bordered ${errors.email ? 'input-error' : ''}`}
+        />
       </FormField>
       <FormField label="Message" error={errors.message?.message}>
-        <textarea {...register('message')} className={`textarea textarea-bordered ${errors.message ? 'textarea-error' : ''}`} />
+        <textarea
+          {...register('message')}
+          className={`textarea textarea-bordered ${errors.message ? 'textarea-error' : ''}`}
+        />
       </FormField>
-      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>{isSubmitting ? <span className="loading loading-spinner" /> : 'Submit'}</button>
+      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+        {isSubmitting ? <span className="loading loading-spinner" /> : 'Submit'}
+      </button>
     </form>
   )
 }
@@ -61,9 +73,15 @@ type FormFieldProps = {
 function FormField({ label, error, children }: FormFieldProps) {
   return (
     <div className="form-control w-full">
-      <label className="label"><span className="label-text">{label}</span></label>
+      <label className="label">
+        <span className="label-text">{label}</span>
+      </label>
       {children}
-      {error && <label className="label"><span className="label-text-alt text-error">{error}</span></label>}
+      {error && (
+        <label className="label">
+          <span className="label-text-alt text-error">{error}</span>
+        </label>
+      )}
     </div>
   )
 }
@@ -75,16 +93,26 @@ function FormField({ label, error, children }: FormFieldProps) {
 function CreateProductForm() {
   const { mutate, isPending, error } = useMutation({
     mutationFn: createProduct,
-    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['products'] }); reset() },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] })
+      reset()
+    },
   })
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<CreateProductInput>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateProductInput>({
     resolver: zodResolver(createProductSchema),
   })
   return (
     <form onSubmit={handleSubmit((data) => mutate(data))}>
       {error && <div className="alert alert-error">{error.message}</div>}
       {/* form fields */}
-      <button type="submit" className="btn btn-primary" disabled={isPending}>{isPending ? <span className="loading loading-spinner" /> : 'Create'}</button>
+      <button type="submit" className="btn btn-primary" disabled={isPending}>
+        {isPending ? <span className="loading loading-spinner" /> : 'Create'}
+      </button>
     </form>
   )
 }
@@ -114,9 +142,11 @@ function MultiStepForm() {
 
   return (
     <div>
-      <ul className="steps w-full mb-8">
+      <ul className="steps mb-8 w-full">
         {steps.map((s, i) => (
-          <li key={s} className={`step ${i <= currentIndex ? 'step-primary' : ''}`}>{s}</li>
+          <li key={s} className={`step ${i <= currentIndex ? 'step-primary' : ''}`}>
+            {s}
+          </li>
         ))}
       </ul>
       <StepForm schema={stepSchemas[step]} onSubmit={handleStepSubmit} />

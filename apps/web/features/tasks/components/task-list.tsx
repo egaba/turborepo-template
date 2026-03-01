@@ -12,7 +12,7 @@ type TaskListProps = Readonly<{
 export function TaskList({ tasks, onDelete }: TaskListProps) {
   if (tasks.length === 0) {
     return (
-      <div className="py-12 text-center text-base-content/50">
+      <div className="text-base-content/50 py-12 text-center">
         <p className="text-lg">No tasks yet</p>
         <p className="text-sm">Add your first task to get started.</p>
       </div>

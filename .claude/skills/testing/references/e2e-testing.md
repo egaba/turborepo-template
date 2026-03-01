@@ -4,12 +4,12 @@ Playwright E2E, visual regression, agent verification, and CI/CD integration.
 
 ## When to Write E2E Tests
 
-| Priority | Needs E2E? | Examples |
-|----------|-----------|----------|
-| P0 Critical | Always | Auth, checkout, onboarding |
-| P1 Major | Yes | CRUD, navigation, search |
-| P2 Secondary | Rarely | Filters, sorting, preferences |
-| P3 Edge cases | No | Empty states, boundary — unit tests sufficient |
+| Priority      | Needs E2E? | Examples                                       |
+| ------------- | ---------- | ---------------------------------------------- |
+| P0 Critical   | Always     | Auth, checkout, onboarding                     |
+| P1 Major      | Yes        | CRUD, navigation, search                       |
+| P2 Secondary  | Rarely     | Filters, sorting, preferences                  |
+| P3 Edge cases | No         | Empty states, boundary — unit tests sufficient |
 
 ## Playwright Setup
 
@@ -43,8 +43,8 @@ test.describe('User Login', () => {
 ## API Mocking & Tests
 
 ```typescript
-await page.route('**/api/users', route =>
-  route.fulfill({ status: 200, body: JSON.stringify([]) })
+await page.route('**/api/users', (route) =>
+  route.fulfill({ status: 200, body: JSON.stringify([]) }),
 )
 
 test('GET /api/endpoint returns expected shape', async ({ request }) => {
@@ -71,7 +71,8 @@ test('component-level check', async ({ page }) => {
 test('with thresholds', async ({ page }) => {
   await page.goto('/dashboard')
   await expect(page).toHaveScreenshot('dashboard.png', {
-    maxDiffPixels: 100, maxDiffPixelRatio: 0.01,
+    maxDiffPixels: 100,
+    maxDiffPixelRatio: 0.01,
   })
 })
 ```
@@ -79,11 +80,12 @@ test('with thresholds', async ({ page }) => {
 ### Deterministic Screenshots
 
 ```typescript
-await page.route('**/api/products', route =>
-  route.fulfill({ status: 200, body: JSON.stringify([{ id: '1', name: 'Fixed Product' }]) })
+await page.route('**/api/products', (route) =>
+  route.fulfill({ status: 200, body: JSON.stringify([{ id: '1', name: 'Fixed Product' }]) }),
 )
 await page.addStyleTag({
-  content: '*, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }',
+  content:
+    '*, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }',
 })
 await page.goto('/products')
 await expect(page).toHaveScreenshot('products.png')

@@ -85,7 +85,7 @@ export const QuoteSent: Story = {
 
 export const EmailList: Story = {
   render: () => (
-    <div className="divide-y divide-base-300 rounded-lg border border-base-300">
+    <div className="divide-base-300 border-base-300 divide-y rounded-lg border">
       <EmailListItem
         sender="Sarah Mitchell"
         company="SkyBridge"

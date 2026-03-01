@@ -32,7 +32,7 @@ const statusClass: Record<BadgeStatus, string> = {
   'booking-confirmed': 'bg-secondary/15 text-secondary border-secondary/30',
   'trip-info-missing': 'bg-error/15 text-error border-error/30',
   'in-progress': 'bg-info/15 text-info border-info/30',
-  'completed': 'bg-success/15 text-success border-success/30',
+  completed: 'bg-success/15 text-success border-success/30',
 }
 
 const sizeClass: Record<BadgeSize, string> = {
@@ -52,11 +52,5 @@ export function Badge({
     ? `badge border ${statusClass[status]}`
     : `badge ${variantClass[variant]}`
 
-  return (
-    <span
-      className={`${baseClass} ${sizeClass[size]} ${className}`.trim()}
-    >
-      {children}
-    </span>
-  )
+  return <span className={`${baseClass} ${sizeClass[size]} ${className}`.trim()}>{children}</span>
 }

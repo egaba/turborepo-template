@@ -19,9 +19,7 @@ export const Default: Story = {
 export const WithBadge: Story = {
   args: {
     title: 'Trip #1234',
-    badge: (
-      <span className="badge badge-accent badge-sm">New Request</span>
-    ),
+    badge: <span className="badge badge-accent badge-sm">New Request</span>,
     subtitle: 'Created on Feb 28, 2026',
   },
 }
@@ -42,9 +40,7 @@ export const WithActions: Story = {
 export const WithTabs: Story = {
   args: {
     title: 'Operations',
-    badge: (
-      <span className="badge badge-primary badge-sm">Pro</span>
-    ),
+    badge: <span className="badge badge-primary badge-sm">Pro</span>,
     tabs: (
       <div className="tabs tabs-bordered">
         <button className="tab tab-active">All Trips</button>
@@ -52,9 +48,7 @@ export const WithTabs: Story = {
         <button className="tab">Confirmed</button>
       </div>
     ),
-    actions: (
-      <button className="btn btn-primary btn-sm">Create Trip</button>
-    ),
+    actions: <button className="btn btn-primary btn-sm">Create Trip</button>,
   },
 }
 
@@ -62,9 +56,7 @@ export const FullExample: Story = {
   args: {
     title: 'Trip Requests',
     subtitle: '1,234 total requests across all workspaces',
-    badge: (
-      <span className="badge badge-accent badge-sm">500 new</span>
-    ),
+    badge: <span className="badge badge-accent badge-sm">500 new</span>,
     tabs: (
       <div className="tabs tabs-bordered">
         <button className="tab tab-active">New Requests (500)</button>

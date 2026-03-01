@@ -26,6 +26,7 @@ features/{name}/
 Routes in `app/` import from features via barrel: `import { TaskCard } from '@/features/tasks'`
 
 **Key rules:**
+
 - Import features via barrel export only — never reach into internal paths
 - No cross-feature imports — extract shared code to `lib/` or `components/`
 - Route groups `(marketing)` and `(app)` separate layouts without affecting URLs
@@ -44,12 +45,12 @@ Full directory tree and "Adding a New Feature" guide → [project-structure.md](
 
 Default to Server Components. Use `"use client"` ONLY when you need:
 
-| Need | Use Client Component |
-|------|----------------------|
-| Event handlers | `onClick`, `onChange`, `onSubmit` |
-| React hooks | `useState`, `useEffect`, `useReducer`, `useContext` |
-| Browser APIs | `localStorage`, `window`, `navigator` |
-| Third-party libraries | Requiring client features |
+| Need                  | Use Client Component                                |
+| --------------------- | --------------------------------------------------- |
+| Event handlers        | `onClick`, `onChange`, `onSubmit`                   |
+| React hooks           | `useState`, `useEffect`, `useReducer`, `useContext` |
+| Browser APIs          | `localStorage`, `window`, `navigator`               |
+| Third-party libraries | Requiring client features                           |
 
 ### RSC composition patterns
 
@@ -60,10 +61,10 @@ Default to Server Components. Use `"use client"` ONLY when you need:
 
 ### Server Actions vs Route Handlers
 
-| Use Case | Prefer |
-|----------|--------|
+| Use Case                                       | Prefer         |
+| ---------------------------------------------- | -------------- |
 | In-app form handling, mutations, optimistic UI | Server Actions |
-| Public APIs, webhooks, cross-app consumption | Route Handlers |
+| Public APIs, webhooks, cross-app consumption   | Route Handlers |
 
 ## Performance
 

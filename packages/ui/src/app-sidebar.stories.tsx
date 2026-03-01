@@ -19,7 +19,12 @@ type Story = StoryObj<typeof AppSidebar>
 
 const PlaceholderIcon = () => (
   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M4 6h16M4 12h16M4 18h16"
+    />
   </svg>
 )
 
@@ -59,9 +64,7 @@ const sampleSections = [
 export const Default: Story = {
   args: {
     sections: sampleSections,
-    logo: (
-      <span className="text-lg font-bold text-primary">Project</span>
-    ),
+    logo: <span className="text-primary text-lg font-bold">Project</span>,
     currentPath: '/trips',
   },
 }
@@ -69,17 +72,15 @@ export const Default: Story = {
 export const WithFooter: Story = {
   args: {
     sections: sampleSections,
-    logo: (
-      <span className="text-lg font-bold text-primary">Project</span>
-    ),
+    logo: <span className="text-primary text-lg font-bold">Project</span>,
     footer: (
       <div className="flex items-center gap-3">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-content">
+        <div className="bg-primary text-primary-content flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold">
           JD
         </div>
         <div>
           <div className="text-sm font-medium">John Doe</div>
-          <div className="text-xs text-base-content/50">john@example.com</div>
+          <div className="text-base-content/50 text-xs">john@example.com</div>
         </div>
       </div>
     ),

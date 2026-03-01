@@ -1,7 +1,16 @@
 ---
 name: auth
-description: "Authentication, authorization, and security hardening (NextAuth.js). Use when debugging 401/403 errors, session issues, permission denied, CSRF errors, CSP violations, or implementing auth/security."
-globs: ['**/auth/**/*', '**/*auth*.{ts,tsx,js}', '**/middleware.*', '**/*session*.{ts,tsx,js}', '**/*permission*.{ts,tsx,js}', '.env*', 'next.config.*']
+description: 'Authentication, authorization, and security hardening (NextAuth.js). Use when debugging 401/403 errors, session issues, permission denied, CSRF errors, CSP violations, or implementing auth/security.'
+globs:
+  [
+    '**/auth/**/*',
+    '**/*auth*.{ts,tsx,js}',
+    '**/middleware.*',
+    '**/*session*.{ts,tsx,js}',
+    '**/*permission*.{ts,tsx,js}',
+    '.env*',
+    'next.config.*',
+  ]
 ---
 
 # Authentication, Authorization & Security
@@ -40,13 +49,13 @@ export const config = {
 
 ## Debugging Quick Reference
 
-| Symptom                  | Likely Cause                 | Fix                                    |
-| ------------------------ | ---------------------------- | -------------------------------------- |
-| CSRF token mismatch      | `NEXTAUTH_URL` wrong         | Set to actual dev server URL           |
-| Session is `null`        | Missing `SessionProvider`    | Wrap app root in `<SessionProvider>`   |
-| 403 on protected routes  | Permission mapping wrong     | Check role-permission mapping + session |
-| Token refresh fails      | Expired refresh token        | User must re-authenticate              |
-| Callback URL mismatch    | Provider config stale        | Update redirect URIs in provider       |
+| Symptom                 | Likely Cause              | Fix                                     |
+| ----------------------- | ------------------------- | --------------------------------------- |
+| CSRF token mismatch     | `NEXTAUTH_URL` wrong      | Set to actual dev server URL            |
+| Session is `null`       | Missing `SessionProvider` | Wrap app root in `<SessionProvider>`    |
+| 403 on protected routes | Permission mapping wrong  | Check role-permission mapping + session |
+| Token refresh fails     | Expired refresh token     | User must re-authenticate               |
+| Callback URL mismatch   | Provider config stale     | Update redirect URIs in provider        |
 
 ## Security Quick Reference
 
@@ -77,7 +86,9 @@ console.log('Session:', session)
 const session = await getServerSession(authOptions)
 
 // Browser console
-fetch('/api/auth/session').then(r => r.json()).then(console.log)
+fetch('/api/auth/session')
+  .then((r) => r.json())
+  .then(console.log)
 ```
 
 ## References

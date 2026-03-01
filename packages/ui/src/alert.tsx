@@ -96,20 +96,11 @@ const defaultIcon: Record<AlertVariant, ReactNode> = {
   error: <ErrorIcon />,
 }
 
-export function Alert({
-  children,
-  variant = 'info',
-  icon,
-  onDismiss,
-  className = '',
-}: AlertProps) {
+export function Alert({ children, variant = 'info', icon, onDismiss, className = '' }: AlertProps) {
   const renderedIcon = icon ?? defaultIcon[variant]
 
   return (
-    <div
-      role="alert"
-      className={`alert ${variantClass[variant]} ${className}`.trim()}
-    >
+    <div role="alert" className={`alert ${variantClass[variant]} ${className}`.trim()}>
       {renderedIcon}
       <span>{children}</span>
       {onDismiss && (

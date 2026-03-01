@@ -35,7 +35,9 @@ describe('TaskCard', () => {
   it('does not render description when absent', () => {
     const taskWithoutDesc = { ...mockTask, description: undefined }
     render(<TaskCard task={taskWithoutDesc} />)
-    expect(screen.queryByText('Users are redirected to 404 after OAuth login')).not.toBeInTheDocument()
+    expect(
+      screen.queryByText('Users are redirected to 404 after OAuth login'),
+    ).not.toBeInTheDocument()
   })
 
   it('renders due date when provided', () => {

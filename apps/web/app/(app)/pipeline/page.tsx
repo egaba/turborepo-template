@@ -40,12 +40,7 @@ function FilterIcon() {
 function PlusIcon() {
   return (
     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 4v16m8-8H4"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
     </svg>
   )
 }
@@ -63,7 +58,7 @@ function EllipsisIcon() {
   )
 }
 
-type LeadRow = typeof MOCK_LEADS[number]
+type LeadRow = (typeof MOCK_LEADS)[number]
 
 const columns = [
   {
@@ -72,7 +67,7 @@ const columns = [
     sortable: true,
     className: 'font-medium',
     render: (row: LeadRow) => (
-      <a href={`/trips/${row.tripId}`} className="font-medium text-accent hover:underline">
+      <a href={`/trips/${row.tripId}`} className="text-accent font-medium hover:underline">
         {row.tripId}
       </a>
     ),
@@ -91,7 +86,7 @@ const columns = [
     header: 'Itinerary',
     sortable: true,
     render: (row: LeadRow) => (
-      <span className="font-medium text-base-content">{row.itinerary}</span>
+      <span className="text-base-content font-medium">{row.itinerary}</span>
     ),
   },
   {
@@ -104,17 +99,15 @@ const columns = [
     header: 'Contact',
     render: (row: LeadRow) => (
       <div>
-        <div className="text-sm font-medium text-base-content">{row.contact}</div>
-        <div className="text-xs text-base-content/50">{row.contactCompany}</div>
+        <div className="text-base-content text-sm font-medium">{row.contact}</div>
+        <div className="text-base-content/50 text-xs">{row.contactCompany}</div>
       </div>
     ),
   },
   {
     key: 'salesAgents',
     header: 'Sales agent',
-    render: (row: LeadRow) => (
-      <AvatarGroup avatars={row.salesAgents} size="sm" max={3} />
-    ),
+    render: (row: LeadRow) => <AvatarGroup avatars={row.salesAgents} size="sm" max={3} />,
   },
   {
     key: 'aircraftAvailability',
@@ -122,9 +115,7 @@ const columns = [
     render: (row: LeadRow) => (
       <span
         className={`text-sm ${
-          row.aircraftAvailability.startsWith('0')
-            ? 'text-error'
-            : 'text-base-content/70'
+          row.aircraftAvailability.startsWith('0') ? 'text-error' : 'text-base-content/70'
         }`}
       >
         {row.aircraftAvailability}
@@ -136,7 +127,7 @@ const columns = [
     header: 'Price',
     sortable: true,
     render: (row: LeadRow) => (
-      <span className="font-medium text-base-content">{row.totalPrice}</span>
+      <span className="text-base-content font-medium">{row.totalPrice}</span>
     ),
   },
   {
@@ -144,7 +135,7 @@ const columns = [
     header: 'Last thread',
     className: 'max-w-48',
     render: (row: LeadRow) => (
-      <span className="truncate text-sm text-base-content/70">{row.lastThread}</span>
+      <span className="text-base-content/70 truncate text-sm">{row.lastThread}</span>
     ),
   },
   {
@@ -152,7 +143,7 @@ const columns = [
     header: 'Updated',
     sortable: true,
     render: (row: LeadRow) => (
-      <span className="text-xs text-base-content/50">{row.lastUpdate}</span>
+      <span className="text-base-content/50 text-xs">{row.lastUpdate}</span>
     ),
   },
   {
@@ -196,10 +187,10 @@ export default function PipelinePage() {
         stages={PIPELINE_STAGES.map((s) => ({ label: s.label, count: s.count }))}
         activeIndex={activeStage}
         onStageClick={setActiveStage}
-        className="rounded-lg border border-base-300 bg-base-100 px-2"
+        className="border-base-300 bg-base-100 rounded-lg border px-2"
       />
 
-      <div className="rounded-lg border border-base-300 bg-base-100">
+      <div className="border-base-300 bg-base-100 rounded-lg border">
         <DataTable<LeadRow>
           columns={columns}
           data={MOCK_LEADS}

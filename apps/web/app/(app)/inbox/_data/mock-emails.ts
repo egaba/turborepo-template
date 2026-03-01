@@ -1,8 +1,4 @@
-type StatusVariant =
-  | 'new-request'
-  | 'quote-sent'
-  | 'booking-confirmed'
-  | 'trip-info-missing'
+type StatusVariant = 'new-request' | 'quote-sent' | 'booking-confirmed' | 'trip-info-missing'
 
 type MockEmail = Readonly<{
   id: string

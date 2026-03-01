@@ -7,9 +7,11 @@ Sharing themes and design tokens across monorepo apps.
 Add project-specific utilities in `shared-styles.css` after the DaisyUI plugin:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 
 /* Custom utilities */
@@ -61,7 +63,7 @@ Each app imports the shared stylesheet in its root CSS file:
 
 ```css
 /* apps/web/app/globals.css */
-@import "@repo/tailwind-config/shared-styles.css";
+@import '@repo/tailwind-config/shared-styles.css';
 
 /* App-specific overrides or additions below */
 ```

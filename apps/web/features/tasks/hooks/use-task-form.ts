@@ -20,7 +20,11 @@ function cleanOptionalFields(data: Record<string, unknown>): Record<string, unkn
 export function useTaskForm(defaultValues?: Partial<CreateTaskInput>) {
   return useForm<CreateTaskInput>({
     resolver: (values, context, options) =>
-      zodResolver(createTaskSchema)(cleanOptionalFields(values) as CreateTaskInput, context, options),
+      zodResolver(createTaskSchema)(
+        cleanOptionalFields(values) as CreateTaskInput,
+        context,
+        options,
+      ),
     defaultValues: {
       title: '',
       status: 'todo',

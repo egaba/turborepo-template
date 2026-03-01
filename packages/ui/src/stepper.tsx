@@ -40,7 +40,12 @@ export function Stepper({ steps, className = '' }: StepperProps) {
             >
               {step.status === 'completed' ? (
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
               ) : (
                 index + 1
@@ -50,17 +55,13 @@ export function Stepper({ steps, className = '' }: StepperProps) {
               {step.label}
             </span>
             {step.sublabel && (
-              <span className="text-center text-xs text-base-content/40">
-                {step.sublabel}
-              </span>
+              <span className="text-base-content/40 text-center text-xs">{step.sublabel}</span>
             )}
           </div>
 
           {index < steps.length - 1 && (
             <div className="mt-4 flex flex-1 items-center px-2">
-              <div
-                className={`h-0.5 w-full ${connectorClass[step.status]}`}
-              />
+              <div className={`h-0.5 w-full ${connectorClass[step.status]}`} />
             </div>
           )}
         </div>

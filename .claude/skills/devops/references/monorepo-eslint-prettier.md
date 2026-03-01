@@ -23,10 +23,13 @@ const baseConfig = {
     'no-unused-vars': ['error', { args: 'none', varsIgnorePattern: '^_' }],
     'prefer-const': 'error',
     'object-shorthand': 'error',
-    'import/order': ['error', {
-      groups: [['type'], ['external', 'builtin'], ['internal', 'parent', 'sibling', 'index']],
-      'newlines-between': 'always',
-    }],
+    'import/order': [
+      'error',
+      {
+        groups: [['type'], ['external', 'builtin'], ['internal', 'parent', 'sibling', 'index']],
+        'newlines-between': 'always',
+      },
+    ],
   },
 }
 
@@ -48,7 +51,10 @@ const jestConfig = {
 
 const nextConfig = {
   plugins: { '@next/next': nextPlugin },
-  rules: { ...nextPlugin.configs.recommended.rules, ...nextPlugin.configs['core-web-vitals'].rules },
+  rules: {
+    ...nextPlugin.configs.recommended.rules,
+    ...nextPlugin.configs['core-web-vitals'].rules,
+  },
 }
 
 module.exports = {
@@ -66,11 +72,7 @@ module.exports = {
 // apps/my-app/eslint.config.js
 const { recommended, next } = require('@my-org/eslint-config-custom')
 
-module.exports = [
-  ...recommended,
-  next,
-  { ignores: ['node_modules/', '.next/'] },
-]
+module.exports = [...recommended, next, { ignores: ['node_modules/', '.next/'] }]
 ```
 
 ## Prettier Config

@@ -38,7 +38,7 @@ export function TaskForm({ onSubmit, isPending = false, defaultValues }: TaskFor
           placeholder="e.g. Fix authentication bug"
         />
         {errors.title && (
-          <span className="label-text-alt mt-1 text-error">{errors.title.message}</span>
+          <span className="label-text-alt text-error mt-1">{errors.title.message}</span>
         )}
       </div>
 
@@ -58,7 +58,7 @@ export function TaskForm({ onSubmit, isPending = false, defaultValues }: TaskFor
           ))}
         </select>
         {errors.status && (
-          <span className="label-text-alt mt-1 text-error">{errors.status.message}</span>
+          <span className="label-text-alt text-error mt-1">{errors.status.message}</span>
         )}
       </div>
 
@@ -90,7 +90,7 @@ export function TaskForm({ onSubmit, isPending = false, defaultValues }: TaskFor
           className={`input input-bordered ${errors.dueDate ? 'input-error' : ''}`}
         />
         {errors.dueDate && (
-          <span className="label-text-alt mt-1 text-error">{errors.dueDate.message}</span>
+          <span className="label-text-alt text-error mt-1">{errors.dueDate.message}</span>
         )}
       </div>
 
@@ -106,7 +106,7 @@ export function TaskForm({ onSubmit, isPending = false, defaultValues }: TaskFor
           placeholder="Brief description of this task..."
         />
         {errors.description && (
-          <span className="label-text-alt mt-1 text-error">{errors.description.message}</span>
+          <span className="label-text-alt text-error mt-1">{errors.description.message}</span>
         )}
       </div>
 

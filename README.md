@@ -4,14 +4,14 @@ Opinionated starting template for Next.js projects with Turborepo, DaisyUI v5, a
 
 ## Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| UI | DaisyUI v5 + TailwindCSS v4 |
-| State | React Query, react-hook-form + Zod |
-| Testing | Jest + RTL + MSW (unit), Playwright (E2E) |
-| Monorepo | Turborepo + pnpm |
-| Node | 22 LTS |
+| Layer     | Technology                                |
+| --------- | ----------------------------------------- |
+| Framework | Next.js 16 (App Router, Turbopack)        |
+| UI        | DaisyUI v5 + TailwindCSS v4               |
+| State     | React Query, react-hook-form + Zod        |
+| Testing   | Jest + RTL + MSW (unit), Playwright (E2E) |
+| Monorepo  | Turborepo + pnpm                          |
+| Node      | 22 LTS                                    |
 
 ## Quick Start
 
@@ -53,22 +53,22 @@ pnpm format:check                        # Prettier check
 
 This template includes 9 Claude Code skills in `.claude/skills/`:
 
-| Skill | Concern | What It Covers |
-|-------|---------|---------------|
-| **bootstrap** | Setup | Initialize template for a new project — name, branding, metadata |
-| **ui** | Build | DaisyUI v5 components, semantic colors, variant maps, accessibility |
-| **data** | Build | React Query, API routes, Server Actions, forms (react-hook-form + Zod) |
-| **nextjs** | Build | App Router, Server Components, routing, performance, SEO |
-| **auth** | Build | NextAuth.js, session management, security headers, CSP |
-| **testing** | Verify | Jest + RTL + MSW, Playwright E2E, browser verification |
-| **debugging** | Process | Systematic 4-phase debugging, root-cause tracing |
-| **devops** | Ship | Turborepo, Git workflow, GitHub Actions CI/CD |
-| **skill-creator** | Meta | Create, validate, and improve agent skills |
+| Skill             | Concern | What It Covers                                                         |
+| ----------------- | ------- | ---------------------------------------------------------------------- |
+| **bootstrap**     | Setup   | Initialize template for a new project — name, branding, metadata       |
+| **ui**            | Build   | DaisyUI v5 components, semantic colors, variant maps, accessibility    |
+| **data**          | Build   | React Query, API routes, Server Actions, forms (react-hook-form + Zod) |
+| **nextjs**        | Build   | App Router, Server Components, routing, performance, SEO               |
+| **auth**          | Build   | NextAuth.js, session management, security headers, CSP                 |
+| **testing**       | Verify  | Jest + RTL + MSW, Playwright E2E, browser verification                 |
+| **debugging**     | Process | Systematic 4-phase debugging, root-cause tracing                       |
+| **devops**        | Ship    | Turborepo, Git workflow, GitHub Actions CI/CD                          |
+| **skill-creator** | Meta    | Create, validate, and improve agent skills                             |
 
 ### Agent
 
-| Agent | Purpose |
-|-------|---------|
+| Agent        | Purpose                                                        |
+| ------------ | -------------------------------------------------------------- |
 | **reviewer** | Code review against CLAUDE.md conventions + verification gates |
 
 ## Getting Started from Template
@@ -89,12 +89,12 @@ This walks you through configuring the project name, description, and whether to
 
 Not everything needs to be decided upfront. Use the built-in skills as you're ready:
 
-| Decision | Skill | Command |
-|----------|-------|---------|
-| Theme colors & branding | ui | `/ui` |
-| Auth provider & sessions | auth | `/auth` |
-| Database & data layer | data | `/data` |
-| Hosting & CI/CD | devops | `/devops` |
+| Decision                 | Skill  | Command   |
+| ------------------------ | ------ | --------- |
+| Theme colors & branding  | ui     | `/ui`     |
+| Auth provider & sessions | auth   | `/auth`   |
+| Database & data layer    | data   | `/data`   |
+| Hosting & CI/CD          | devops | `/devops` |
 
 ### 3. Track progress
 

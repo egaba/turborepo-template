@@ -17,12 +17,10 @@ export function Testimonial({
 }: TestimonialProps) {
   return (
     <div
-      className={`card border border-base-300/50 border-l-4 border-l-primary bg-base-100 ${className}`.trim()}
+      className={`card border-base-300/50 border-l-primary bg-base-100 border border-l-4 ${className}`.trim()}
     >
       <div className="card-body">
-        <blockquote className="text-base-content/80">
-          &ldquo;{quote}&rdquo;
-        </blockquote>
+        <blockquote className="text-base-content/80">&ldquo;{quote}&rdquo;</blockquote>
         <div className="mt-4 flex items-center gap-3">
           {avatar && (
             <div className="avatar">
@@ -32,8 +30,8 @@ export function Testimonial({
             </div>
           )}
           <div>
-            <p className="text-sm font-semibold text-base-content">{author}</p>
-            <p className="text-sm text-base-content/60">
+            <p className="text-base-content text-sm font-semibold">{author}</p>
+            <p className="text-base-content/60 text-sm">
               {role}, {company}
             </p>
           </div>

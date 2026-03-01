@@ -25,8 +25,5 @@ export async function POST(request: NextRequest) {
   }
 
   const task = taskStore.create(parsed.data)
-  return NextResponse.json(
-    { data: task, status: 'success' },
-    { status: StatusCodes.CREATED },
-  )
+  return NextResponse.json({ data: task, status: 'success' }, { status: StatusCodes.CREATED })
 }

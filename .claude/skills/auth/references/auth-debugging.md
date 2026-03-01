@@ -4,16 +4,16 @@ Common auth errors, debugging strategies, session inspection, and testing patter
 
 ## Debugging Table
 
-| Issue                    | Cause                            | Solution                                       |
-| ------------------------ | -------------------------------- | ---------------------------------------------- |
-| CSRF token mismatch      | `NEXTAUTH_URL` wrong            | Set to actual dev server URL                   |
-| Session is `null`        | Missing `SessionProvider`       | Wrap app root in `<SessionProvider>`           |
-| 403 on protected routes  | Permission/role mapping wrong   | Check `rolePermissionMap` + session role field |
-| Token refresh fails      | Expired refresh token           | User must re-authenticate                      |
-| Callback URL mismatch    | Provider redirect URI stale     | Update authorized redirect URIs in provider    |
-| `NEXTAUTH_SECRET` error  | Missing or changed secret       | Set consistent secret across environments      |
-| Infinite redirect loop   | Middleware matching sign-in page | Exclude `/login` from middleware matcher       |
-| OAuth state mismatch     | Multiple tabs or stale state    | Clear cookies, retry sign-in                   |
+| Issue                   | Cause                            | Solution                                       |
+| ----------------------- | -------------------------------- | ---------------------------------------------- |
+| CSRF token mismatch     | `NEXTAUTH_URL` wrong             | Set to actual dev server URL                   |
+| Session is `null`       | Missing `SessionProvider`        | Wrap app root in `<SessionProvider>`           |
+| 403 on protected routes | Permission/role mapping wrong    | Check `rolePermissionMap` + session role field |
+| Token refresh fails     | Expired refresh token            | User must re-authenticate                      |
+| Callback URL mismatch   | Provider redirect URI stale      | Update authorized redirect URIs in provider    |
+| `NEXTAUTH_SECRET` error | Missing or changed secret        | Set consistent secret across environments      |
+| Infinite redirect loop  | Middleware matching sign-in page | Exclude `/login` from middleware matcher       |
+| OAuth state mismatch    | Multiple tabs or stale state     | Clear cookies, retry sign-in                   |
 
 ## Debugging Strategy
 
@@ -38,7 +38,9 @@ const session = await getServerSession(authOptions)
 console.log('Server session:', session)
 
 // Browser console
-fetch('/api/auth/session').then(r => r.json()).then(console.log)
+fetch('/api/auth/session')
+  .then((r) => r.json())
+  .then(console.log)
 ```
 
 ### 3. Check NextAuth Debug Mode
@@ -112,9 +114,7 @@ import { permissions } from '@/constants/auth'
 
 // With the admin mock session above:
 it('grants admin permissions', () => {
-  const { result } = renderHook(() =>
-    useIsAuthorized([permissions.ADMIN_ACCESS]),
-  )
+  const { result } = renderHook(() => useIsAuthorized([permissions.ADMIN_ACCESS]))
   expect(result.current).toBe(true)
 })
 ```

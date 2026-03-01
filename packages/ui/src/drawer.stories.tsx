@@ -20,7 +20,7 @@ export const LeftDrawer: Story = {
           Open Left Drawer
         </button>
         <Drawer open={open} onClose={() => setOpen(false)} side="left">
-          <h2 className="text-lg font-bold mb-4">Left Drawer</h2>
+          <h2 className="mb-4 text-lg font-bold">Left Drawer</h2>
           <p>This drawer slides in from the left.</p>
         </Drawer>
       </div>
@@ -37,7 +37,7 @@ export const RightDrawer: Story = {
           Open Right Drawer
         </button>
         <Drawer open={open} onClose={() => setOpen(false)} side="right">
-          <h2 className="text-lg font-bold mb-4">Right Drawer</h2>
+          <h2 className="mb-4 text-lg font-bold">Right Drawer</h2>
           <p>This drawer slides in from the right.</p>
         </Drawer>
       </div>
@@ -54,7 +54,7 @@ export const NavigationDrawer: Story = {
           Open Navigation
         </button>
         <Drawer open={open} onClose={() => setOpen(false)} side="left">
-          <h2 className="text-lg font-bold mb-4">Navigation</h2>
+          <h2 className="mb-4 text-lg font-bold">Navigation</h2>
           <ul className="menu">
             <li>
               <a>Dashboard</a>
@@ -87,7 +87,7 @@ export const FilterDrawer: Story = {
           Open Filters
         </button>
         <Drawer open={open} onClose={() => setOpen(false)} side="right">
-          <h2 className="text-lg font-bold mb-4">Filters</h2>
+          <h2 className="mb-4 text-lg font-bold">Filters</h2>
           <div className="flex flex-col gap-4">
             <label className="form-control w-full">
               <div className="label">
@@ -104,12 +104,7 @@ export const FilterDrawer: Story = {
               <div className="label">
                 <span className="label-text">Price Range</span>
               </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                className="range range-primary"
-              />
+              <input type="range" min="0" max="100" className="range range-primary" />
             </label>
             <div className="form-control">
               <label className="label cursor-pointer">

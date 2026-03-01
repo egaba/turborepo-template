@@ -23,8 +23,12 @@ export const Default: Story = {
     links: defaultLinks,
     actions: (
       <>
-        <Button variant="ghost" size="sm">Sign In</Button>
-        <Button variant="primary" size="sm">Get Started</Button>
+        <Button variant="ghost" size="sm">
+          Sign In
+        </Button>
+        <Button variant="primary" size="sm">
+          Get Started
+        </Button>
       </>
     ),
   },
@@ -37,7 +41,11 @@ export const MinimalLinks: Story = {
       { label: 'About', href: '#about' },
       { label: 'Blog', href: '#blog' },
     ],
-    actions: <Button variant="primary" size="sm">Join Waitlist</Button>,
+    actions: (
+      <Button variant="primary" size="sm">
+        Join Waitlist
+      </Button>
+    ),
   },
 }
 

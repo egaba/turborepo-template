@@ -17,7 +17,9 @@ describe('invariant', () => {
   })
 
   it('throws for undefined', () => {
-    expect(() => invariant(undefined, 'was undefined')).toThrow('Invariant violation: was undefined')
+    expect(() => invariant(undefined, 'was undefined')).toThrow(
+      'Invariant violation: was undefined',
+    )
   })
 
   it('throws for empty string', () => {

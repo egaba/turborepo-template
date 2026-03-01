@@ -79,17 +79,17 @@ Order: `browser_navigate` -> `browser_lock` -> (interactions) -> `browser_unlock
 
 ### Core Tools
 
-| Action | Tool | Notes |
-|--------|------|-------|
-| Navigate | `browser_navigate` | Load URL |
-| Snapshot | `browser_snapshot` | Structure + refs for click/type |
-| Screenshot | `browser_screenshot` | Visual capture |
-| Click | `browser_click` | Use ref from snapshot |
-| Type/Fill | `browser_type` (append) / `browser_fill` (replace) | |
-| Resize | `browser_resize` | Viewport dimensions |
-| Console | `browser_console_messages` | Client-side errors |
-| Network | `browser_network_requests` | API calls |
-| Storage | `browser_get_storage` / `browser_clear_storage` | |
+| Action     | Tool                                               | Notes                           |
+| ---------- | -------------------------------------------------- | ------------------------------- |
+| Navigate   | `browser_navigate`                                 | Load URL                        |
+| Snapshot   | `browser_snapshot`                                 | Structure + refs for click/type |
+| Screenshot | `browser_screenshot`                               | Visual capture                  |
+| Click      | `browser_click`                                    | Use ref from snapshot           |
+| Type/Fill  | `browser_type` (append) / `browser_fill` (replace) |                                 |
+| Resize     | `browser_resize`                                   | Viewport dimensions             |
+| Console    | `browser_console_messages`                         | Client-side errors              |
+| Network    | `browser_network_requests`                         | API calls                       |
+| Storage    | `browser_get_storage` / `browser_clear_storage`    |                                 |
 
 Prefer short incremental waits (1-3s) with `browser_snapshot` checks over long waits.
 
@@ -99,17 +99,17 @@ Two use cases: check if app is running + get server-side errors.
 
 ```javascript
 // 1. Discover running servers
-mcp__next-devtools__nextjs_index()
-mcp__next-devtools__nextjs_index({ port: "3000" })
+mcp__next - devtools__nextjs_index()
+mcp__next - devtools__nextjs_index({ port: '3000' })
 
 // 2. Get server errors (compilation, SSR, API route)
-mcp__next-devtools__nextjs_call({ port: "3000", toolName: "get_errors" })
+mcp__next - devtools__nextjs_call({ port: '3000', toolName: 'get_errors' })
 ```
 
 Use together with browser console for complete error coverage: server errors (DevTools MCP) + client errors (browser console).
 
-| App | Port |
-|-----|------|
+| App   | Port |
+| ----- | ---- |
 | app-1 | 3000 |
 | app-2 | 3001 |
 

@@ -19,11 +19,11 @@ Create and maintain high-quality agent skills that follow progressive disclosure
 
 ## Size Constraints
 
-| Resource | Limit | Rationale |
-|----------|-------|-----------|
-| `description` in frontmatter | < 200 chars | Always in context; must be precise |
-| SKILL.md body | < 150 lines | Loaded when skill triggers |
-| Each reference file | < 150 lines | Split larger files; progressive disclosure |
+| Resource                     | Limit       | Rationale                                  |
+| ---------------------------- | ----------- | ------------------------------------------ |
+| `description` in frontmatter | < 200 chars | Always in context; must be precise         |
+| SKILL.md body                | < 150 lines | Loaded when skill triggers                 |
+| Each reference file          | < 150 lines | Split larger files; progressive disclosure |
 
 ## Progressive Disclosure (Three Levels)
 
@@ -41,7 +41,7 @@ Create and maintain high-quality agent skills that follow progressive disclosure
 ## Writing Style
 
 - **Imperative form**: "To accomplish X, do Y" (not "You should do X")
-- **Practical, not educational**: teach *how* to do tasks, not *what* tools are
+- **Practical, not educational**: teach _how_ to do tasks, not _what_ tools are
 - **No duplication**: information lives in ONE place (SKILL.md or a reference, not both)
 - **No fluff**: sacrifice grammar for concision in reference files
 

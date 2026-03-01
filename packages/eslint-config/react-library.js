@@ -6,6 +6,9 @@ import tseslint from 'typescript-eslint'
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
+  {
+    ignores: ['dist/**', 'storybook-static/**', 'node_modules/**'],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
@@ -33,8 +36,5 @@ export default [
     rules: {
       'react-hooks/rules-of-hooks': 'off',
     },
-  },
-  {
-    ignores: ['dist/**', 'node_modules/**'],
   },
 ]

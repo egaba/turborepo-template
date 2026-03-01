@@ -6,7 +6,9 @@ test.describe('Home Page', () => {
   })
 
   test('renders the hero heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: /craft something worth bookmarking/i, level: 1 })).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: /craft something worth bookmarking/i, level: 1 }),
+    ).toBeVisible()
   })
 
   test('displays feature section and CTA section', async ({ page }) => {

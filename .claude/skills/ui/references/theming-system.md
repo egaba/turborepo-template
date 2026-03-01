@@ -7,15 +7,17 @@ Theme configuration, CSS variables, and dark mode for DaisyUI v5 + TailwindCSS v
 DaisyUI v5 ships with built-in themes including `light`, `dark`, `cupcake`, `cyberpunk`, `retro`, and many more. Configure which themes are available via the CSS plugin directive:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 ```
 
-| Directive | Purpose |
-|-----------|---------|
-| `--default` | Applied on initial page load |
+| Directive       | Purpose                                         |
+| --------------- | ----------------------------------------------- |
+| `--default`     | Applied on initial page load                    |
 | `--prefersdark` | Auto-activates when user's OS prefers dark mode |
 
 ## Activating Themes at Runtime
@@ -23,7 +25,7 @@ DaisyUI v5 ships with built-in themes including `light`, `dark`, `cupcake`, `cyb
 Set `data-theme` on the root `<html>` element:
 
 ```html
-<html data-theme="dark">
+<html data-theme="dark"></html>
 ```
 
 In React/Next.js, use `document.documentElement.setAttribute('data-theme', theme)`.
@@ -33,12 +35,15 @@ In React/Next.js, use `document.documentElement.setAttribute('data-theme', theme
 Define custom themes by extending the plugin configuration:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, mytheme;
+  themes:
+    light --default,
+    dark --prefersdark,
+    mytheme;
 }
 
-[data-theme="mytheme"] {
+[data-theme='mytheme'] {
   --color-base-100: oklch(98% 0.02 240);
   --color-base-200: oklch(95% 0.02 240);
   --color-base-300: oklch(90% 0.02 240);
@@ -107,6 +112,7 @@ export function ThemeToggle() {
 ```
 
 **Key implementation details:**
+
 - Uses `localStorage` to persist user preference
 - Falls back to `prefers-color-scheme` media query on first visit
 - Sets `data-theme` attribute on `<html>` for DaisyUI theme switching
@@ -117,10 +123,13 @@ export function ThemeToggle() {
 
 ```css
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 ```
 
 The `--prefersdark` flag on the `dark` theme means:
+
 - If no `data-theme` is set, dark mode activates automatically when the OS prefers it
 - When `data-theme` is explicitly set (by ThemeToggle), it overrides the auto behavior

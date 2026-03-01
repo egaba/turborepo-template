@@ -30,9 +30,7 @@ export function AppSidebar({
   footer,
   className = '',
 }: AppSidebarProps) {
-  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(
-    new Set()
-  )
+  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set())
 
   function toggleSection(label: string) {
     setCollapsedSections((prev) => {
@@ -48,12 +46,10 @@ export function AppSidebar({
 
   return (
     <aside
-      className={`flex h-full w-64 flex-col bg-base-200 text-base-content ${className}`.trim()}
+      className={`bg-base-200 text-base-content flex h-full w-64 flex-col ${className}`.trim()}
     >
       {logo && (
-        <div className="flex h-16 items-center gap-2 border-b border-base-300 px-4">
-          {logo}
-        </div>
+        <div className="border-base-300 flex h-16 items-center gap-2 border-b px-4">{logo}</div>
       )}
 
       <nav className="flex-1 overflow-y-auto px-2 py-4">
@@ -65,7 +61,7 @@ export function AppSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection(section.label)}
-                className="flex w-full items-center justify-between px-2 py-1 text-xs font-semibold uppercase tracking-wider text-base-content/50 hover:text-base-content/70"
+                className="text-base-content/50 hover:text-base-content/70 flex w-full items-center justify-between px-2 py-1 text-xs font-semibold uppercase tracking-wider"
               >
                 {section.label}
                 <svg
@@ -86,16 +82,15 @@ export function AppSidebar({
               {!isCollapsed && (
                 <ul className="mt-1 space-y-0.5">
                   {section.items.map((item) => {
-                    const isActive =
-                      item.active ?? currentPath === item.href
+                    const isActive = item.active ?? currentPath === item.href
 
                     return (
                       <li key={item.href}>
                         <a
                           href={item.href}
-                          className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-smooth-fast ${
+                          className={`transition-smooth-fast flex items-center gap-3 rounded-lg px-3 py-2 text-sm ${
                             isActive
-                              ? 'bg-accent/10 font-medium text-accent'
+                              ? 'bg-accent/10 text-accent font-medium'
                               : 'text-base-content/70 hover:bg-base-300 hover:text-base-content'
                           }`}
                         >
@@ -116,9 +111,7 @@ export function AppSidebar({
         })}
       </nav>
 
-      {footer && (
-        <div className="border-t border-base-300 p-4">{footer}</div>
-      )}
+      {footer && <div className="border-base-300 border-t p-4">{footer}</div>}
     </aside>
   )
 }

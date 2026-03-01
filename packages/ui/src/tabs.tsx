@@ -23,22 +23,14 @@ const variantClass: Record<TabVariant, string> = {
   underline: 'border-b border-base-300',
 }
 
-export function Tabs({
-  tabs,
-  defaultIndex = 0,
-  variant = 'default',
-  className = '',
-}: TabsProps) {
+export function Tabs({ tabs, defaultIndex = 0, variant = 'default', className = '' }: TabsProps) {
   const [activeIndex, setActiveIndex] = useState(defaultIndex)
 
   const isUnderline = variant === 'underline'
 
   return (
     <div className={className}>
-      <div
-        className={`tabs ${variantClass[variant]}`}
-        role="tablist"
-      >
+      <div className={`tabs ${variantClass[variant]}`} role="tablist">
         {tabs.map((tab, index) => {
           const isActive = index === activeIndex
 
@@ -48,7 +40,7 @@ export function Tabs({
               role="tab"
               className={
                 isUnderline
-                  ? `tab ${isActive ? 'border-b-2 border-accent text-accent font-medium' : 'text-base-content/60 hover:text-base-content'}`
+                  ? `tab ${isActive ? 'border-accent text-accent border-b-2 font-medium' : 'text-base-content/60 hover:text-base-content'}`
                   : `tab ${isActive ? 'tab-active' : ''}`
               }
               onClick={() => setActiveIndex(index)}
@@ -57,9 +49,7 @@ export function Tabs({
               {tab.count != null && (
                 <span
                   className={`ml-1.5 rounded-full px-1.5 py-0.5 text-xs ${
-                    isActive
-                      ? 'bg-accent/15 text-accent'
-                      : 'bg-base-300 text-base-content/50'
+                    isActive ? 'bg-accent/15 text-accent' : 'bg-base-300 text-base-content/50'
                   }`}
                 >
                   {tab.count}

@@ -20,7 +20,7 @@ type FooterProps = Readonly<{
 
 export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
   return (
-    <footer className="border-t border-base-300/20 bg-base-200 text-base-content">
+    <footer className="border-base-300/20 bg-base-200 text-base-content border-t">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
@@ -31,7 +31,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
           {/* Link columns */}
           {columns.map((column) => (
             <div key={column.title}>
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-base-content/50">
+              <h3 className="text-base-content/50 mb-4 text-xs font-semibold uppercase tracking-wider">
                 {column.title}
               </h3>
               <ul className="space-y-3">
@@ -39,7 +39,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-base-content/60 transition-smooth-fast hover:text-accent"
+                      className="text-base-content/60 transition-smooth-fast hover:text-accent text-sm"
                     >
                       {link.label}
                     </a>
@@ -51,8 +51,8 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-center justify-between border-t border-base-300/20 pt-8 sm:flex-row">
-          <p className="text-sm text-base-content/50">{copyright}</p>
+        <div className="border-base-300/20 mt-16 flex flex-col items-center justify-between border-t pt-8 sm:flex-row">
+          <p className="text-base-content/50 text-sm">{copyright}</p>
           {socialLinks && socialLinks.length > 0 && (
             <div className="mt-4 flex gap-4 sm:mt-0">
               {socialLinks.map((social) => (

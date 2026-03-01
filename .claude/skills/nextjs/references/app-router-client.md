@@ -15,10 +15,7 @@ export async function getProducts(params: ProductParams): Promise<ProductRespons
   return data
 }
 
-export async function updateProduct(
-  id: string,
-  updates: ProductUpdate,
-): Promise<ProductResponse> {
+export async function updateProduct(id: string, updates: ProductUpdate): Promise<ProductResponse> {
   const { data } = await axios.patch(`/api/products/${id}`, updates)
   return data
 }

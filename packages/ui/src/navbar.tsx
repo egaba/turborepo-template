@@ -18,7 +18,7 @@ export function Navbar({ logo, links, actions }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div className="navbar bg-base-100/80 backdrop-blur-md border-b border-base-300/40 sticky top-0 z-50">
+    <div className="navbar bg-base-100/80 border-base-300/40 sticky top-0 z-50 border-b backdrop-blur-md">
       <div className="navbar-start">
         {/* Mobile dropdown */}
         <div className="dropdown">
@@ -46,7 +46,7 @@ export function Navbar({ logo, links, actions }: NavbarProps) {
           {mobileOpen && (
             <ul
               tabIndex={0}
-              className="dropdown-content menu menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+              className="dropdown-content menu menu-sm rounded-box bg-base-100 z-[1] mt-3 w-52 p-2 shadow"
             >
               {links.map((link) => (
                 <li key={link.href}>

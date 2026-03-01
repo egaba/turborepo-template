@@ -44,7 +44,7 @@ export function EmailListItem({
 }: EmailListItemProps) {
   return (
     <div
-      className={`flex items-start gap-3 border-b border-base-300 px-4 py-3 transition-smooth-fast ${
+      className={`border-base-300 transition-smooth-fast flex items-start gap-3 border-b px-4 py-3 ${
         selected ? 'bg-accent/5' : 'hover:bg-base-200'
       } ${className}`.trim()}
     >
@@ -73,7 +73,11 @@ export function EmailListItem({
             strokeWidth={2}
             fill={starred ? 'currentColor' : 'none'}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+            />
           </svg>
         </button>
       )}
@@ -81,38 +85,34 @@ export function EmailListItem({
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 truncate">
-            <span className={`truncate text-sm ${unread ? 'font-semibold text-base-content' : 'text-base-content/80'}`}>
+            <span
+              className={`truncate text-sm ${unread ? 'text-base-content font-semibold' : 'text-base-content/80'}`}
+            >
               {sender}
             </span>
-            {company && (
-              <span className="truncate text-xs text-base-content/50">
-                {company}
-              </span>
-            )}
+            {company && <span className="text-base-content/50 truncate text-xs">{company}</span>}
             {threadCount != null && threadCount > 1 && (
-              <span className="shrink-0 text-xs text-base-content/40">
-                ({threadCount})
-              </span>
+              <span className="text-base-content/40 shrink-0 text-xs">({threadCount})</span>
             )}
           </div>
-          <span className="shrink-0 text-xs text-base-content/50">
-            {timestamp}
-          </span>
+          <span className="text-base-content/50 shrink-0 text-xs">{timestamp}</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <p className={`truncate text-sm ${unread ? 'font-medium text-base-content' : 'text-base-content/70'}`}>
+          <p
+            className={`truncate text-sm ${unread ? 'text-base-content font-medium' : 'text-base-content/70'}`}
+          >
             {subject}
           </p>
           {tripId && (
-            <span className="shrink-0 rounded bg-base-200 px-1.5 py-0.5 text-xs text-base-content/50">
+            <span className="bg-base-200 text-base-content/50 shrink-0 rounded px-1.5 py-0.5 text-xs">
               {tripId}
             </span>
           )}
         </div>
 
         <div className="flex items-center gap-2">
-          <p className="truncate text-xs text-base-content/50">{preview}</p>
+          <p className="text-base-content/50 truncate text-xs">{preview}</p>
           {status && statusVariant && (
             <span
               className={`shrink-0 rounded-full border px-2 py-0.5 text-xs ${statusVariantClass[statusVariant]}`}
@@ -123,9 +123,7 @@ export function EmailListItem({
         </div>
       </div>
 
-      {unread && (
-        <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
-      )}
+      {unread && <div className="bg-accent mt-2 h-2 w-2 shrink-0 rounded-full" />}
     </div>
   )
 }

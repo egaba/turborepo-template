@@ -42,7 +42,8 @@ export const WithRequirements: Story = {
     jetCategory: 'Super Midsize',
     pax: 4,
     luggage: 3,
-    requirements: 'VIP client. Catering required: champagne, canapes. Ground transport at destination.',
+    requirements:
+      'VIP client. Catering required: champagne, canapes. Ground transport at destination.',
   },
 }
 

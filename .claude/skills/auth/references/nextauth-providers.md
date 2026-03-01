@@ -79,12 +79,12 @@ NEXT_PUBLIC_API_URL=       # Public API base URL
 
 ## Environment Variable Rules
 
-| Rule | Example |
-| ---- | ------- |
-| Server secrets stay server-side | `AUTH_SECRET`, `DATABASE_URL` |
-| Client-safe values use `NEXT_PUBLIC_` prefix | `NEXT_PUBLIC_API_URL` |
+| Rule                                            | Example                                     |
+| ----------------------------------------------- | ------------------------------------------- |
+| Server secrets stay server-side                 | `AUTH_SECRET`, `DATABASE_URL`               |
+| Client-safe values use `NEXT_PUBLIC_` prefix    | `NEXT_PUBLIC_API_URL`                       |
 | Never import server env in `'use client'` files | Use API routes or Server Components instead |
-| Validate at startup with Zod | See security-hardening reference |
+| Validate at startup with Zod                    | See security-hardening reference            |
 
 ## Adding a New OAuth Provider
 

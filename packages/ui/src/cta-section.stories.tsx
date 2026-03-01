@@ -15,13 +15,9 @@ export const Default: Story = {
     heading: 'Ready to get started?',
     description:
       'Join thousands of developers who are already building faster. Start your free trial today — no credit card required.',
-    primaryCta: (
-      <button className="btn btn-secondary btn-lg">Start Free Trial</button>
-    ),
+    primaryCta: <button className="btn btn-secondary btn-lg">Start Free Trial</button>,
     secondaryCta: (
-      <button className="btn btn-ghost btn-lg text-primary-content">
-        Talk to Sales
-      </button>
+      <button className="btn btn-ghost btn-lg text-primary-content">Talk to Sales</button>
     ),
   },
 }
@@ -29,10 +25,7 @@ export const Default: Story = {
 export const Simple: Story = {
   args: {
     heading: 'Ship your next project today',
-    description:
-      'Everything you need to go from idea to production. Free for hobby projects.',
-    primaryCta: (
-      <button className="btn btn-secondary btn-lg">Get Started Free</button>
-    ),
+    description: 'Everything you need to go from idea to production. Free for hobby projects.',
+    primaryCta: <button className="btn btn-secondary btn-lg">Get Started Free</button>,
   },
 }

@@ -1,6 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui" {
-  themes: obsidian-light --default, obsidian-dark --prefersdark;
+  themes:
+    obsidian-light --default,
+    obsidian-dark --prefersdark;
 }
 
 /* ============================================================
@@ -8,7 +10,7 @@
    Clean white surfaces, dark blue text, blue accent
    ============================================================ */
 @plugin "daisyui/theme" {
-  name: "obsidian-light";
+  name: 'obsidian-light';
   default: true;
   color-scheme: light;
 
@@ -56,7 +58,7 @@
    Deep navy-blue surfaces, bright accent blue
    ============================================================ */
 @plugin "daisyui/theme" {
-  name: "obsidian-dark";
+  name: 'obsidian-dark';
   prefersdark: true;
   color-scheme: dark;
 

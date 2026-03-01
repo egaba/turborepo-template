@@ -53,10 +53,10 @@ Skills use progressive disclosure to minimize context window usage.
 
 ### Size Limits
 
-| Resource | Limit |
-|----------|-------|
-| Description | < 200 chars |
-| SKILL.md | < 150 lines |
+| Resource       | Limit       |
+| -------------- | ----------- |
+| Description    | < 200 chars |
+| SKILL.md       | < 150 lines |
 | Each reference | < 150 lines |
 
 ### SKILL.md Content Strategy
@@ -89,7 +89,7 @@ Information lives in ONE place -- either SKILL.md or a reference, never both.
 ---
 name: skill-name
 description: Under 200 chars, specific triggers
-globs: ['**/*.relevant-pattern']   # Optional
+globs: ['**/*.relevant-pattern'] # Optional
 ---
 ```
 
@@ -121,7 +121,7 @@ Related topics belong in a single skill. Separate skills for unrelated domains o
 ### Quality
 
 - [ ] Imperative writing: "To accomplish X, do Y"
-- [ ] Teaches *how*, not *what* -- practical over educational
+- [ ] Teaches _how_, not _what_ -- practical over educational
 - [ ] SKILL.md has quick-reference patterns + pointers only
 - [ ] Detailed content lives in references/
 - [ ] Related topics consolidated into single skill

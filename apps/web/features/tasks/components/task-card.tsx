@@ -35,11 +35,9 @@ export function TaskCard({ task, onDelete }: TaskCardProps) {
         <Badge className={statusVariant[task.status]}>{statusLabel[task.status]}</Badge>
         <Badge className={priorityVariant[task.priority]}>{task.priority}</Badge>
       </div>
-      {task.description && (
-        <p className="mt-2 text-sm text-base-content/70">{task.description}</p>
-      )}
+      {task.description && <p className="text-base-content/70 mt-2 text-sm">{task.description}</p>}
       {task.dueDate && (
-        <p className="mt-1 text-xs text-base-content/50">
+        <p className="text-base-content/50 mt-1 text-xs">
           Due: {new Date(task.dueDate).toLocaleDateString()}
         </p>
       )}

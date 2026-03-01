@@ -23,7 +23,7 @@ export function SidebarContent() {
   return (
     <>
       <div className="p-6">
-        <Link href="/" className="text-xl font-bold tracking-tight text-base-content">
+        <Link href="/" className="text-base-content text-xl font-bold tracking-tight">
           Project
         </Link>
       </div>
@@ -31,17 +31,14 @@ export function SidebarContent() {
         <ul className="menu gap-1">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
-              <Link
-                href={item.href}
-                className={cn(pathname === item.href && 'active')}
-              >
+              <Link href={item.href} className={cn(pathname === item.href && 'active')}>
                 {item.label}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
-      <div className="border-t border-base-300/40 p-4">
+      <div className="border-base-300/40 border-t p-4">
         <ThemeToggle />
       </div>
     </>

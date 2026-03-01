@@ -40,9 +40,7 @@ describe('TaskForm', () => {
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledTimes(1)
     })
-    expect(mockOnSubmit.mock.calls[0]?.[0]).toEqual(
-      expect.objectContaining({ title: 'New task' }),
-    )
+    expect(mockOnSubmit.mock.calls[0]?.[0]).toEqual(expect.objectContaining({ title: 'New task' }))
   })
 
   it('shows Saving... text when isPending', () => {

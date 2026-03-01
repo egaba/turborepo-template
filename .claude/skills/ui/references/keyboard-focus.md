@@ -66,8 +66,8 @@ useEffect(() => {
 DaisyUI's `<dialog>` handles focus trapping natively with `showModal()`. Prefer this over custom implementations:
 
 ```tsx
-dialogRef.current?.showModal()   // Open with native focus trap
-dialogRef.current?.close()       // Close
+dialogRef.current?.showModal() // Open with native focus trap
+dialogRef.current?.close() // Close
 ```
 
 For custom modals, trap focus and restore on close:
@@ -103,7 +103,7 @@ function handleDelete(index: number) {
 ```tsx
 <a
   href="#main-content"
-  className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-base-100 focus:text-base-content"
+  className="focus:bg-base-100 focus:text-base-content sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4"
 >
   Skip to main content
 </a>

@@ -1,7 +1,14 @@
 ---
 name: data
 description: Data management — server state (React Query), API routes, Server Actions, caching/revalidation, forms (react-hook-form + Zod), and client state.
-globs: ['**/queries/**/*', '**/hooks/use*Query*.*', '**/hooks/use*Mutation*.*', '**/app/api/**/*', '**/stores/**/*']
+globs:
+  [
+    '**/queries/**/*',
+    '**/hooks/use*Query*.*',
+    '**/hooks/use*Mutation*.*',
+    '**/app/api/**/*',
+    '**/stores/**/*',
+  ]
 ---
 
 # Data — Fetching, Forms & State
@@ -50,7 +57,11 @@ GET/POST handlers return `NextResponse.json({ data, status: 'success' })`. Valid
 ## Forms (react-hook-form + Zod)
 
 ```typescript
-const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm<FormData>({
   resolver: zodResolver(schema),
 })
 ```
@@ -59,13 +70,13 @@ Use `FormField` for label + error display. Multi-step forms: per-step schemas, `
 
 ## Client State
 
-| Tool | Use When |
-|------|----------|
+| Tool                              | Use When                                        |
+| --------------------------------- | ----------------------------------------------- |
 | **URL state** (`useSearchParams`) | Filters, pagination, search — shareable via URL |
-| **Zustand** | Global UI: sidebar, theme, preferences |
-| **React Context** | Tree-scoped: feature flags, form wizard step |
-| **React Query** | Server-derived state |
-| **Server Actions** | In-app mutations with `revalidatePath` |
+| **Zustand**                       | Global UI: sidebar, theme, preferences          |
+| **React Context**                 | Tree-scoped: feature flags, form wizard step    |
+| **React Query**                   | Server-derived state                            |
+| **Server Actions**                | In-app mutations with `revalidatePath`          |
 
 See [client-state.md](references/client-state.md).
 
@@ -87,19 +98,22 @@ Use with `<form action={createProduct}>`.
 
 ## Caching & Revalidation
 
-| Strategy | fetch option | Use When |
-|----------|-------------|----------|
-| Static | `cache: 'force-cache'` | Content rarely changes |
-| Dynamic | `cache: 'no-store'` | User-specific, real-time |
-| ISR | `next: { revalidate: 60 }` | Periodic updates |
-| Tagged | `next: { tags: ['posts'] }` | Granular invalidation |
+| Strategy | fetch option                | Use When                 |
+| -------- | --------------------------- | ------------------------ |
+| Static   | `cache: 'force-cache'`      | Content rarely changes   |
+| Dynamic  | `cache: 'no-store'`         | User-specific, real-time |
+| ISR      | `next: { revalidate: 60 }`  | Periodic updates         |
+| Tagged   | `next: { tags: ['posts'] }` | Granular invalidation    |
 
 On-demand: `revalidatePath`, `revalidateTag` in Server Actions. Route config: `dynamic: 'force-dynamic'`, `revalidate: 3600`.
 
 ## Optimistic UI
 
 ```tsx
-const [optimisticLikes, addOptimisticLike] = useOptimistic(initialLikes, (state, amount) => state + amount)
+const [optimisticLikes, addOptimisticLike] = useOptimistic(
+  initialLikes,
+  (state, amount) => state + amount,
+)
 ```
 
 Call `addOptimisticLike(1)` before async action.

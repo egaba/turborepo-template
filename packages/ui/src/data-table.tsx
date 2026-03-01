@@ -75,7 +75,7 @@ export function DataTable<T extends Record<string, unknown>>({
 
   return (
     <div className={`overflow-x-auto ${className}`.trim()}>
-      <table className="table table-sm">
+      <table className="table-sm table">
         <thead>
           <tr>
             {selectable && (
@@ -91,7 +91,7 @@ export function DataTable<T extends Record<string, unknown>>({
             {columns.map((col) => (
               <th
                 key={col.key}
-                className={`${col.className ?? ''} ${col.sortable ? 'cursor-pointer select-none hover:bg-base-200' : ''}`}
+                className={`${col.className ?? ''} ${col.sortable ? 'hover:bg-base-200 cursor-pointer select-none' : ''}`}
                 onClick={col.sortable ? () => handleSort(col.key) : undefined}
               >
                 <span className="flex items-center gap-1">
@@ -115,7 +115,7 @@ export function DataTable<T extends Record<string, unknown>>({
           {sortedData.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={`${onRowClick ? 'cursor-pointer hover:bg-base-200' : ''} ${selectedRows.has(rowIndex) ? 'bg-accent/5' : ''}`}
+              className={`${onRowClick ? 'hover:bg-base-200 cursor-pointer' : ''} ${selectedRows.has(rowIndex) ? 'bg-accent/5' : ''}`}
               onClick={() => onRowClick?.(row)}
             >
               {selectable && (
@@ -134,9 +134,7 @@ export function DataTable<T extends Record<string, unknown>>({
               )}
               {columns.map((col) => (
                 <td key={col.key} className={col.className}>
-                  {col.render
-                    ? col.render(row)
-                    : String(row[col.key] ?? '')}
+                  {col.render ? col.render(row) : String(row[col.key] ?? '')}
                 </td>
               ))}
             </tr>
@@ -145,7 +143,7 @@ export function DataTable<T extends Record<string, unknown>>({
             <tr>
               <td
                 colSpan={columns.length + (selectable ? 1 : 0)}
-                className="py-8 text-center text-base-content/50"
+                className="text-base-content/50 py-8 text-center"
               >
                 No data available
               </td>

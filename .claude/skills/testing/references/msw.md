@@ -106,12 +106,12 @@ export const handlers = [
 
 ### Migration Table: v1 to v2
 
-| Concept | v1 | v2 |
-|---------|----|----|
-| Import | `import { rest } from 'msw'` | `import { http, HttpResponse } from 'msw'` |
-| Handler | `rest.get(url, (req, res, ctx) => ...)` | `http.get(url, ({ request }) => ...)` |
-| JSON response | `res(ctx.json(data))` | `HttpResponse.json(data)` |
-| Status code | `res(ctx.status(201), ctx.json(data))` | `HttpResponse.json(data, { status: 201 })` |
-| Request body | `req.body` (sync) | `await request.json()` (async) |
-| Path params | `req.params.id` | `params.id` (destructured) |
-| No content | `res(ctx.status(204))` | `new HttpResponse(null, { status: 204 })` |
+| Concept       | v1                                      | v2                                         |
+| ------------- | --------------------------------------- | ------------------------------------------ |
+| Import        | `import { rest } from 'msw'`            | `import { http, HttpResponse } from 'msw'` |
+| Handler       | `rest.get(url, (req, res, ctx) => ...)` | `http.get(url, ({ request }) => ...)`      |
+| JSON response | `res(ctx.json(data))`                   | `HttpResponse.json(data)`                  |
+| Status code   | `res(ctx.status(201), ctx.json(data))`  | `HttpResponse.json(data, { status: 201 })` |
+| Request body  | `req.body` (sync)                       | `await request.json()` (async)             |
+| Path params   | `req.params.id`                         | `params.id` (destructured)                 |
+| No content    | `res(ctx.status(204))`                  | `new HttpResponse(null, { status: 204 })`  |

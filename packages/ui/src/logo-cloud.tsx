@@ -14,7 +14,7 @@ export function LogoCloud({ logos, heading, className = '' }: LogoCloudProps) {
   return (
     <div className={`py-12 ${className}`.trim()}>
       {heading && (
-        <p className="mb-8 text-center text-sm font-medium uppercase tracking-wider text-base-content/50">
+        <p className="text-base-content/50 mb-8 text-center text-sm font-medium uppercase tracking-wider">
           {heading}
         </p>
       )}

@@ -32,10 +32,7 @@ export async function createTask(formData: FormData): Promise<ActionResult<Task>
   return { success: true, data: task }
 }
 
-export async function updateTask(
-  id: string,
-  formData: FormData,
-): Promise<ActionResult<Task>> {
+export async function updateTask(id: string, formData: FormData): Promise<ActionResult<Task>> {
   const raw = Object.fromEntries(formData)
   const parsed = updateTaskSchema.safeParse(raw)
 

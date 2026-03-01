@@ -1,7 +1,8 @@
 ---
 name: devops
-description: "Ship code: pnpm/Turborepo local dev, Git workflow, GitHub Actions CI/CD, and deployment."
-globs: ['turbo.json', 'pnpm-workspace.yaml', '.npmrc', 'pnpm-lock.yaml', '.github/**/*', '.gitignore']
+description: 'Ship code: pnpm/Turborepo local dev, Git workflow, GitHub Actions CI/CD, and deployment.'
+globs:
+  ['turbo.json', 'pnpm-workspace.yaml', '.npmrc', 'pnpm-lock.yaml', '.github/**/*', '.gitignore']
 ---
 
 # DevOps — Local Dev to Production
@@ -10,14 +11,14 @@ How to ship code: from local development through Git to CI to deployment.
 
 ## Local Development (pnpm + Turborepo)
 
-| Command | Purpose |
-|---------|---------|
-| `pnpm turbo run dev --filter={app-name}` | Dev server (persistent, auto-builds deps) |
-| `pnpm turbo run build --filter={app-name}` | Build (cached) |
-| `pnpm turbo run test --filter={app-name}` | Test (watch mode) |
-| `pnpm turbo run test:ci --filter={app-name}` | Test (CI, non-interactive) |
-| `pnpm turbo run lint --filter={app-name}` | Lint |
-| `pnpm turbo run check:types --filter={app-name}` | Type check |
+| Command                                          | Purpose                                   |
+| ------------------------------------------------ | ----------------------------------------- |
+| `pnpm turbo run dev --filter={app-name}`         | Dev server (persistent, auto-builds deps) |
+| `pnpm turbo run build --filter={app-name}`       | Build (cached)                            |
+| `pnpm turbo run test --filter={app-name}`        | Test (watch mode)                         |
+| `pnpm turbo run test:ci --filter={app-name}`     | Test (CI, non-interactive)                |
+| `pnpm turbo run lint --filter={app-name}`        | Lint                                      |
+| `pnpm turbo run check:types --filter={app-name}` | Type check                                |
 
 **Cache troubleshooting:** `pnpm turbo run build --force` | `rm -rf .turbo` | `pnpm clean && pnpm install` | `pnpm turbo run build --dry-run`
 

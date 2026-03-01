@@ -11,9 +11,9 @@ turbo.json task definitions, pipelines, and workspace filtering.
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "cache": false,
-      "persistent": true
-    }
-  }
+      "persistent": true,
+    },
+  },
 }
 ```
 
@@ -25,14 +25,19 @@ turbo.json task definitions, pipelines, and workspace filtering.
     "build": {
       "dependsOn": ["^build"],
       "inputs": [
-        "app/**", "components/**", "helpers/**",
-        "hooks/**", "types/**", "middleware.ts",
-        "next.config.js", ".env.local",
-        "!*/**/*.test.tsx"
+        "app/**",
+        "components/**",
+        "helpers/**",
+        "hooks/**",
+        "types/**",
+        "middleware.ts",
+        "next.config.js",
+        ".env.local",
+        "!*/**/*.test.tsx",
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
-    }
-  }
+      "outputs": [".next/**", "!.next/cache/**"],
+    },
+  },
 }
 ```
 
@@ -44,12 +49,12 @@ turbo.json task definitions, pipelines, and workspace filtering.
     "test": {
       "dependsOn": ["^build"],
       "cache": false,
-      "persistent": true
+      "persistent": true,
     },
     "test:ci": {
-      "dependsOn": ["^build"]
-    }
-  }
+      "dependsOn": ["^build"],
+    },
+  },
 }
 ```
 
@@ -60,9 +65,9 @@ turbo.json task definitions, pipelines, and workspace filtering.
   "tasks": {
     "lint": {
       "dependsOn": ["^lint"],
-      "inputs": ["app/**", "components/**", "helpers/**", "hooks/**", "types/**"]
-    }
-  }
+      "inputs": ["app/**", "components/**", "helpers/**", "hooks/**", "types/**"],
+    },
+  },
 }
 ```
 

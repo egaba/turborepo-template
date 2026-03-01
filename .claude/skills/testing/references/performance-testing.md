@@ -2,11 +2,11 @@
 
 ## Thresholds
 
-| Metric | Good | Needs Work | Poor | What It Measures |
-|--------|------|------------|------|------------------|
-| **LCP** | < 2.5s | 2.5–4.0s | > 4.0s | Largest Contentful Paint — when main content is visible |
-| **CLS** | < 0.1 | 0.1–0.25 | > 0.25 | Cumulative Layout Shift — visual stability |
-| **INP** | < 200ms | 200–500ms | > 500ms | Interaction to Next Paint — input responsiveness |
+| Metric  | Good    | Needs Work | Poor    | What It Measures                                        |
+| ------- | ------- | ---------- | ------- | ------------------------------------------------------- |
+| **LCP** | < 2.5s  | 2.5–4.0s   | > 4.0s  | Largest Contentful Paint — when main content is visible |
+| **CLS** | < 0.1   | 0.1–0.25   | > 0.25  | Cumulative Layout Shift — visual stability              |
+| **INP** | < 200ms | 200–500ms  | > 500ms | Interaction to Next Paint — input responsiveness        |
 
 ## Measuring with Lighthouse
 
@@ -98,17 +98,17 @@ jobs:
       "startServerCommand": "pnpm turbo run start --filter=web",
       "startServerReadyPattern": "Ready",
       "url": ["http://localhost:3000"],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
     },
     "assert": {
       "assertions": {
         "categories:performance": ["warn", { "minScore": 0.9 }],
         "categories:accessibility": ["error", { "minScore": 0.9 }],
         "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
-        "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1 }]
-      }
-    }
-  }
+        "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1 }],
+      },
+    },
+  },
 }
 ```
 
@@ -116,30 +116,30 @@ jobs:
 
 ### LCP
 
-| Optimization | How |
-|-------------|-----|
-| Images | `next/image` with `priority` on above-fold hero images, correct `sizes` attribute |
-| Fonts | `next/font` with `display: 'swap'` — eliminates FOIT and layout shift |
-| Streaming | `loading.tsx` + `<Suspense>` — show content progressively |
-| Preloading | `<link rel="preload">` for critical resources in `<head>` |
+| Optimization | How                                                                               |
+| ------------ | --------------------------------------------------------------------------------- |
+| Images       | `next/image` with `priority` on above-fold hero images, correct `sizes` attribute |
+| Fonts        | `next/font` with `display: 'swap'` — eliminates FOIT and layout shift             |
+| Streaming    | `loading.tsx` + `<Suspense>` — show content progressively                         |
+| Preloading   | `<link rel="preload">` for critical resources in `<head>`                         |
 
 ### CLS
 
-| Optimization | How |
-|-------------|-----|
-| Images | Always set `width`/`height` or use `fill` with a sized container |
-| Fonts | `next/font` auto-generates `size-adjust` to match fallback metrics |
-| Dynamic content | Reserve space with skeleton loaders (`loading.tsx`) |
-| Ads/embeds | Fixed-size containers with `min-height` |
+| Optimization    | How                                                                |
+| --------------- | ------------------------------------------------------------------ |
+| Images          | Always set `width`/`height` or use `fill` with a sized container   |
+| Fonts           | `next/font` auto-generates `size-adjust` to match fallback metrics |
+| Dynamic content | Reserve space with skeleton loaders (`loading.tsx`)                |
+| Ads/embeds      | Fixed-size containers with `min-height`                            |
 
 ### INP
 
-| Optimization | How |
-|-------------|-----|
-| Heavy computation | Move to Web Workers or Server Actions |
-| Long tasks | Break up with `startTransition` for non-urgent updates |
-| Code splitting | `next/dynamic` for heavy components not needed at initial render |
-| Event handlers | Debounce rapid inputs (search, resize) |
+| Optimization      | How                                                              |
+| ----------------- | ---------------------------------------------------------------- |
+| Heavy computation | Move to Web Workers or Server Actions                            |
+| Long tasks        | Break up with `startTransition` for non-urgent updates           |
+| Code splitting    | `next/dynamic` for heavy components not needed at initial render |
+| Event handlers    | Debounce rapid inputs (search, resize)                           |
 
 ## Bundle Size
 

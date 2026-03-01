@@ -29,12 +29,7 @@ function getInitials(alt: string, fallback?: string): string {
     .toUpperCase()
 }
 
-export function AvatarGroup({
-  avatars,
-  max = 5,
-  size = 'md',
-  className = '',
-}: AvatarGroupProps) {
+export function AvatarGroup({ avatars, max = 5, size = 'md', className = '' }: AvatarGroupProps) {
   const visible = avatars.slice(0, max)
   const overflow = avatars.length - max
 
@@ -43,7 +38,7 @@ export function AvatarGroup({
       {visible.map((avatar, index) => (
         <div
           key={`${avatar.alt}-${index}`}
-          className={`${sizeClass[size]} inline-flex items-center justify-center rounded-full border-2 border-base-100 bg-primary text-primary-content ring-0`}
+          className={`${sizeClass[size]} border-base-100 bg-primary text-primary-content inline-flex items-center justify-center rounded-full border-2 ring-0`}
           title={avatar.alt}
         >
           {avatar.src ? (
@@ -61,7 +56,7 @@ export function AvatarGroup({
       ))}
       {overflow > 0 && (
         <div
-          className={`${sizeClass[size]} inline-flex items-center justify-center rounded-full border-2 border-base-100 bg-base-300 text-base-content`}
+          className={`${sizeClass[size]} border-base-100 bg-base-300 text-base-content inline-flex items-center justify-center rounded-full border-2`}
         >
           <span className="font-medium leading-none">+{overflow}</span>
         </div>

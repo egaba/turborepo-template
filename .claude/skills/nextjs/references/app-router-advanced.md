@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
         <ProductHeader id={params.id} />
       </Suspense>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Suspense fallback={<ReviewsSkeleton />}>
           <ProductReviews id={params.id} />
         </Suspense>

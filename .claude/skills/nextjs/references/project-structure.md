@@ -57,10 +57,10 @@ Shared UI from monorepo: `@repo/ui/button`, `@repo/ui/card`, etc.
 
 ## Route Groups
 
-| Group | URL prefix | Layout | Purpose |
-|-------|-----------|--------|---------|
-| `(marketing)` | `/` | Header + footer | Public: home, about, pricing |
-| `(app)` | `/dashboard` etc. | Sidebar | Authenticated app area |
+| Group         | URL prefix        | Layout          | Purpose                      |
+| ------------- | ----------------- | --------------- | ---------------------------- |
+| `(marketing)` | `/`               | Header + footer | Public: home, about, pricing |
+| `(app)`       | `/dashboard` etc. | Sidebar         | Authenticated app area       |
 
 Route groups don't affect URLs. They allow separate layouts and code organization.
 

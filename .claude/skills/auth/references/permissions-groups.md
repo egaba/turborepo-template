@@ -25,10 +25,7 @@ export type Role = (typeof roles)[keyof typeof roles]
 
 export const rolePermissionMap = {
   [roles.VIEWER]: [],
-  [roles.EDITOR]: [
-    permissions.MANAGE_PRODUCTS,
-    permissions.MANAGE_CATEGORIES,
-  ],
+  [roles.EDITOR]: [permissions.MANAGE_PRODUCTS, permissions.MANAGE_CATEGORIES],
   [roles.ADMIN]: [
     permissions.MANAGE_PRODUCTS,
     permissions.MANAGE_CATEGORIES,

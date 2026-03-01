@@ -33,16 +33,19 @@ apps/web/components/layouts/app-sidebar.tsx        — logo text (if separate)
 ```
 
 Replace `/project/i` with a regex matching the new name in E2E tests:
+
 ```
 apps/web/e2e/navigation.spec.ts                   — sidebar logo link test
 ```
 
 Replace `{project-name}` in:
+
 ```
 CLAUDE.md                                         — document title
 ```
 
 Replace the metadata description `"Next.js monorepo template with Turborepo and DaisyUI"` with the user's description in:
+
 ```
 apps/web/app/layout.tsx
 ```
@@ -58,6 +61,7 @@ Change the `"name"` field in the root `package.json` from `"my-skills"` to a keb
 ### 5. Handle demo pages
 
 If the user wants to **remove** demo pages:
+
 - Delete `apps/web/app/(app)/inbox/`
 - Delete `apps/web/app/(app)/pipeline/`
 - Delete `apps/web/app/(app)/trips/`
@@ -70,6 +74,7 @@ If the user wants to **keep** demo pages, leave them as-is for reference.
 ### 6. Update TEMPLATE.md
 
 Check off the completed items in `TEMPLATE.md`:
+
 - [x] Project name
 - [x] Description
 - [x] Demo pages (kept / removed)
@@ -81,6 +86,7 @@ Run `pnpm turbo run check-types` and `pnpm turbo run lint` to confirm no breakag
 ### 8. Summary
 
 Print a summary of what was configured and what's still pending. Point the user to `TEMPLATE.md` for the remaining checklist, and mention which skills to use:
+
 - `/ui` for theme colors
 - `/auth` for authentication
 - `/data` for database setup

@@ -4,21 +4,21 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 
 ## Skills
 
-| Skill | Concern | Description |
-|-------|---------|-------------|
-| **ui** | Build | Component styling, theming (DaisyUI v5 + TailwindCSS v4), accessibility patterns |
-| **data** | Build | Server state (React Query), API routes, forms (react-hook-form + Zod), Server Actions, caching/revalidation |
-| **nextjs** | Build | Next.js App Router architecture, Server Components, routing, performance, SEO |
-| **auth** | Build | Authentication, authorization, and security hardening (NextAuth.js, CSP, headers, input validation) |
-| **testing** | Verify | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist |
-| **debugging** | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion |
-| **devops** | Ship | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD |
-| **bootstrap** | Setup | Initialize this template for a new project — configure name, branding, metadata |
+| Skill         | Concern | Description                                                                                                 |
+| ------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| **ui**        | Build   | Component styling, theming (DaisyUI v5 + TailwindCSS v4), accessibility patterns                            |
+| **data**      | Build   | Server state (React Query), API routes, forms (react-hook-form + Zod), Server Actions, caching/revalidation |
+| **nextjs**    | Build   | Next.js App Router architecture, Server Components, routing, performance, SEO                               |
+| **auth**      | Build   | Authentication, authorization, and security hardening (NextAuth.js, CSP, headers, input validation)         |
+| **testing**   | Verify  | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist          |
+| **debugging** | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion                            |
+| **devops**    | Ship    | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD                                                          |
+| **bootstrap** | Setup   | Initialize this template for a new project — configure name, branding, metadata                             |
 
 ## Agents
 
-| Agent | Purpose | When to Use |
-|-------|---------|-------------|
+| Agent      | Purpose                                                                                                 | When to Use                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `reviewer` | Reviews diffs against CLAUDE.md conventions, runs verification gates (`check-types`, `lint`, `test:ci`) | Before committing/merging — spawn to get a structured code review |
 
 ## Code Quality Conventions
@@ -32,15 +32,16 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 
   ```tsx
   const variantClass: Record<ButtonVariant, string> = {
-    primary: "btn-primary",
-    secondary: "btn-secondary",
-    ghost: "btn-ghost",
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    ghost: 'btn-ghost',
   }
 
-  export function Button({ variant = "primary", className = "", ...props }) {
+  export function Button({ variant = 'primary', className = '', ...props }) {
     return <button className={`btn ${variantClass[variant]} ${className}`.trim()} {...props} />
   }
   ```
+
 - **Dependency versions**: Use **caret ranges** (`^`) for all dependencies and devDependencies. The lockfile provides reproducibility; caret ranges allow patch/minor updates on `pnpm install`.
 - **pnpm overrides**: The one exception — when adding entries to `pnpm.overrides` in root `package.json` (typically to address vulnerabilities), always pin to **exact versions** — never use range specifiers like `>=5.2.0` or `^5.2.0`
 - **Verification before completion**: No completion claims without fresh verification evidence. Run the command. Read the output. THEN claim the result.
@@ -65,15 +66,15 @@ Before shipping to production, verify:
 
 ## Skill Dependencies
 
-| Skill | Commonly co-loads with | Shared concepts |
-|-------|----------------------|-----------------|
-| **data** | testing, nextjs | API response shapes, React Query testing, Zod validation |
-| **nextjs** | data, auth, ui | Route handlers, middleware, Server Components |
-| **auth** | nextjs, data | Middleware, session management, API authorization, security headers |
-| **testing** | data, ui | MSW handlers, component rendering, browser verification |
-| **ui** | testing, nextjs | Component composition, accessibility, responsive design |
-| **devops** | testing | CI/CD, build commands, pre-release verification |
-| **debugging** | any skill | Stack-agnostic process, pairs with any domain skill |
+| Skill         | Commonly co-loads with | Shared concepts                                                     |
+| ------------- | ---------------------- | ------------------------------------------------------------------- |
+| **data**      | testing, nextjs        | API response shapes, React Query testing, Zod validation            |
+| **nextjs**    | data, auth, ui         | Route handlers, middleware, Server Components                       |
+| **auth**      | nextjs, data           | Middleware, session management, API authorization, security headers |
+| **testing**   | data, ui               | MSW handlers, component rendering, browser verification             |
+| **ui**        | testing, nextjs        | Component composition, accessibility, responsive design             |
+| **devops**    | testing                | CI/CD, build commands, pre-release verification                     |
+| **debugging** | any skill              | Stack-agnostic process, pairs with any domain skill                 |
 
 ## Project Structure
 
@@ -122,10 +123,10 @@ pnpm turbo run check-types --filter={app-name}
 
 ### Browser Automation
 
-| Environment | MCP Server | Notes |
-|-------------|-----------|-------|
-| Claude Code | Chrome DevTools MCP (`chrome-devtools-mcp`) | Headless mode, `--isolated` flag |
-| Cursor | Cursor IDE Browser MCP (`cursor-ide-browser`) | Built-in, no installation needed |
+| Environment | MCP Server                                    | Notes                            |
+| ----------- | --------------------------------------------- | -------------------------------- |
+| Claude Code | Chrome DevTools MCP (`chrome-devtools-mcp`)   | Headless mode, `--isolated` flag |
+| Cursor      | Cursor IDE Browser MCP (`cursor-ide-browser`) | Built-in, no installation needed |
 
 **Screenshots**: Always save browser screenshots to `/tmp/` — never into the project directory. This prevents test artifacts from being committed.
 

@@ -6,14 +6,14 @@ Semantic HTML and ARIA roles for accessible React components with DaisyUI and Ta
 
 Always prefer semantic elements over ARIA roles on generic elements:
 
-| Instead of | Use |
-|-----------|-----|
-| `<div role="button">` | `<button>` |
-| `<div role="navigation">` | `<nav>` |
-| `<div role="main">` | `<main>` |
-| `<div role="dialog">` | `<dialog>` |
-| `<span role="link">` | `<a>` |
-| `<div role="list">` | `<ul>` or `<ol>` |
+| Instead of                | Use              |
+| ------------------------- | ---------------- |
+| `<div role="button">`     | `<button>`       |
+| `<div role="navigation">` | `<nav>`          |
+| `<div role="main">`       | `<main>`         |
+| `<div role="dialog">`     | `<dialog>`       |
+| `<span role="link">`      | `<a>`            |
+| `<div role="list">`       | `<ul>` or `<ol>` |
 
 ## ARIA for Common Patterns
 
@@ -64,7 +64,7 @@ Use `aria-live="assertive"` for errors and urgent messages. Use `aria-live="poli
 ### Tabs
 
 ```tsx
-<div role="tablist" className="tabs tabs-boxed">
+;<div role="tablist" className="tabs tabs-boxed">
   {tabs.map((tab, i) => (
     <button
       key={tab.id}
@@ -78,15 +78,17 @@ Use `aria-live="assertive"` for errors and urgent messages. Use `aria-live="poli
     </button>
   ))}
 </div>
-{tabs.map((tab) => (
-  <div
-    key={tab.id}
-    id={`panel-${tab.id}`}
-    role="tabpanel"
-    aria-labelledby={`tab-${tab.id}`}
-    hidden={activeTab !== tab.id}
-  >
-    {tab.content}
-  </div>
-))}
+{
+  tabs.map((tab) => (
+    <div
+      key={tab.id}
+      id={`panel-${tab.id}`}
+      role="tabpanel"
+      aria-labelledby={`tab-${tab.id}`}
+      hidden={activeTab !== tab.id}
+    >
+      {tab.content}
+    </div>
+  ))
+}
 ```

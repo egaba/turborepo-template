@@ -35,6 +35,7 @@ export function Button({ variant = 'primary', size = 'md', className = '', ...pr
 ```
 
 **Why not template literals?**
+
 - `btn-${variant}` is not type-safe -- typos compile but produce broken classes
 - Tailwind's class detection cannot statically analyze template literals for purging
 - Explicit maps are searchable, refactorable, and self-documenting
@@ -66,7 +67,7 @@ All shared `@repo/ui` components accept an optional `className` prop that is app
 
 ```tsx
 // Consumer adds layout-level utility
-<Card className="w-full max-w-md mx-auto" title="Settings">
+<Card className="mx-auto w-full max-w-md" title="Settings">
   ...
 </Card>
 ```
@@ -75,14 +76,14 @@ All shared `@repo/ui` components accept an optional `className` prop that is app
 
 ### TailwindCSS v4 Breakpoints
 
-| Prefix | Min Width | Description |
-|--------|----------|-------------|
-| *(none)* | 0px | Mobile (default) |
-| `sm:` | 640px | Small tablets |
-| `md:` | 768px | Tablets / small desktop |
-| `lg:` | 1024px | Desktop |
-| `xl:` | 1280px | Large desktop |
-| `2xl:` | 1536px | Extra large |
+| Prefix   | Min Width | Description             |
+| -------- | --------- | ----------------------- |
+| _(none)_ | 0px       | Mobile (default)        |
+| `sm:`    | 640px     | Small tablets           |
+| `md:`    | 768px     | Tablets / small desktop |
+| `lg:`    | 1024px    | Desktop                 |
+| `xl:`    | 1280px    | Large desktop           |
+| `2xl:`   | 1536px    | Extra large             |
 
 ### Common Responsive Patterns
 
@@ -110,9 +111,7 @@ For component-level responsiveness:
 
 ```tsx
 <div className="@container">
-  <div className="flex flex-col @md:flex-row gap-4">
-    ...
-  </div>
+  <div className="@md:flex-row flex flex-col gap-4">...</div>
 </div>
 ```
 

@@ -3,14 +3,20 @@ import { test, expect } from '@playwright/test'
 test.describe('Navigation', () => {
   test('navigates from home to dashboard via header link', async ({ page }) => {
     await page.goto('/')
-    await page.getByRole('link', { name: /dashboard/i }).first().click()
+    await page
+      .getByRole('link', { name: /dashboard/i })
+      .first()
+      .click()
     await expect(page).toHaveURL('/dashboard')
     await expect(page.getByRole('heading', { name: /dashboard/i })).toBeVisible()
   })
 
   test('navigates from dashboard to home via logo', async ({ page }) => {
     await page.goto('/dashboard')
-    await page.locator('aside').getByRole('link', { name: /project/i }).click()
+    await page
+      .locator('aside')
+      .getByRole('link', { name: /project/i })
+      .click()
     await expect(page).toHaveURL('/')
   })
 

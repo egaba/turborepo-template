@@ -4,6 +4,9 @@ import tseslint from 'typescript-eslint'
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
+  {
+    ignores: ['dist/**', '.next/**', 'node_modules/**'],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
@@ -13,8 +16,5 @@ export default [
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'prefer-const': 'error',
     },
-  },
-  {
-    ignores: ['dist/**', '.next/**', 'node_modules/**'],
   },
 ]
