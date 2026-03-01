@@ -77,7 +77,20 @@ Agents are markdown files. Keep under 100 lines. Include:
 
 Agents can specify which tools they need and which model to use. Name agents by their function: `reviewer`, `planner`, `security-reviewer`.
 
+## Testing Skills
+
+Structural validation confirms a skill is well-formed. Assessment confirms it **produces correct output**.
+
+1. **Validate** -- run `references/validation-checklist.md` (structure, size, metadata)
+2. **Assess** -- run scenarios from `references/assessment-scenarios.md` against the skill
+3. **Score** -- use the 0-3 rubric in `references/skill-assessment.md`
+4. **Record** -- log results in a plan file for regression tracking
+
+Run targeted assessment after every SKILL.md or reference edit. Run full assessment before releasing the template.
+
 ## References
 
 - **[quality-criteria.md](references/quality-criteria.md)** -- Metadata, token efficiency, structure, scope
 - **[validation-checklist.md](references/validation-checklist.md)** -- Quick pass/fail validation
+- **[skill-assessment.md](references/skill-assessment.md)** -- Scoring model, regression detection, recording format
+- **[assessment-scenarios.md](references/assessment-scenarios.md)** -- Concrete scenarios for all 11 skills and 5 agents
