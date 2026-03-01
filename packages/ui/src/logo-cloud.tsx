@@ -25,7 +25,7 @@ export function LogoCloud({ logos, heading, className = '' }: LogoCloudProps) {
               key={logo.src}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 max-w-[120px] object-contain grayscale transition-all hover:grayscale-0 md:h-10"
+              className="h-8 max-w-[120px] object-contain grayscale transition-opacity hover:grayscale-0 md:h-10"
             />
           )
 

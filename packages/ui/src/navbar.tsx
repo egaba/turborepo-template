@@ -18,7 +18,7 @@ export function Navbar({ logo, links, actions }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100/80 backdrop-blur-md border-b border-base-300/40 sticky top-0 z-50">
       <div className="navbar-start">
         {/* Mobile dropdown */}
         <div className="dropdown">

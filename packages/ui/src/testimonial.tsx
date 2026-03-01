@@ -17,7 +17,7 @@ export function Testimonial({
 }: TestimonialProps) {
   return (
     <div
-      className={`card border-l-4 border-primary bg-base-100 shadow-md ${className}`.trim()}
+      className={`card border border-base-300/50 border-l-4 border-l-primary bg-base-100 ${className}`.trim()}
     >
       <div className="card-body">
         <blockquote className="text-base-content/80">

@@ -21,7 +21,7 @@ export function PricingCard({
 }: PricingCardProps) {
   return (
     <div
-      className={`card bg-base-100 shadow-md ${popular ? 'border-2 border-primary' : ''} ${className}`.trim()}
+      className={`card bg-base-100 border border-base-300/50 ${popular ? 'border-2 border-primary' : ''} ${className}`.trim()}
     >
       <div className="card-body">
         <div className="flex items-center justify-between">
@@ -31,7 +31,7 @@ export function PricingCard({
           )}
         </div>
         <div className="mt-4">
-          <span className="text-4xl font-extrabold text-base-content">
+          <span className="text-4xl font-bold text-base-content">
             {price}
           </span>
           <span className="text-base-content/60">/{period}</span>

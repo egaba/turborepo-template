@@ -19,8 +19,8 @@ export function Modal({
 }: ModalProps) {
   return (
     <dialog className={`modal ${open ? 'modal-open' : ''}`}>
-      <div className={`modal-box ${className}`.trim()}>
-        {title && <h3 className="text-lg font-bold">{title}</h3>}
+      <div className={`modal-box border border-base-300/50 ${className}`.trim()}>
+        {title && <h3 className="text-lg font-semibold">{title}</h3>}
         <div className="py-4">{children}</div>
         {actions && <div className="modal-action">{actions}</div>}
       </div>

@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost'
+type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'ghost' | 'outline'
 type ButtonSize = 'xs' | 'sm' | 'md' | 'lg'
 
 type ButtonProps = Readonly<{
@@ -16,6 +16,7 @@ const variantClass: Record<ButtonVariant, string> = {
   secondary: 'btn-secondary',
   accent: 'btn-accent',
   ghost: 'btn-ghost',
+  outline: 'btn-outline',
 }
 
 const sizeClass: Record<ButtonSize, string> = {

@@ -20,7 +20,7 @@ type FooterProps = Readonly<{
 
 export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
   return (
-    <footer className="bg-base-200 text-base-content">
+    <footer className="border-t border-base-300/40 bg-base-200 text-base-content">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
@@ -31,7 +31,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
           {/* Link columns */}
           {columns.map((column) => (
             <div key={column.title}>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-base-content/50">
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-base-content/50">
                 {column.title}
               </h3>
               <ul className="space-y-3">
