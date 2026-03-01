@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react'
 
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { AppSidebar } from '@repo/ui/app-sidebar'
@@ -89,9 +90,9 @@ export default function AppLayout({
           sections={SIDEBAR_SECTIONS}
           currentPath={pathname}
           logo={
-            <span className="text-lg font-bold tracking-tight text-base-content">
+            <Link href="/" className="text-lg font-bold tracking-tight text-base-content no-underline">
               Project
-            </span>
+            </Link>
           }
           footer={<ThemeToggle />}
         />

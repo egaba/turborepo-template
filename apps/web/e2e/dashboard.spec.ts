@@ -23,6 +23,6 @@ test.describe('Dashboard Page', () => {
 
   test('sidebar dashboard link is active', async ({ page }) => {
     const dashboardLink = page.locator('aside').getByRole('link', { name: /dashboard/i })
-    await expect(dashboardLink).toHaveClass(/active/)
+    await expect(dashboardLink).toHaveClass(/text-accent/)
   })
 })

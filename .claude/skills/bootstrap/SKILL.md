@@ -28,8 +28,13 @@ Replace `"Project"` (case-sensitive, whole-word) with the chosen name in these f
 apps/web/app/layout.tsx                          — metadata title, template, siteName
 apps/web/components/layouts/marketing-header.tsx  — logo text
 apps/web/app/(marketing)/layout.tsx               — footer logo and copyright
-apps/web/app/(app)/layout.tsx                     — sidebar logo
+apps/web/app/(app)/layout.tsx                     — sidebar logo link
 apps/web/components/layouts/app-sidebar.tsx        — logo text (if separate)
+```
+
+Replace `/project/i` with a regex matching the new name in E2E tests:
+```
+apps/web/e2e/navigation.spec.ts                   — sidebar logo link test
 ```
 
 Replace `{project-name}` in:

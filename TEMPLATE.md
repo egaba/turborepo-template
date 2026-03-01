@@ -16,7 +16,7 @@ Run `/bootstrap` to configure these. All are required before meaningful developm
 
 | Placeholder | Current value | Files |
 |-------------|---------------|-------|
-| Brand name | `"Project"` | `apps/web/app/layout.tsx`, `apps/web/components/layouts/marketing-header.tsx`, `apps/web/app/(marketing)/layout.tsx`, `apps/web/app/(app)/layout.tsx`, `apps/web/components/layouts/app-sidebar.tsx`, `CLAUDE.md` |
+| Brand name | `"Project"` | `apps/web/app/layout.tsx`, `apps/web/components/layouts/marketing-header.tsx`, `apps/web/app/(marketing)/layout.tsx`, `apps/web/app/(app)/layout.tsx`, `apps/web/components/layouts/app-sidebar.tsx`, `apps/web/e2e/navigation.spec.ts`, `CLAUDE.md` |
 | Metadata description | `"Next.js monorepo template..."` | `apps/web/app/layout.tsx`, `README.md` |
 | OpenGraph siteName | `"Project"` | `apps/web/app/layout.tsx` |
 | Copyright text | `"Project"` | `apps/web/app/(marketing)/layout.tsx` |
