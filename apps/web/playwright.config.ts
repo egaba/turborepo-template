@@ -9,7 +9,10 @@ export default defineConfig({
   retries: isCI ? 2 : 0,
   ...(isCI ? { workers: 1 } : {}),
   reporter: isCI
-    ? [['html', { open: 'never' }], ['json', { outputFile: 'playwright-report/results.json' }]]
+    ? [
+        ['html', { open: 'never' }],
+        ['json', { outputFile: 'playwright-report/results.json' }],
+      ]
     : 'list',
 
   use: {
