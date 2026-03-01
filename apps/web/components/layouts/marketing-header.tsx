@@ -113,6 +113,9 @@ export function MarketingHeader() {
             ))}
           </ul>
         </div>
+        <Link href="/dashboard" className="btn btn-ghost btn-sm">
+          Dashboard
+        </Link>
         <a href="#get-started" className="btn btn-primary btn-sm">
           Get Started
         </a>
