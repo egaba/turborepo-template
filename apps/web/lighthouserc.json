@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "pnpm --filter=web run start -- --port 9222",
+      "startServerCommand": "pnpm --filter=web exec next start --port 9222",
       "startServerReadyPattern": "Ready",
       "url": ["http://localhost:9222/"],
       "numberOfRuns": 3,
