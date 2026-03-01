@@ -26,7 +26,7 @@ Review every changed file for:
 ### 3. Run Verification Gates
 
 ```bash
-pnpm turbo run check:types    # TypeScript
+pnpm turbo run check-types    # TypeScript
 pnpm turbo run lint            # Lint
 pnpm turbo run test:ci         # Tests
 ```

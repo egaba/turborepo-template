@@ -1,6 +1,6 @@
 ---
 name: auth
-description: "Authentication, authorization, and security hardening (NextAuth.js). Use when debugging 401/403 errors, session issues, permission denied, CSRF errors, CSP violations, or implementing auth/security features."
+description: "Authentication, authorization, and security hardening (NextAuth.js). Use when debugging 401/403 errors, session issues, permission denied, CSRF errors, CSP violations, or implementing auth/security."
 globs: ['**/auth/**/*', '**/*auth*.{ts,tsx,js}', '**/middleware.*', '**/*session*.{ts,tsx,js}', '**/*permission*.{ts,tsx,js}', '.env*', 'next.config.*']
 ---
 
