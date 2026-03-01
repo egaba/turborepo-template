@@ -8,7 +8,9 @@ export default defineConfig({
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
   ...(isCI ? { workers: 1 } : {}),
-  reporter: isCI ? 'html' : 'list',
+  reporter: isCI
+    ? [['html', { open: 'never' }], ['json', { outputFile: 'playwright-report/results.json' }]]
+    : 'list',
 
   use: {
     baseURL: 'http://localhost:3001',
