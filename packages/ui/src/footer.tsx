@@ -20,7 +20,7 @@ type FooterProps = Readonly<{
 
 export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
   return (
-    <footer className="border-t border-base-300/40 bg-base-200 text-base-content">
+    <footer className="border-t border-base-300/20 bg-base-200 text-base-content">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
@@ -39,7 +39,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-base-content/70 transition-colors hover:text-base-content"
+                      className="text-sm text-base-content/60 transition-smooth-fast hover:text-accent"
                     >
                       {link.label}
                     </a>
@@ -51,7 +51,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between border-t border-base-300 pt-8 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between border-t border-base-300/20 pt-8 sm:flex-row">
           <p className="text-sm text-base-content/50">{copyright}</p>
           {socialLinks && socialLinks.length > 0 && (
             <div className="mt-4 flex gap-4 sm:mt-0">
@@ -59,7 +59,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
                 <a
                   key={social.href}
                   href={social.href}
-                  className="text-base-content/50 transition-colors hover:text-base-content"
+                  className="text-base-content/40 transition-smooth-fast hover:text-accent"
                   aria-label={social.label}
                 >
                   {social.icon}

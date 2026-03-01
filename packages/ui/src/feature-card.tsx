@@ -17,15 +17,15 @@ export function FeatureCard({
 }: FeatureCardProps) {
   const content = (
     <div
-      className={`card bg-base-100 border border-base-300/50 transition-colors hover:border-base-300 ${className}`.trim()}
+      className={`card bg-base-100 border border-base-300/30 transition-smooth hover:border-accent/40 ${className}`.trim()}
     >
       <div className="card-body">
-        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-2xl text-primary">{icon}</div>
-        <h3 className="card-title text-lg">{heading}</h3>
+        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-2xl text-accent">{icon}</div>
+        <h3 className="card-title text-h6">{heading}</h3>
         <p className="text-base-content/70">{description}</p>
         {href && (
           <div className="card-actions mt-2">
-            <span className="font-medium text-primary">
+            <span className="font-medium text-accent">
               Learn more &rarr;
             </span>
           </div>

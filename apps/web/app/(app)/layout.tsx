@@ -1,10 +1,53 @@
+'use client'
+
 import type { ReactNode } from 'react'
 
-import { SidebarContent } from '@/components/layouts/app-sidebar'
+import { usePathname } from 'next/navigation'
+
+import { AppSidebar } from '@repo/ui/app-sidebar'
+import { ThemeToggle } from '@repo/ui/theme-toggle'
 
 const DRAWER_ID = 'app-drawer'
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+const SIDEBAR_SECTIONS = [
+  {
+    label: 'Workspaces',
+    items: [
+      { label: 'Dashboard', href: '/dashboard' },
+      { label: 'AI Inbox', href: '/inbox' },
+      { label: 'Pipeline', href: '/pipeline' },
+    ],
+  },
+  {
+    label: 'Operation',
+    items: [
+      { label: 'Trips', href: '/trips/TRP-2847' },
+      { label: 'Scheduling', href: '/scheduling' },
+      { label: 'Fleet', href: '/fleet' },
+    ],
+  },
+  {
+    label: 'Marketplace',
+    items: [
+      { label: 'Browse', href: '/marketplace' },
+      { label: 'Saved', href: '/marketplace/saved' },
+    ],
+  },
+  {
+    label: 'Records',
+    items: [
+      { label: 'Contacts', href: '/contacts' },
+      { label: 'Accounts', href: '/accounts' },
+      { label: 'Reports', href: '/reports' },
+    ],
+  },
+]
+
+export default function AppLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
+  const pathname = usePathname()
+
   return (
     <div className="drawer lg:drawer-open">
       <input id={DRAWER_ID} type="checkbox" className="drawer-toggle" />
@@ -42,9 +85,16 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           className="drawer-overlay"
           aria-label="Close navigation"
         />
-        <aside className="flex min-h-full w-64 flex-col border-r border-base-300/40 bg-base-100">
-          <SidebarContent />
-        </aside>
+        <AppSidebar
+          sections={SIDEBAR_SECTIONS}
+          currentPath={pathname}
+          logo={
+            <span className="text-lg font-bold tracking-tight text-base-content">
+              Project
+            </span>
+          }
+          footer={<ThemeToggle />}
+        />
       </div>
     </div>
   )

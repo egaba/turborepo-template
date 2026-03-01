@@ -13,6 +13,8 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 | **testing** | Verify | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist |
 | **debugging** | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion |
 | **devops** | Ship | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD |
+| **bootstrap** | Setup | Initialize this template for a new project — configure name, branding, metadata |
+
 ## Agents
 
 | Agent | Purpose | When to Use |
@@ -124,6 +126,8 @@ pnpm turbo run check-types --filter={app-name}
 |-------------|-----------|-------|
 | Claude Code | Chrome DevTools MCP (`chrome-devtools-mcp`) | Headless mode, `--isolated` flag |
 | Cursor | Cursor IDE Browser MCP (`cursor-ide-browser`) | Built-in, no installation needed |
+
+**Screenshots**: Always save browser screenshots to `/tmp/` — never into the project directory. This prevents test artifacts from being committed.
 
 ### Other MCP Servers
 

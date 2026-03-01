@@ -16,7 +16,7 @@ export function Hero({
   secondaryCta,
 }: HeroProps) {
   return (
-    <div className="py-20 text-center md:py-32">
+    <div className="pb-[var(--space-section)] pt-[var(--space-page-top)] text-center">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {eyebrow && (
           <div className="mb-6">
@@ -25,13 +25,13 @@ export function Hero({
             </span>
           </div>
         )}
-        <h1 className="text-4xl font-bold tracking-tight text-base-content sm:text-5xl lg:text-6xl">
+        <h1 className="text-h1 text-base-content">
           {heading}
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-base-content/60 sm:text-xl">
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-base-content/50 sm:text-xl">
           {description}
         </p>
-        <div className="mt-10 flex items-center justify-center gap-4">
+        <div className="mt-12 flex items-center justify-center gap-4">
           {primaryCta}
           {secondaryCta}
         </div>

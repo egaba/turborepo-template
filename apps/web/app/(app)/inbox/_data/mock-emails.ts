@@ -1,0 +1,289 @@
+type StatusVariant =
+  | 'new-request'
+  | 'quote-sent'
+  | 'booking-confirmed'
+  | 'trip-info-missing'
+
+type MockEmail = Readonly<{
+  id: string
+  sender: string
+  company: string
+  subject: string
+  preview: string
+  tripId?: string
+  status?: string
+  statusVariant?: StatusVariant
+  timestamp: string
+  unread: boolean
+  starred: boolean
+  threadCount?: number
+}>
+
+export const MOCK_EMAILS: MockEmail[] = [
+  {
+    id: 'e1',
+    sender: 'Sarah Mitchell',
+    company: 'Apex Group',
+    subject: 'New charter request — KTEB to KLAS, 8 PAX',
+    preview:
+      'Hi team, we need a heavy jet for our executive team traveling to Las Vegas on March 15. Flexible on timing but prefer morning departure...',
+    tripId: 'TRP-3102',
+    status: 'New request',
+    statusVariant: 'new-request',
+    timestamp: '10:32 AM',
+    unread: true,
+    starred: true,
+    threadCount: 1,
+  },
+  {
+    id: 'e2',
+    sender: 'David Chen',
+    company: 'Meridian Capital',
+    subject: 'RE: Quote for KVNY to KSFB round trip',
+    preview:
+      'Thanks for the quote. Can you check availability on the Challenger 350 for March 20 return? Also need catering for 6...',
+    tripId: 'TRP-2991',
+    status: 'Quote sent',
+    statusVariant: 'quote-sent',
+    timestamp: '9:45 AM',
+    unread: true,
+    starred: false,
+    threadCount: 4,
+  },
+  {
+    id: 'e3',
+    sender: 'Jessica Taylor',
+    company: 'Northwind Aviation',
+    subject: 'Booking confirmed — KPBI to KTEB',
+    preview:
+      'Great news! Client has approved the Global 6000. Please proceed with the crew assignment and catering order...',
+    tripId: 'TRP-2847',
+    status: 'Booking confirmed',
+    statusVariant: 'booking-confirmed',
+    timestamp: '9:12 AM',
+    unread: false,
+    starred: true,
+    threadCount: 7,
+  },
+  {
+    id: 'e4',
+    sender: 'Michael Roberts',
+    company: 'Sterling Partners',
+    subject: 'Missing passenger manifest — KLAX to KMIA',
+    preview:
+      'We still need the passenger list and customs forms for the March 12 departure. Can you follow up with the client?',
+    tripId: 'TRP-3056',
+    status: 'Trip info missing',
+    statusVariant: 'trip-info-missing',
+    timestamp: 'Yesterday',
+    unread: true,
+    starred: false,
+    threadCount: 3,
+  },
+  {
+    id: 'e5',
+    sender: 'Emily Parker',
+    company: 'Vista Aviation',
+    subject: 'New request — KJFK to EGLL, 4 PAX',
+    preview:
+      'Looking for a transatlantic option for our CEO and team. Need WiFi and lie-flat capability. Budget up to $180K one way...',
+    tripId: 'TRP-3108',
+    status: 'New request',
+    statusVariant: 'new-request',
+    timestamp: 'Yesterday',
+    unread: true,
+    starred: false,
+    threadCount: 1,
+  },
+  {
+    id: 'e6',
+    sender: 'Robert Zhang',
+    company: 'Pacific Holdings',
+    subject: 'RE: Multi-leg itinerary KSFO-KDEN-KDAL',
+    preview:
+      'The client wants to add a stop in Denver on the way to Dallas. Can we adjust the quote to include fuel stop?',
+    tripId: 'TRP-2965',
+    status: 'Quote sent',
+    statusVariant: 'quote-sent',
+    timestamp: 'Yesterday',
+    unread: false,
+    starred: false,
+    threadCount: 6,
+  },
+  {
+    id: 'e7',
+    sender: 'Amanda Foster',
+    company: 'Crestline Group',
+    subject: 'Urgent — Need aircraft swap for tomorrow',
+    preview:
+      'The Citation X has gone into maintenance. We need a replacement mid-size jet for the KBOS to KIAD flight tomorrow at 7AM...',
+    tripId: 'TRP-3089',
+    status: 'Trip info missing',
+    statusVariant: 'trip-info-missing',
+    timestamp: 'Yesterday',
+    unread: true,
+    starred: true,
+    threadCount: 2,
+  },
+  {
+    id: 'e8',
+    sender: 'James Wilson',
+    company: 'Pinnacle Corp',
+    subject: 'Booking confirmed — KHOU to MMUN',
+    preview:
+      'Everything is set for the Cancun trip. Customs pre-clearance has been arranged. Crew briefing scheduled for 5AM...',
+    tripId: 'TRP-2903',
+    status: 'Booking confirmed',
+    statusVariant: 'booking-confirmed',
+    timestamp: 'Mar 27',
+    unread: false,
+    starred: false,
+    threadCount: 9,
+  },
+  {
+    id: 'e9',
+    sender: 'Lisa Novak',
+    company: 'Orion Ventures',
+    subject: 'New charter inquiry — KSDL to KLAS',
+    preview:
+      'Our client group of 12 needs a super mid or heavy jet from Scottsdale to Las Vegas this weekend. Please advise on options...',
+    tripId: 'TRP-3115',
+    status: 'New request',
+    statusVariant: 'new-request',
+    timestamp: 'Mar 27',
+    unread: false,
+    starred: false,
+    threadCount: 1,
+  },
+  {
+    id: 'e10',
+    sender: 'Thomas Grant',
+    company: 'Atlas Industries',
+    subject: 'RE: Phenom 300 availability check',
+    preview:
+      'Client prefers the Phenom 300 but can accept a Citation Latitude as backup. Departure date is flexible within a 3-day window...',
+    tripId: 'TRP-3042',
+    status: 'Quote sent',
+    statusVariant: 'quote-sent',
+    timestamp: 'Mar 27',
+    unread: false,
+    starred: false,
+    threadCount: 5,
+  },
+  {
+    id: 'e11',
+    sender: 'Karen Beck',
+    company: 'Summit Advisory',
+    subject: 'New request — KPWK to KMCO, family trip',
+    preview:
+      'Family of 5 plus a small dog traveling to Orlando. Need a mid-size jet with pet-friendly policy. March 22 departure...',
+    tripId: 'TRP-3120',
+    status: 'New request',
+    statusVariant: 'new-request',
+    timestamp: 'Mar 26',
+    unread: false,
+    starred: false,
+    threadCount: 1,
+  },
+  {
+    id: 'e12',
+    sender: 'Brian Marsh',
+    company: 'Redstone Capital',
+    subject: 'Missing catering preferences — KDAL to KLAS',
+    preview:
+      'We have 2 passengers with dietary restrictions. Can you confirm the catering menu before we finalize the order?',
+    tripId: 'TRP-3001',
+    status: 'Trip info missing',
+    statusVariant: 'trip-info-missing',
+    timestamp: 'Mar 26',
+    unread: false,
+    starred: false,
+    threadCount: 4,
+  },
+  {
+    id: 'e13',
+    sender: 'Nicole Adams',
+    company: 'Vertex Group',
+    subject: 'RE: Quote revision for KORD to KPBI',
+    preview:
+      'The revised quote looks good. Client wants to proceed but asked if we can include ground transportation on both ends...',
+    tripId: 'TRP-2978',
+    status: 'Quote sent',
+    statusVariant: 'quote-sent',
+    timestamp: 'Mar 26',
+    unread: false,
+    starred: true,
+    threadCount: 8,
+  },
+  {
+    id: 'e14',
+    sender: 'Patrick Sullivan',
+    company: 'Ironclad Corp',
+    subject: 'Booking confirmed — KBNA to KTEB',
+    preview:
+      'Confirmed the Gulfstream G280 for the Nashville to Teterboro flight. FBO notified, handling arranged at both airports...',
+    tripId: 'TRP-2856',
+    status: 'Booking confirmed',
+    statusVariant: 'booking-confirmed',
+    timestamp: 'Mar 25',
+    unread: false,
+    starred: false,
+    threadCount: 6,
+  },
+  {
+    id: 'e15',
+    sender: 'Maria Santos',
+    company: 'Coral Holdings',
+    subject: 'New request — KMIA to TNCM, 6 PAX',
+    preview:
+      'Looking for a mid-size jet to St. Maarten for a corporate retreat. Need WiFi and full catering. April 5-10 dates...',
+    tripId: 'TRP-3128',
+    status: 'New request',
+    statusVariant: 'new-request',
+    timestamp: 'Mar 25',
+    unread: false,
+    starred: false,
+    threadCount: 1,
+  },
+  {
+    id: 'e16',
+    sender: 'Andrew Kim',
+    company: 'Horizon Tech',
+    subject: 'RE: Updated itinerary KSFO to PHNL',
+    preview:
+      'Client approved the revised Hawaii schedule. Please confirm the Challenger 604 is still available for those dates...',
+    tripId: 'TRP-2934',
+    status: 'Quote sent',
+    statusVariant: 'quote-sent',
+    timestamp: 'Mar 25',
+    unread: false,
+    starred: false,
+    threadCount: 3,
+  },
+  {
+    id: 'e17',
+    sender: 'Catherine Brooks',
+    company: 'Evergreen Advisory',
+    subject: 'System notification — New lead assigned',
+    preview:
+      'A new lead has been assigned to your pipeline from the website inquiry form. Contact: Evergreen Advisory, 10 PAX...',
+    timestamp: 'Mar 24',
+    unread: false,
+    starred: false,
+  },
+  {
+    id: 'e18',
+    sender: 'Daniel Foster',
+    company: 'Blackstone Aviation',
+    subject: 'RE: Crew scheduling conflict',
+    preview:
+      'The pilot originally assigned has a scheduling conflict. We have a replacement crew available and qualified on the G650...',
+    tripId: 'TRP-2889',
+    status: 'Booking confirmed',
+    statusVariant: 'booking-confirmed',
+    timestamp: 'Mar 24',
+    unread: false,
+    starred: false,
+    threadCount: 11,
+  },
+]

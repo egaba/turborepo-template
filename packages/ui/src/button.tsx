@@ -36,7 +36,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`btn ${variantClass[variant]} ${sizeClass[size]} ${className}`.trim()}
+      className={`btn transition-smooth ${variantClass[variant]} ${sizeClass[size]} ${className}`.trim()}
       disabled={loading || props.disabled}
       {...props}
     >

@@ -65,3 +65,71 @@ export const SecondTabActive: Story = {
     ],
   },
 }
+
+export const UnderlineVariant: Story = {
+  args: {
+    variant: 'underline',
+    tabs: [
+      {
+        label: 'New Requests',
+        count: 500,
+        content: <p className="text-base-content/70">New incoming trip requests.</p>,
+      },
+      {
+        label: 'In Progress',
+        count: 234,
+        content: <p className="text-base-content/70">Trips currently being processed.</p>,
+      },
+      {
+        label: 'Completed',
+        count: 1200,
+        content: <p className="text-base-content/70">Successfully completed trips.</p>,
+      },
+    ],
+  },
+}
+
+export const WithCounts: Story = {
+  args: {
+    tabs: [
+      {
+        label: 'All',
+        count: 1934,
+        content: <p className="text-base-content/70">All items.</p>,
+      },
+      {
+        label: 'Active',
+        count: 42,
+        content: <p className="text-base-content/70">Active items.</p>,
+      },
+      {
+        label: 'Archived',
+        count: 8,
+        content: <p className="text-base-content/70">Archived items.</p>,
+      },
+    ],
+  },
+}
+
+export const UnderlineWithCounts: Story = {
+  args: {
+    variant: 'underline',
+    tabs: [
+      {
+        label: 'Pending Review',
+        count: 12,
+        content: <p className="text-base-content/70">Items pending review.</p>,
+      },
+      {
+        label: 'Approved',
+        count: 89,
+        content: <p className="text-base-content/70">Approved items.</p>,
+      },
+      {
+        label: 'Rejected',
+        count: 3,
+        content: <p className="text-base-content/70">Rejected items.</p>,
+      },
+    ],
+  },
+}

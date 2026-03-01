@@ -51,10 +51,11 @@ pnpm format:check                        # Prettier check
 
 ## AI Agent Skills
 
-This template includes 8 Claude Code skills in `.claude/skills/`:
+This template includes 9 Claude Code skills in `.claude/skills/`:
 
 | Skill | Concern | What It Covers |
 |-------|---------|---------------|
+| **bootstrap** | Setup | Initialize template for a new project — name, branding, metadata |
 | **ui** | Build | DaisyUI v5 components, semantic colors, variant maps, accessibility |
 | **data** | Build | React Query, API routes, Server Actions, forms (react-hook-form + Zod) |
 | **nextjs** | Build | App Router, Server Components, routing, performance, SEO |
@@ -70,18 +71,38 @@ This template includes 8 Claude Code skills in `.claude/skills/`:
 |-------|---------|
 | **reviewer** | Code review against CLAUDE.md conventions + verification gates |
 
-## Customizing for Your Project
+## Getting Started from Template
 
-1. **Replace placeholders** in `CLAUDE.md`:
-   - `{project-name}` — your project name
-   - `{app-name}` — Turborepo filter name (e.g., `web`)
-   - `{app-1}`, `{app-2}` — app directory names under `apps/`
+This is a **GitHub Template Repository**. Click "Use this template" to create your project, then:
 
-2. **Update branding** — search for "Project" in the codebase and replace with your project name (sidebar, header, footer, metadata)
+### 1. Bootstrap (Day 1)
 
-3. **Remove unused skills** — each skill in `.claude/skills/` is self-contained. Delete directories you don't need.
+Open the project in Claude Code and run:
 
-4. **Configure environment** — copy `.env.example` to `.env.local` and fill in values.
+```
+/bootstrap
+```
+
+This walks you through configuring the project name, description, and whether to keep the demo pages. It handles all the find-and-replace across the codebase automatically.
+
+### 2. Configure as you go
+
+Not everything needs to be decided upfront. Use the built-in skills as you're ready:
+
+| Decision | Skill | Command |
+|----------|-------|---------|
+| Theme colors & branding | ui | `/ui` |
+| Auth provider & sessions | auth | `/auth` |
+| Database & data layer | data | `/data` |
+| Hosting & CI/CD | devops | `/devops` |
+
+### 3. Track progress
+
+See **`TEMPLATE.md`** for a full checklist of what's been configured and what's still pending. Delete it when everything is set up.
+
+### Environment
+
+Copy `.env.example` to `.env.local` and fill in values as they become available.
 
 ## CI/CD
 

@@ -15,13 +15,13 @@ export function Section({
 }: SectionProps) {
   return (
     <section
-      className={`py-16 md:py-24 ${className}`.trim()}
+      className={`py-[var(--space-section)] ${className}`.trim()}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {(heading || description) && (
-          <div className="mb-12 text-center">
+          <div className="mb-16 text-center">
             {heading && (
-              <h2 className="text-3xl font-semibold tracking-tight text-base-content sm:text-4xl">
+              <h2 className="text-h2 text-base-content">
                 {heading}
               </h2>
             )}

@@ -120,16 +120,8 @@ export default function HomePage() {
         <CtaSection
           heading="Convinced yet?"
           description="Stop researching. Start building. Your future self will high-five you for this one."
-          primaryCta={
-            <button className="btn btn-primary btn-lg">
-              Let&apos;s Go
-            </button>
-          }
-          secondaryCta={
-            <button className="btn btn-ghost btn-lg text-primary-content/80 hover:text-primary-content">
-              Kick the Tires First
-            </button>
-          }
+          primaryCta={<Button variant="primary" size="lg">Let&apos;s Go</Button>}
+          secondaryCta={<Button variant="ghost" size="lg">Kick the Tires First</Button>}
         />
       </Section>
     </>
