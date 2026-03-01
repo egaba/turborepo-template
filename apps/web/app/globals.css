@@ -2,7 +2,7 @@
 @source "../../packages/ui/src";
 
 body {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 }
 
 code, pre, kbd {

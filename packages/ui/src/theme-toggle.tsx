@@ -2,23 +2,23 @@
 
 import { useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark'
+type Theme = 'obsidian-light' | 'obsidian-dark'
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>('obsidian-light')
 
   useEffect(() => {
     const saved = localStorage.getItem('theme') as Theme | null
     const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
+      ? 'obsidian-dark'
+      : 'obsidian-light'
     const initial = saved ?? preferred
     setTheme(initial)
     document.documentElement.setAttribute('data-theme', initial)
   }, [])
 
   const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light'
+    const next = theme === 'obsidian-light' ? 'obsidian-dark' : 'obsidian-light'
     setTheme(next)
     localStorage.setItem('theme', next)
     document.documentElement.setAttribute('data-theme', next)
@@ -28,7 +28,7 @@ export function ThemeToggle() {
     <label className="swap swap-rotate">
       <input
         type="checkbox"
-        checked={theme === 'dark'}
+        checked={theme === 'obsidian-dark'}
         onChange={toggleTheme}
         aria-label="Toggle theme"
       />

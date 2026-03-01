@@ -1,34 +1,38 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
+
+import { Providers } from '@/providers/providers'
 
 import './globals.css'
 
-const inter = Inter({
+const geist = Geist({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
   title: 'My Skills',
-  description: 'Skills portfolio built with Next.js and DaisyUI',
+  description: 'Next.js monorepo template with Turborepo and DaisyUI',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html
       lang="en"
-      data-theme="light"
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      data-theme="obsidian-light"
+      className={`${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }

@@ -9,19 +9,19 @@ const preview: Preview = {
         title: 'Theme',
         icon: 'paintbrush',
         items: [
-          { value: 'skillcraft-light', title: 'Light', icon: 'sun' },
-          { value: 'skillcraft-dark', title: 'Dark', icon: 'moon' },
+          { value: 'obsidian-light', title: 'Light', icon: 'sun' },
+          { value: 'obsidian-dark', title: 'Dark', icon: 'moon' },
         ],
         dynamicTitle: true,
       },
     },
   },
   initialGlobals: {
-    theme: 'skillcraft-light',
+    theme: 'obsidian-light',
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.theme || 'skillcraft-light'
+      const theme = context.globals.theme || 'obsidian-light'
       document.documentElement.setAttribute('data-theme', theme)
       return Story()
     },
