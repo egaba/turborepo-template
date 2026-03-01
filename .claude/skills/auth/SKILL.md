@@ -17,6 +17,8 @@ globs:
 
 NextAuth.js patterns for JWT-based auth, role-based permissions, route protection, and security hardening.
 
+> **Template note**: Auth is not yet configured. These are reference patterns for when auth is added. Files listed below are **files to create**, not existing files.
+
 ## Quick Patterns
 
 ### Session Usage (Client)

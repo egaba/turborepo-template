@@ -1,123 +1,116 @@
 # App Router Route Handlers
 
-Route handler patterns for `app/api/*/route.ts` with direct backend calls.
+Route handler patterns for `app/api/*/route.ts` with Zod validation and typed responses.
 
 ## Architecture Overview
 
 ```
-Browser --> app/api/*/route.ts --> Backend Service (direct)
+Browser --> app/api/*/route.ts --> Data Layer (store, DB, external API)
                   |
-           No proxy layer -- route handlers call services directly
+           Zod validates input, StatusCodes for HTTP status
 ```
 
-- API routes live in `app/api/*/route.ts` and export named HTTP method functions
-- Axios clients connect directly to backend services (no proxy indirection)
-- Authentication via NextAuth.js with route-level middleware protection
-- Client-side data fetching with React Query custom hooks
+- API routes live in `app/api/*/route.ts` and export named HTTP method functions (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)
+- Input validation via Zod `safeParse` before processing
+- HTTP status codes via `http-status-codes` constants (never raw numbers)
+- Responses use `ApiResponse<T>` shape for success, `ApiError` for errors
 
 ## Route Handler Patterns
 
 ### Simple GET Handler
 
 ```typescript
-// app/api/status/route.ts
+// app/api/health/route.ts
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  return NextResponse.json({ status: 'healthy' })
+  return NextResponse.json({ status: 'healthy', timestamp: new Date().toISOString() })
 }
 ```
 
-### POST with Request Body Parsing
+### GET with Data
 
 ```typescript
-// app/api/items/search/route.ts
-import type { NextRequest } from 'next/server'
+// app/api/tasks/route.ts
 import { NextResponse } from 'next/server'
-import apiClient from 'app/api/api-client'
+import { taskStore } from '@/features/tasks/data/task-store'
 
-const postSearchItems = async (req: NextRequest) => {
-  const body = await req.json()
-  const { data } = await apiClient.post('/search/items', body)
-  return NextResponse.json(data)
+export async function GET() {
+  const tasks = taskStore.getAll()
+  return NextResponse.json({ data: tasks, status: 'success' })
 }
-
-export const POST = withErrorHandling(postSearchItems)
 ```
 
-### CRUD Route Handler (GET + POST in Same File)
+### POST with Zod Validation
 
 ```typescript
-// app/api/products/route.ts
-import { NextRequest, NextResponse } from 'next/server'
-import apiClient from '../api-client'
-
-const getProducts = async () => {
-  const { data } = await apiClient.get('/v2/products?status=all')
-  return NextResponse.json(data)
-}
-
-const createProduct = async (req: NextRequest) => {
-  const body = await req.json()
-  const { data } = await apiClient.post('/v2/products', body)
-  return NextResponse.json(data, { status: 201 })
-}
-
-export const GET = withErrorHandling(getProducts)
-export const POST = withErrorHandling(createProduct)
-```
-
-### withErrorHandling Wrapper
-
-```typescript
-// app/api/helpers/error-handling.ts
-import { NextRequest, NextResponse } from 'next/server'
+// app/api/tasks/route.ts
 import { StatusCodes } from 'http-status-codes'
+import { NextRequest, NextResponse } from 'next/server'
+import { createTaskSchema } from '@/features/tasks/schemas/task-schema'
+import { taskStore } from '@/features/tasks/data/task-store'
 
-type RouteHandler = (req: NextRequest, context?: any) => Promise<NextResponse>
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const parsed = createTaskSchema.safeParse(body)
 
-export function withErrorHandling(handler: RouteHandler): RouteHandler {
-  return async (req, context) => {
-    try {
-      return await handler(req, context)
-    } catch (error: any) {
-      const status = error.response?.status || StatusCodes.INTERNAL_SERVER_ERROR
-      const message = error.response?.data?.message || 'Internal server error'
-
-      console.error(`[API Error] ${req.method} ${req.url}:`, message)
-
-      return NextResponse.json({ error: message }, { status })
-    }
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: 'Validation failed', code: 'VALIDATION_ERROR', details: parsed.error.flatten().fieldErrors },
+      { status: StatusCodes.BAD_REQUEST },
+    )
   }
+
+  const task = taskStore.create(parsed.data)
+  return NextResponse.json({ data: task, status: 'success' }, { status: StatusCodes.CREATED })
 }
 ```
 
-## API Client Configuration
+### Dynamic Route with Params
 
 ```typescript
-// app/api/api-client.ts
-import axios from 'axios'
+// app/api/tasks/[id]/route.ts
+import { StatusCodes } from 'http-status-codes'
+import { NextRequest, NextResponse } from 'next/server'
+import { taskStore } from '@/features/tasks/data/task-store'
 
-const apiClient = axios.create({
-  baseURL: process.env.BACKEND_SERVICE_URL,
-  headers: {
-    'Content-Type': 'application/json',
+type RouteContext = { params: Promise<{ id: string }> }
+
+export async function GET(_request: NextRequest, context: RouteContext) {
+  const { id } = await context.params
+  const task = taskStore.getById(id)
+  if (!task) {
+    return NextResponse.json(
+      { error: 'Task not found', code: 'NOT_FOUND' },
+      { status: StatusCodes.NOT_FOUND },
+    )
+  }
+  return NextResponse.json({ data: task, status: 'success' })
+}
+```
+
+## API Client (fetch-based)
+
+```typescript
+// lib/api-client.ts
+export const apiClient = {
+  get<T>(url: string, options?: RequestOptions) {
+    return request<ApiResponse<T>>(url, { ...options, method: 'GET' })
   },
-})
-
-export default apiClient
+  post<T>(url: string, body?: unknown, options?: RequestOptions) {
+    return request<ApiResponse<T>>(url, { ...options, method: 'POST', body })
+  },
+  // put, patch, delete follow the same pattern
+}
 ```
 
-For multiple backend services, create separate clients:
+No axios — uses native `fetch` with typed wrapper. Throws `ApiClientError` on non-OK responses.
 
-```typescript
-// app/api/clients/catalog-client.ts
-export const catalogClient = axios.create({
-  baseURL: process.env.CATALOG_SERVICE_URL,
-})
+## Rules
 
-// app/api/clients/auth-client.ts
-export const authClient = axios.create({
-  baseURL: process.env.AUTH_SERVICE_URL,
-})
-```
+- Always validate request body with Zod `safeParse` before processing
+- Always use `StatusCodes` constants from `http-status-codes`
+- Success responses: `{ data: T, status: 'success' }`
+- Error responses: `{ error: string, code: string, details?: unknown }`
+- Import from feature modules via barrel exports when possible
+- Dynamic route params use `Promise<{ paramName: string }>` in Next.js 15+

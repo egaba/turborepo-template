@@ -81,6 +81,8 @@ npx ts-prune                # Unused TypeScript exports
 npx depcheck                # Unused npm dependencies
 ```
 
+**Monorepo note:** `knip` requires a `knip.config.ts` with workspace entries in a monorepo. Run from the app directory (`cd apps/web && npx knip`) or configure workspaces at the root.
+
 Always verify before deleting -- knip can false-positive on dynamically imported code.
 
 ## Rename Patterns (preserve git history)

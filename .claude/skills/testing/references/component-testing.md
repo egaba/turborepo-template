@@ -5,28 +5,23 @@ Custom render, assertions, forms, React Query, error boundaries, and App Router 
 ## Custom Render with Providers
 
 ```typescript
-// test-utils/render.tsx
+// __tests__/render.tsx — import as @/__tests__/render
 import { render, RenderOptions } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { SessionProvider } from 'next-auth/react'
 
 const createTestQueryClient = () =>
   new QueryClient({ defaultOptions: { queries: { retry: false }, mutations: { retry: false } } })
-type CustomRenderOptions = RenderOptions & { session?: any }
 
-export function renderWithProviders(ui: React.ReactElement, { session = null, ...options }: CustomRenderOptions = {}) {
+export function renderWithProviders(ui: React.ReactElement, options: RenderOptions = {}) {
   const queryClient = createTestQueryClient()
   function Wrapper({ children }: { children: React.ReactNode }) {
-    return (
-      <SessionProvider session={session}>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      </SessionProvider>
-    )
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   }
   return render(ui, { wrapper: Wrapper, ...options })
 }
 export * from '@testing-library/react'
 export { renderWithProviders as render }
+// Add SessionProvider wrapper when auth is configured
 ```
 
 ## Rendering & Interactions

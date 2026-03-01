@@ -77,23 +77,24 @@ Each phase must be independently mergeable and testable.
 
 | Step | File | Skill | Size |
 |------|------|-------|------|
-| 1 | `features/notifications/types/index.ts` | data | S |
-| 2 | `features/notifications/schemas/notification-schema.ts` | data | S |
-| 3 | `features/notifications/actions/notification-actions.ts` | data | M |
-| 4 | `features/notifications/queries/use-notifications.ts` | data | S |
-| 5 | `features/notifications/components/notification-list.tsx` | ui | M |
-| 6 | `features/notifications/index.ts` | nextjs | S |
-| 7 | `app/(app)/notifications/page.tsx` | nextjs | S |
+| 1 | `apps/web/features/notifications/types/index.ts` | data | S |
+| 2 | `apps/web/features/notifications/schemas/notification-schema.ts` | data | S |
+| 3 | `apps/web/features/notifications/data/notification-store.ts` | data | M |
+| 4 | `apps/web/features/notifications/actions/notification-actions.ts` | data | M |
+| 5 | `apps/web/features/notifications/queries/use-notifications.ts` | data | S |
+| 6 | `apps/web/features/notifications/hooks/use-notification-form.ts` | data | S |
+| 7 | `apps/web/features/notifications/components/notification-list.tsx` | ui | M |
+| 8 | `apps/web/features/notifications/index.ts` | nextjs | S |
+| 9 | `apps/web/app/(app)/notifications/page.tsx` | nextjs | S |
 
-**Phase 2 — Core**: Mark-as-read mutation, unread badge in sidebar, Zod validation tests
+**Phase 2 — Core**: Mark-as-read mutation, unread badge in sidebar, validation tests
 **Phase 3 — Edge cases**: Empty state, error boundary, loading skeleton
-**Phase 4 — Polish**: Optimistic mark-read, real-time via polling, E2E tests
+**Phase 4 — Polish**: Optimistic updates, real-time polling, E2E tests
 
 ## Rules
 
 - Be specific: exact file paths, function names, component names
 - Follow the feature-module structure in `nextjs/references/project-structure.md`
-- Reference existing patterns in the codebase — link to similar files
 - Each phase must be independently mergeable with passing CI
 - Flag decisions requiring user input with **DECISION NEEDED**
 - Do not write code — only plan. Implementation is a separate step.

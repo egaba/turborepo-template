@@ -12,7 +12,7 @@
 
 ```bash
 pnpm update --recursive
-pnpm turbo run check:types
+pnpm turbo run check-types
 pnpm turbo run lint
 pnpm turbo run test:ci
 pnpm turbo run build
@@ -38,7 +38,7 @@ pnpm why {package}
 
 # 3. Verify
 pnpm audit
-pnpm turbo run check:types
+pnpm turbo run check-types
 pnpm turbo run test:ci
 pnpm turbo run build
 ```

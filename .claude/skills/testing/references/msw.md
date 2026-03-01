@@ -18,7 +18,7 @@ export const server = setupServer(...handlers)
 // jest.setup.ts
 import { server } from './mocks/server'
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }))
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 ```

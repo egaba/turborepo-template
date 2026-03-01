@@ -22,6 +22,7 @@ apps/web/
 │   └── tasks/                   # Example feature
 │       ├── actions/             # Server Actions
 │       ├── components/          # UI + co-located .test.tsx
+│       ├── data/                # Data stores, in-memory state
 │       ├── hooks/               # Custom hooks
 │       ├── queries/             # React Query hooks
 │       ├── schemas/             # Zod schemas + .test.ts

@@ -31,9 +31,12 @@ Measure, identify bottlenecks, apply targeted fixes, and re-measure. Never optim
 ## Bundle Analysis
 
 ```bash
-# Requires @next/bundle-analyzer configured in next.config.ts
+# Setup required: install @next/bundle-analyzer and configure in next.config.ts
+# See profiling-tools.md for setup instructions
 ANALYZE=true pnpm turbo run build --filter=web
 ```
+
+**Setup**: The `ANALYZE` env var only works after installing `@next/bundle-analyzer` and wrapping `next.config.ts` (see [profiling-tools.md](references/profiling-tools.md)). Without setup, the command builds normally without opening a treemap.
 
 Reading the treemap: large rectangles = large modules. Look for duplicate dependencies, unused imports, and libraries that could be dynamically imported.
 

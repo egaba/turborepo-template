@@ -22,7 +22,7 @@ Do NOT ask about theme colors, auth, hosting, or database. Those are handled by 
 
 ### 2. Apply project name
 
-Replace `"Project"` (case-sensitive, whole-word) with the chosen name in these files:
+Replace `"Project"` (case-sensitive) with the chosen name. Search broadly — the text may be a standalone text node, not wrapped in HTML tags:
 
 ```
 apps/web/app/layout.tsx                          — metadata title, template, siteName
@@ -30,13 +30,16 @@ apps/web/components/layouts/marketing-header.tsx  — logo text
 apps/web/app/(marketing)/layout.tsx               — footer logo and copyright
 apps/web/app/(app)/layout.tsx                     — sidebar logo link
 apps/web/components/layouts/app-sidebar.tsx        — logo text (if separate)
+packages/ui/src/app-sidebar.stories.tsx            — Storybook story logo text
 ```
 
-Replace `/project/i` with a regex matching the new name in E2E tests:
+Replace `/project/i` regex with the new name in E2E tests:
 
 ```
-apps/web/e2e/navigation.spec.ts                   — sidebar logo link test
+apps/web/e2e/navigation.spec.ts                   — getByRole link name regex
 ```
+
+Verify no remaining `"Project"` references: `grep -rn "Project" apps/web/ packages/ui/src/ --include="*.tsx"`
 
 Replace `{project-name}` in:
 

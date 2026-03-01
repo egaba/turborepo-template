@@ -7,19 +7,18 @@ Standard response types and HTTP status conventions for Next.js API routes.
 ```typescript
 type ApiResponse<T> = {
   data: T
-  status: 'success'
+  status: 'success' | 'error'
   message?: string
 }
 
-type PaginatedResponse<T> = ApiResponse<{
-  items: T[]
-  pagination: {
+type PaginatedResponse<T> = ApiResponse<T> & {
+  meta: {
     page: number
-    limit: number
+    pageSize: number
     total: number
-    hasNext: boolean
+    totalPages: number
   }
-}>
+}
 ```
 
 ## Error Response

@@ -71,4 +71,4 @@ git diff main..HEAD
 - No false positives — only flag findings with > 90% confidence
 - If unsure about a finding, note it as "Needs investigation" rather than flagging a severity
 - Check `.env.example` to understand which env vars exist and their intended scope
-- Review `middleware.ts` for auth boundary correctness on every security review
+- Review `middleware.ts` for auth boundary correctness. If no `middleware.ts` exists, flag as MEDIUM: no middleware-level auth boundary configured
