@@ -1,43 +1,23 @@
-# Portable Development Patterns
+# {project-name}
 
-Reusable Claude Code skills for Next.js monorepo projects. Distilled from production workflows — generalizable to any team.
+Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 
-## How to Use
+## Skills
 
-1. Copy this `CLAUDE.md` and the `.claude/` directory into your project root
-2. Customize the **Project Structure** section below with your apps and packages
-3. Customize the **Essential Commands** section with your build/dev/test commands
-4. Update `.claude/skills/jira/references/jira-playbook.md` placeholders (`{YOUR_ORG}`, `{YOUR_APP}`, etc.)
-5. If using Agent Teams, enable `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` in `.claude/settings.json`
+| Skill | Concern | Description |
+|-------|---------|-------------|
+| **ui** | Build | Component styling, theming (DaisyUI v5 + TailwindCSS v4), accessibility patterns |
+| **data** | Build | Server state (React Query), API routes, forms (react-hook-form + Zod), Server Actions, caching/revalidation |
+| **nextjs** | Build | Next.js App Router architecture, Server Components, routing, performance, SEO |
+| **auth** | Build | Authentication, authorization, and security hardening (NextAuth.js, CSP, headers, input validation) |
+| **testing** | Verify | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist |
+| **debugging** | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion |
+| **devops** | Ship | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD |
+## Agents
 
-## Skill Index
-
-| Skill | Type | Description |
-|-------|------|-------------|
-| **jira** | User-invocable | JIRA ticket workflow orchestration via Agent Teams (lead + dev + QA + deploy) |
-| **nextjs** | Auto-load | Next.js App Router and Pages Router patterns, routing, layouts, data fetching |
-| **react-query** | Auto-load | @tanstack/react-query patterns, query keys, mutations, prefetching |
-| **nextauth** | Auto-load | NextAuth.js authentication, session management, middleware, permissions |
-| **testing** | Auto-load | Jest + React Testing Library + MSW patterns, custom render utilities |
-| **web-dev** | Auto-load | Core React/TypeScript component patterns, browser automation, visual debugging |
-| **daisyui** | Auto-load | DaisyUI v5 + TailwindCSS v4 theming, semantic colors, component patterns, responsive design |
-| **typescript** | Auto-load | TypeScript conventions, type vs interface, import type, strict mode patterns |
-| **monorepo** | Auto-load | Turborepo + pnpm workspace patterns, dependency management, build caching |
-
-## Agent Teams (JIRA Workflow)
-
-When a user presents a JIRA ticket (key pattern `[A-Z]+-\d+` or Atlassian URL), you become the **jira lead** and spawn an agent team:
-
-```
-User <-> jira lead (you, main Claude — follows the jira skill playbook)
-           |-- teammate -> jira-dev  (Developer)
-           |-- teammate -> jira-qa   (QA — unit tests + browser verification)
-           +-- teammate -> deploy    (Deployment)
-```
-
-The jira lead handles: ticket analysis, planning, checkpoints, git operations, and team coordination. Teammates handle specialized work. See `.claude/skills/jira/SKILL.md` for full details.
-
-**Requires**: `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` enabled in `.claude/settings.json`.
+| Agent | Purpose | When to Use |
+|-------|---------|-------------|
+| `reviewer` | Reviews diffs against CLAUDE.md conventions, runs verification gates (`check:types`, `lint`, `test:ci`) | Before committing/merging — spawn to get a structured code review |
 
 ## Code Quality Conventions
 
@@ -59,15 +39,45 @@ The jira lead handles: ticket analysis, planning, checkpoints, git operations, a
     return <button className={`btn ${variantClass[variant]} ${className}`.trim()} {...props} />
   }
   ```
-- **pnpm overrides**: When adding entries to `pnpm.overrides` in root `package.json`, always pin to **exact versions** — never use range specifiers like `>=5.2.0` or `^5.2.0`
+- **Dependency versions**: Use **caret ranges** (`^`) for all dependencies and devDependencies. The lockfile provides reproducibility; caret ranges allow patch/minor updates on `pnpm install`.
+- **pnpm overrides**: The one exception — when adding entries to `pnpm.overrides` in root `package.json` (typically to address vulnerabilities), always pin to **exact versions** — never use range specifiers like `>=5.2.0` or `^5.2.0`
+- **Verification before completion**: No completion claims without fresh verification evidence. Run the command. Read the output. THEN claim the result.
+- **Readonly props**: Wrap component props with `Readonly<{...}>` and name the type `ComponentNameProps`
+- **Discriminated unions over enums**: Use `type Result = { status: 'success'; data: T } | { status: 'error'; error: string }` for exhaustive narrowing
+- **`satisfies` operator**: Use `satisfies Record<K, V>` to type-check without widening — preserves literal types
+- **`unknown` over `any`**: Never use `any` — use `unknown` and narrow before accessing properties
+- **Path aliases**: Configure `@/*` in `tsconfig.json` paths. Always import with `@/` prefix, never relative paths crossing module boundaries
+- **Strict tsconfig flags**: Beyond `strict: true`, enable `noUncheckedIndexedAccess`, `noPropertyAccessFromIndexSignature`, `exactOptionalPropertyTypes`
+
+## Production Checklist
+
+Before shipping to production, verify:
+
+- [ ] No hydration warnings in browser console
+- [ ] All images use `next/image` with correct `sizes` attribute
+- [ ] Fonts loaded via `next/font` (no layout shift)
+- [ ] CSP and security headers configured
+- [ ] No secrets in client code (`NEXT_PUBLIC_` prefix only for public values)
+- [ ] Lighthouse scores green (Performance, Accessibility, SEO)
+- [ ] Error boundaries (`error.tsx`) and not-found pages in place
+
+## Skill Dependencies
+
+| Skill | Commonly co-loads with | Shared concepts |
+|-------|----------------------|-----------------|
+| **data** | testing, nextjs | API response shapes, React Query testing, Zod validation |
+| **nextjs** | data, auth, ui | Route handlers, middleware, Server Components |
+| **auth** | nextjs, data | Middleware, session management, API authorization, security headers |
+| **testing** | data, ui | MSW handlers, component rendering, browser verification |
+| **ui** | testing, nextjs | Component composition, accessibility, responsive design |
+| **devops** | testing | CI/CD, build commands, pre-release verification |
+| **debugging** | any skill | Stack-agnostic process, pairs with any domain skill |
 
 ## Project Structure
 
-> **CUSTOMIZE**: Replace the sections below with your actual project layout.
-
 ### Applications
 
-- `apps/{app-1}` - Primary application (**Pages Router** or **App Router**)
+- `apps/{app-1}` - Primary application (**App Router**)
 - `apps/{app-2}` - Secondary application (**App Router**)
 
 ### Shared Packages
@@ -79,52 +89,48 @@ The jira lead handles: ticket analysis, planning, checkpoints, git operations, a
 ### File Structure
 
 ```
-apps/*/src/pages/          # Pages Router routes
 apps/*/app/                # App Router routes
 apps/*/components/         # React components
 apps/*/types/              # TypeScript definitions
 apps/*/queries/            # React Query hooks
+apps/*/actions/            # Server Actions
 apps/*/mocks/              # MSW handlers
 ```
 
 ## Essential Commands
 
-> **CUSTOMIZE**: Replace the commands below with your actual monorepo commands.
-
 ```bash
-# Required first-time setup
 pnpm install
 
-# Development (persistent, auto-builds dependencies)
 pnpm turbo run dev --filter={app-name}
 
-# Server Ready Indicators:
-# Pages Router apps: "server listening on port {PORT}" (custom server)
-# App Router apps: "Ready in XXXms" (Next.js)
+# Server Ready Indicator: "Ready in XXXms"
 
-# Build (cached, auto-builds dependencies)
 pnpm turbo run build --filter={app-name}
 
-# Testing
 pnpm turbo run test --filter={app-name}              # Watch mode
 pnpm turbo run test:ci --filter={app-name}           # CI mode (non-interactive)
 
-# Linting
 pnpm turbo run lint --filter={app-name}
 
-# Type checking
 pnpm turbo run check:types --filter={app-name}
 ```
 
 ## MCP Servers
 
-### Available MCP Servers
+### Browser Automation
 
-- **Chrome DevTools MCP**: Browser automation and debugging. Always runs in headless mode.
-- **Atlassian MCP (built-in)**: `claude_ai_Atlassian` — JIRA integration via Claude.ai OAuth
+| Environment | MCP Server | Notes |
+|-------------|-----------|-------|
+| Claude Code | Chrome DevTools MCP (`chrome-devtools-mcp`) | Headless mode, `--isolated` flag |
+| Cursor | Cursor IDE Browser MCP (`cursor-ide-browser`) | Built-in, no installation needed |
+
+### Other MCP Servers
+
+- **Ticket system MCP** (optional): JIRA (Atlassian MCP), Linear, or other — setup varies by environment
 - **Next.js DevTools MCP**: Next.js 16+ server discovery, runtime diagnostics, error detection
 
-### Installation
+### Installation (Claude Code)
 
 ```bash
 claude mcp add chrome-devtools npx chrome-devtools-mcp@latest

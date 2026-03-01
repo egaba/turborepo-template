@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'My Skills',
+  title: 'Project',
   description: 'Next.js monorepo template with Turborepo and DaisyUI',
 }
 

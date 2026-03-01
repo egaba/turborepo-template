@@ -36,7 +36,7 @@ export function Footer({ logo, columns, copyright, socialLinks }: FooterProps) {
               </h3>
               <ul className="space-y-3">
                 {column.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <a
                       href={link.href}
                       className="text-sm text-base-content/70 transition-colors hover:text-base-content"

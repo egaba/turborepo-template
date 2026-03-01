@@ -1,12 +1,55 @@
+# Dependencies
 node_modules/
+
+# Next.js
 .next/
 out/
+
+# SWC
+.swc/
+
+# Build outputs
 dist/
+build/
+
+# Turborepo
 .turbo/
+
+# Environment variables
 .env
 .env.local
 .env.*.local
-.DS_Store
+
+# Debug logs
 npm-debug.log*
 pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Storybook
 storybook-static/
+
+# Vercel
+.vercel/
+
+# TypeScript incremental compilation
+*.tsbuildinfo
+
+# Claude Code plans
+.claude/plans/

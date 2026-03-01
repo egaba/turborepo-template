@@ -17,12 +17,12 @@ export function CtaSection({
 }: CtaSectionProps) {
   return (
     <div
-      className={`rounded-2xl bg-primary px-6 py-16 text-center text-primary-content sm:px-12 ${className}`.trim()}
+      className={`rounded-2xl bg-neutral px-6 py-16 text-center text-neutral-content sm:px-12 ${className}`.trim()}
     >
       <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
         {heading}
       </h2>
-      <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-content/80">
+      <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-content/80">
         {description}
       </p>
       <div className="mt-8 flex items-center justify-center gap-4">

@@ -12,9 +12,9 @@
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "prettier": "3.6.0",
-    "prettier-plugin-tailwindcss": "0.6.11",
-    "turbo": "2.6.1"
+    "prettier": "^3.6.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "turbo": "^2.6.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
