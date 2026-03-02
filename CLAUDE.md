@@ -16,6 +16,7 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 | **debugging**    | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion                            |
 | **devops**       | Ship    | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD, Claude Code hooks                                       |
 | **bootstrap**    | Setup   | Initialize this template for a new project — configure name, branding, metadata                             |
+| **skill-creator**| Meta    | Create, validate, and improve agent skills — quality audits, token optimization, skill restructuring        |
 
 ## Agents
 
@@ -112,6 +113,7 @@ Key decisions and their rationale. When bootstrapping a new project, add entries
 | **ui**           | testing, nextjs           | Component composition, accessibility, responsive design             |
 | **devops**       | testing                   | CI/CD, build commands, pre-release verification, hooks              |
 | **debugging**    | any skill                 | Stack-agnostic process, pairs with any domain skill                 |
+| **skill-creator**| any skill                 | Skill auditing, token analysis, reference restructuring             |
 
 ## Project Structure
 
@@ -123,7 +125,7 @@ Key decisions and their rationale. When bootstrapping a new project, add entries
 ### Shared Packages
 
 - `packages/ui` - Shared component library
-- `packages/ts-config` - TypeScript configuration
+- `packages/typescript-config` - TypeScript configuration
 - `packages/eslint-config` - ESLint rules
 
 ### File Structure
