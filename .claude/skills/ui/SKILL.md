@@ -114,6 +114,8 @@ See [theming-system.md](references/theming-system.md) for `@plugin` config, `dat
 
 **Theming:** [theming-system](references/theming-system.md) · [semantic-colors](references/semantic-colors.md) · [component-composition](references/component-composition.md) · [monorepo-theming](references/monorepo-theming.md)
 
+**Design:** [page-design-patterns](references/page-design-patterns.md)
+
 **Accessibility:** [aria-patterns](references/aria-patterns.md) · [keyboard-focus](references/keyboard-focus.md)
 
 **Motion:** [micro-interactions](references/micro-interactions.md)

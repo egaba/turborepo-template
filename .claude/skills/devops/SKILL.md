@@ -62,3 +62,4 @@ pnpm turbo run build
 - **[git-patterns.md](references/git-patterns.md)** — Stacked PRs, hotfix branches, release flow
 - **[github-actions.md](references/github-actions.md)** — CI/CD workflows, matrix, deployments, caching
 - **[claude-hooks.md](references/claude-hooks.md)** — Claude Code hooks for workflow automation
+- **[observability-checklist.md](references/observability-checklist.md)** — Error tracking, performance monitoring, structured logging, alerting

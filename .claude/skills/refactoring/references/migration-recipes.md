@@ -81,12 +81,32 @@ http.post('/api/tasks', async ({ request }) => {
 - Update `@types/react` and `@types/react-dom`
 - Test Suspense boundaries (behavior changes)
 
-**Next.js major:**
+**Next.js major upgrade workflow:**
 
-- Read official migration guide first
-- Update `next.config` (config shape may change)
-- Test middleware (API often changes between majors)
-- Verify `app/` router behavior changes
+1. **Pre-upgrade assessment**
+   - Read the official migration guide for the target version
+   - Run `npx @next/codemod@latest upgrade` — applies automated transforms for known breaking changes
+   - Review codemod diff before committing (codemods are good but not perfect)
+
+2. **Common breaking change categories across versions**
+   - **Config shape**: `next.config.js` → `next.config.ts`, new/renamed options, plugin API changes
+   - **Async APIs**: Server-side functions (`cookies()`, `headers()`, `params`, `searchParams`) becoming async
+   - **Caching defaults**: Default caching behavior changes (e.g., `fetch` no longer cached by default in 15+)
+   - **Middleware**: Signature changes, new matchers, edge runtime constraints
+   - **Router behavior**: `useRouter` return shape, navigation interception, redirect semantics
+   - **Bundler**: Webpack → Turbopack transition, `next.config` bundler-specific options
+
+3. **Post-upgrade verification**
+   - `pnpm turbo run check-types` — catch new/changed API signatures
+   - `pnpm turbo run test:ci` — catch behavioral changes
+   - `pnpm turbo run build` — catch config and bundling issues
+   - Browser verify: hydration warnings, console errors, rendering regressions
+   - Test middleware routes explicitly (auth, redirects, rewrites)
+
+4. **Gotchas**
+   - Codemods won't catch dynamic usage patterns (e.g., `cookies()` stored in a variable then awaited later)
+   - Third-party packages may lag behind — check compatibility before upgrading
+   - If using `output: 'standalone'`, verify Docker builds separately
 
 **DaisyUI major:**
 
