@@ -24,20 +24,24 @@ Read the project's `CLAUDE.md`. Enforce all **Code Quality Conventions**. Key ar
 Scan changed files for common defects:
 
 **Security**:
+
 - No `process.env.*` (non-`NEXT_PUBLIC_`) in `'use client'` files
 - API routes validate input with Zod `safeParse`
 - No hardcoded secrets (API keys, tokens, passwords in string literals)
 
 **Performance**:
+
 - `next/image` not `<img>`, `next/font` not `<link href="fonts">`
 - `'use client'` only where needed -- not on components that could be Server Components
 
 **React patterns**:
+
 - Complete `useEffect` dependency arrays
 - Stable `key` props in lists (no array index for dynamic lists)
 - No state updates during render
 
 **Accessibility**:
+
 - Semantic HTML for interactive elements (`<button>` not `<div onClick>`)
 - Descriptive `alt` text on images (not "image" or empty for meaningful content)
 - Form inputs have associated labels
@@ -74,9 +78,9 @@ Report the ACTUAL output of each command. Do not assume results.
 
 ### Findings
 
-| File | Line | Issue | Severity | Confidence |
-|------|------|-------|----------|------------|
-| {file} | {line} | {description} | CRITICAL/HIGH/MEDIUM | {80-100%} |
+| File   | Line   | Issue         | Severity             | Confidence |
+| ------ | ------ | ------------- | -------------------- | ---------- |
+| {file} | {line} | {description} | CRITICAL/HIGH/MEDIUM | {80-100%}  |
 
 ### Verdict
 

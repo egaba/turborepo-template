@@ -9,8 +9,7 @@ Targeted fixes organized by Core Web Vital metric.
 ```tsx
 import Image from 'next/image'
 import heroImg from '@/public/hero.jpg'
-
-<Image src={heroImg} alt="Hero" priority sizes="100vw" />
+;<Image src={heroImg} alt="Hero" priority sizes="100vw" />
 ```
 
 - Add `priority` to the LCP image (largest above-fold image)
@@ -110,8 +109,8 @@ Split components that are large AND not needed at initial render (below-fold, ta
 import { startTransition } from 'react'
 
 function handleSearch(value: string) {
-  setQuery(value)                                      // urgent
-  startTransition(() => setResults(search(value)))     // non-urgent
+  setQuery(value) // urgent
+  startTransition(() => setResults(search(value))) // non-urgent
 }
 ```
 
@@ -129,9 +128,9 @@ function SearchResults({ query }: { query: string }) {
 ## Bundle Size
 
 ```tsx
-import { format } from 'date-fns'      // Good: named import, tree-shakeable
-import debounce from 'lodash/debounce'  // Good: deep import path
-import _ from 'lodash'                  // Bad: pulls entire library
+import { format } from 'date-fns' // Good: named import, tree-shakeable
+import debounce from 'lodash/debounce' // Good: deep import path
+import _ from 'lodash' // Bad: pulls entire library
 ```
 
 Barrel files (`index.ts` re-exporting everything) can defeat tree-shaking. If a barrel re-exports a client component, importing anything from it may pull the entire module.

@@ -68,18 +68,22 @@ for i in {1..5}; do pnpm --filter web exec playwright test e2e/{feature}.spec.ts
 ## E2E Test Report
 
 ### Results
+
 | Test File | Tests | Passed | Failed | Flaky |
-|-----------|-------|--------|--------|-------|
+| --------- | ----- | ------ | ------ | ----- |
 
 ### Coverage
+
 - P0 journeys: {X}/{Y} covered
 - P1 journeys: {X}/{Y} covered
 
 ### Flaky Tests
+
 | Test | Failure Pattern | Action |
-|------|----------------|--------|
+| ---- | --------------- | ------ |
 
 ### Gaps
+
 - {Untested critical journey}
 ```
 

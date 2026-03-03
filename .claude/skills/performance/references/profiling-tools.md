@@ -18,7 +18,7 @@ pnpm add -D @lhci/cli
       "startServerCommand": "pnpm turbo run start --filter=web",
       "startServerReadyPattern": "Ready",
       "url": ["http://localhost:3000"],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
     },
     "assert": {
       "assertions": {
@@ -26,10 +26,10 @@ pnpm add -D @lhci/cli
         "categories:accessibility": ["error", { "minScore": 0.95 }],
         "categories:seo": ["warn", { "minScore": 0.9 }],
         "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
-        "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1 }]
-      }
-    }
-  }
+        "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1 }],
+      },
+    },
+  },
 }
 ```
 
@@ -70,6 +70,7 @@ npx lighthouse http://localhost:3000 --only-categories=performance
 3. Flame chart shows each component render and duration
 
 **What to look for:**
+
 - Components re-rendering when props/state haven't changed
 - Render times >16ms (blocks a frame at 60fps)
 - Deep components causing cascading re-renders
@@ -83,16 +84,17 @@ Enable "Highlight updates when components render" in settings to visualize re-re
 3. Analyze the timeline
 
 **Key indicators:**
+
 - **Long tasks**: Red triangles = tasks >50ms blocking main thread (hurts INP)
 - **Layout shifts**: Blue markers in Experience lane (CLS events)
 - **Network waterfall**: Sequential requests that could be parallelized
 
-| Symptom            | Look For                    | Fix                            |
-| ------------------ | --------------------------- | ------------------------------ |
-| Slow initial load  | Large JS in network         | Code split with next/dynamic   |
-| Scroll jank        | Long tasks during scroll    | Debounce, virtualize lists     |
-| Slow click         | Long task after click       | startTransition, Web Worker    |
-| Layout jumping     | Layout Shift markers        | Reserve space, set dimensions  |
+| Symptom           | Look For                 | Fix                           |
+| ----------------- | ------------------------ | ----------------------------- |
+| Slow initial load | Large JS in network      | Code split with next/dynamic  |
+| Scroll jank       | Long tasks during scroll | Debounce, virtualize lists    |
+| Slow click        | Long task after click    | startTransition, Web Worker   |
+| Layout jumping    | Layout Shift markers     | Reserve space, set dimensions |
 
 ## Next.js Bundle Analyzer
 
@@ -116,6 +118,7 @@ ANALYZE=true pnpm turbo run build --filter=web
 ```
 
 Opens a treemap — each rectangle = a module, size = bytes. Common fixes:
+
 - Large rectangle → dynamic import or lighter alternative
 - Duplicate library → deduplicate with pnpm overrides
 - Unused modules → remove import or use named imports

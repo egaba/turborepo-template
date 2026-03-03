@@ -20,10 +20,7 @@ export function createHandlers(state: TaskState): HttpHandler[] {
     http.get('/api/tasks/:id', ({ params }) => {
       const task = state.getTasks().find((t) => t.id === params['id'])
       if (!task) {
-        return HttpResponse.json(
-          { error: 'Task not found', code: 'NOT_FOUND' },
-          { status: 404 },
-        )
+        return HttpResponse.json({ error: 'Task not found', code: 'NOT_FOUND' }, { status: 404 })
       }
       return HttpResponse.json({ data: task, status: 'success' })
     }),
@@ -61,10 +58,7 @@ export function createHandlers(state: TaskState): HttpHandler[] {
       const tasks = state.getTasks()
       const index = tasks.findIndex((t) => t.id === params['id'])
       if (index === -1) {
-        return HttpResponse.json(
-          { error: 'Task not found', code: 'NOT_FOUND' },
-          { status: 404 },
-        )
+        return HttpResponse.json({ error: 'Task not found', code: 'NOT_FOUND' }, { status: 404 })
       }
 
       const body = await request.json()
@@ -100,10 +94,7 @@ export function createHandlers(state: TaskState): HttpHandler[] {
       const tasks = state.getTasks()
       const index = tasks.findIndex((t) => t.id === params['id'])
       if (index === -1) {
-        return HttpResponse.json(
-          { error: 'Task not found', code: 'NOT_FOUND' },
-          { status: 404 },
-        )
+        return HttpResponse.json({ error: 'Task not found', code: 'NOT_FOUND' }, { status: 404 })
       }
       state.setTasks(tasks.filter((_, i) => i !== index))
       return HttpResponse.json({ data: null, status: 'success' })

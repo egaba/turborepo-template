@@ -4,29 +4,29 @@ Next.js monorepo with Turborepo, DaisyUI v5, and TailwindCSS v4.
 
 ## Skills
 
-| Skill            | Concern | Description                                                                                                 |
-| ---------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
-| **ui**           | Build   | Component styling, theming (DaisyUI v5 + TailwindCSS v4), accessibility patterns                            |
-| **data**         | Build   | Server state (React Query), API routes, forms (react-hook-form + Zod), Server Actions, caching/revalidation |
-| **nextjs**       | Build   | Next.js App Router architecture, Server Components, routing, performance, SEO                               |
-| **auth**         | Build   | Authentication, authorization, and security hardening (NextAuth.js, CSP, headers, input validation)         |
-| **performance**  | Build   | Core Web Vitals, bundle analysis, rendering optimization, Lighthouse CI                                     |
-| **refactoring**  | Build   | Safe code restructuring — extract, split, consolidate, migrate, dead code removal                           |
-| **testing**      | Verify  | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist          |
-| **debugging**    | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion                            |
-| **devops**       | Ship    | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD, Claude Code hooks                                       |
-| **bootstrap**    | Setup   | Initialize this template for a new project — configure name, branding, metadata                             |
-| **skill-creator**| Meta    | Create, validate, and improve agent skills — quality audits, token optimization, skill restructuring        |
+| Skill             | Concern | Description                                                                                                 |
+| ----------------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| **ui**            | Build   | Component styling, theming (DaisyUI v5 + TailwindCSS v4), accessibility patterns                            |
+| **data**          | Build   | Server state (React Query), API routes, forms (react-hook-form + Zod), Server Actions, caching/revalidation |
+| **nextjs**        | Build   | Next.js App Router architecture, Server Components, routing, performance, SEO                               |
+| **auth**          | Build   | Authentication, authorization, and security hardening (NextAuth.js, CSP, headers, input validation)         |
+| **performance**   | Build   | Core Web Vitals, bundle analysis, rendering optimization, Lighthouse CI                                     |
+| **refactoring**   | Build   | Safe code restructuring — extract, split, consolidate, migrate, dead code removal                           |
+| **testing**       | Verify  | Unit/integration (Jest + RTL + MSW), E2E (Playwright), browser verification, pre-release checklist          |
+| **debugging**     | Process | Systematic 4-phase debugging, root-cause tracing, verification-before-completion                            |
+| **devops**        | Ship    | pnpm/Turborepo, Git workflow, GitHub Actions CI/CD, Claude Code hooks                                       |
+| **bootstrap**     | Setup   | Initialize this template for a new project — configure name, branding, metadata                             |
+| **skill-creator** | Meta    | Create, validate, and improve agent skills — quality audits, token optimization, skill restructuring        |
 
 ## Agents
 
-| Agent               | Purpose                                                                                      | When to Use                                                                     |
-| ------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `planner`           | Decomposes features into phased implementation plans with file paths and dependency ordering  | Before starting complex features — produces an actionable step-by-step plan     |
-| `architect`         | Evaluates design decisions with trade-off analysis and Architecture Decision Records (ADRs)  | When making significant architectural choices or designing new subsystems       |
-| `reviewer`          | Reviews diffs against conventions, runs verification gates, lightweight security/perf checks  | Before committing/merging — spawn for a structured code review                  |
+| Agent               | Purpose                                                                                        | When to Use                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `planner`           | Decomposes features into phased implementation plans with file paths and dependency ordering   | Before starting complex features — produces an actionable step-by-step plan     |
+| `architect`         | Evaluates design decisions with trade-off analysis and Architecture Decision Records (ADRs)    | When making significant architectural choices or designing new subsystems       |
+| `reviewer`          | Reviews diffs against conventions, runs verification gates, lightweight security/perf checks   | Before committing/merging — spawn for a structured code review                  |
 | `security-reviewer` | OWASP-based security audit — secrets scanning, auth boundaries, CSP, injection vulnerabilities | Before merging security-sensitive changes, or for periodic security assessments |
-| `e2e-runner`        | Creates, executes, and stabilizes Playwright E2E tests with flakiness detection               | When adding E2E coverage for critical user journeys                             |
+| `e2e-runner`        | Creates, executes, and stabilizes Playwright E2E tests with flakiness detection                | When adding E2E coverage for critical user journeys                             |
 
 ## Agent-First Workflow
 
@@ -88,32 +88,32 @@ Before shipping to production, verify:
 
 Key decisions and their rationale. When bootstrapping a new project, add entries for project-specific choices.
 
-| Decision          | Choice                          | Rationale                                                                                       |
-| ----------------- | ------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Server state      | React Query                     | Automatic caching, background refetching, Suspense integration. No manual cache normalization.  |
-| Client state      | Zustand (when needed)           | Minimal API, no boilerplate. Most apps need very little client state with React Query.           |
-| Styling           | DaisyUI v5 + TailwindCSS v4    | Semantic color system, accessible defaults, rapid prototyping. No CSS-in-JS SSR complexity.     |
-| Forms             | react-hook-form + Zod           | Minimal re-renders, schemas shared between client and server, strong TypeScript inference.       |
-| Feature structure | Feature modules + barrel exports | Self-contained, testable, no cross-feature coupling. Routes are thin wrappers.                  |
-| Monorepo          | Turborepo + pnpm               | Task caching, dependency graph awareness, fast installs with content-addressable storage.        |
-| Unit testing      | Jest + RTL + MSW               | Fast unit/integration cycles. MSW mocks at the network level for realistic API testing.          |
-| E2E testing       | Playwright                     | Cross-browser, auto-wait, trace viewer for debugging. Runs in CI with GitHub Actions.            |
-| Auth              | NextAuth.js (JWT)              | Standards-based, provider ecosystem, middleware integration, server-side session access.          |
+| Decision          | Choice                           | Rationale                                                                                      |
+| ----------------- | -------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Server state      | React Query                      | Automatic caching, background refetching, Suspense integration. No manual cache normalization. |
+| Client state      | Zustand (when needed)            | Minimal API, no boilerplate. Most apps need very little client state with React Query.         |
+| Styling           | DaisyUI v5 + TailwindCSS v4      | Semantic color system, accessible defaults, rapid prototyping. No CSS-in-JS SSR complexity.    |
+| Forms             | react-hook-form + Zod            | Minimal re-renders, schemas shared between client and server, strong TypeScript inference.     |
+| Feature structure | Feature modules + barrel exports | Self-contained, testable, no cross-feature coupling. Routes are thin wrappers.                 |
+| Monorepo          | Turborepo + pnpm                 | Task caching, dependency graph awareness, fast installs with content-addressable storage.      |
+| Unit testing      | Jest + RTL + MSW                 | Fast unit/integration cycles. MSW mocks at the network level for realistic API testing.        |
+| E2E testing       | Playwright                       | Cross-browser, auto-wait, trace viewer for debugging. Runs in CI with GitHub Actions.          |
+| Auth              | NextAuth.js (JWT)                | Standards-based, provider ecosystem, middleware integration, server-side session access.       |
 
 ## Skill Dependencies
 
-| Skill            | Commonly co-loads with    | Shared concepts                                                     |
-| ---------------- | ------------------------- | ------------------------------------------------------------------- |
-| **data**         | testing, nextjs           | API response shapes, React Query testing, Zod validation            |
-| **nextjs**       | data, auth, ui            | Route handlers, middleware, Server Components                       |
-| **auth**         | nextjs, data              | Middleware, session management, API authorization, security headers  |
-| **performance**  | nextjs, testing           | Core Web Vitals, Lighthouse CI, bundle analysis, rendering          |
-| **refactoring**  | testing, nextjs           | Safe restructuring, migration recipes, dead code detection          |
-| **testing**      | data, ui                  | MSW handlers, component rendering, browser verification             |
-| **ui**           | testing, nextjs           | Component composition, accessibility, responsive design             |
-| **devops**       | testing                   | CI/CD, build commands, pre-release verification, hooks              |
-| **debugging**    | any skill                 | Stack-agnostic process, pairs with any domain skill                 |
-| **skill-creator**| any skill                 | Skill auditing, token analysis, reference restructuring             |
+| Skill             | Commonly co-loads with | Shared concepts                                                     |
+| ----------------- | ---------------------- | ------------------------------------------------------------------- |
+| **data**          | testing, nextjs        | API response shapes, React Query testing, Zod validation            |
+| **nextjs**        | data, auth, ui         | Route handlers, middleware, Server Components                       |
+| **auth**          | nextjs, data           | Middleware, session management, API authorization, security headers |
+| **performance**   | nextjs, testing        | Core Web Vitals, Lighthouse CI, bundle analysis, rendering          |
+| **refactoring**   | testing, nextjs        | Safe restructuring, migration recipes, dead code detection          |
+| **testing**       | data, ui               | MSW handlers, component rendering, browser verification             |
+| **ui**            | testing, nextjs        | Component composition, accessibility, responsive design             |
+| **devops**        | testing                | CI/CD, build commands, pre-release verification, hooks              |
+| **debugging**     | any skill              | Stack-agnostic process, pairs with any domain skill                 |
+| **skill-creator** | any skill              | Skill auditing, token analysis, reference restructuring             |
 
 ## Project Structure
 

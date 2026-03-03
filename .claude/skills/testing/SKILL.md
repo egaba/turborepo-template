@@ -107,10 +107,11 @@ Full setup, API mocking, CI/CD, and commands -> [e2e-testing.md](references/e2e-
 ## Verification Loop
 
 After any code change, run the minimum verification set before moving on:
+
 1. `pnpm turbo run check-types --filter={affected-app}` — catch type errors immediately
 2. `pnpm turbo run test:ci --filter={affected-app}` — catch regressions
 3. Browser verify if UI changed (see browser-verification.md)
-Never skip steps 1-2. Step 3 is required for any visual change.
+   Never skip steps 1-2. Step 3 is required for any visual change.
 
 ## Visual Regression
 

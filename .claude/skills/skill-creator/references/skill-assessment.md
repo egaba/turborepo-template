@@ -26,12 +26,12 @@ Each scenario has four parts:
 
 Criteria must be **observable and binary** -- verifiable without subjective judgment.
 
-| Good Criterion | Bad Criterion |
-|---|---|
-| Uses `Record<AlertVariant, string>` map | "Good component design" |
-| Runs `check-types` and reports output | "Verifies correctness" |
+| Good Criterion                              | Bad Criterion               |
+| ------------------------------------------- | --------------------------- |
+| Uses `Record<AlertVariant, string>` map     | "Good component design"     |
+| Runs `check-types` and reports output       | "Verifies correctness"      |
 | Creates `features/projects/index.ts` barrel | "Follows project structure" |
-| No `any` types in output | "Type-safe code" |
+| No `any` types in output                    | "Type-safe code"            |
 
 ## Writing Good Prompts
 
@@ -43,21 +43,21 @@ Criteria must be **observable and binary** -- verifiable without subjective judg
 
 Each scenario gets a score from 0-3:
 
-| Score | Label | Meaning |
-|---|---|---|
-| **3** | Correct | All criteria met, output follows conventions |
-| **2** | Mostly correct | All criteria met but minor convention gaps |
-| **1** | Partial | Some criteria met, core approach correct but significant gaps |
-| **0** | Incorrect | Wrong approach, missing criteria, or harmful output |
+| Score | Label          | Meaning                                                       |
+| ----- | -------------- | ------------------------------------------------------------- |
+| **3** | Correct        | All criteria met, output follows conventions                  |
+| **2** | Mostly correct | All criteria met but minor convention gaps                    |
+| **1** | Partial        | Some criteria met, core approach correct but significant gaps |
+| **0** | Incorrect      | Wrong approach, missing criteria, or harmful output           |
 
 **Skill score** = median of all scenario scores.
 
-| Median | Quality | Action |
-|---|---|---|
-| 3.0 | Excellent | No action needed |
-| 2.0-2.9 | Good | Fix convention gaps in SKILL.md |
-| 1.0-1.9 | Needs work | Rewrite sections of SKILL.md |
-| 0.0-0.9 | Broken | Investigate root cause |
+| Median  | Quality    | Action                          |
+| ------- | ---------- | ------------------------------- |
+| 3.0     | Excellent  | No action needed                |
+| 2.0-2.9 | Good       | Fix convention gaps in SKILL.md |
+| 1.0-1.9 | Needs work | Rewrite sections of SKILL.md    |
+| 0.0-0.9 | Broken     | Investigate root cause          |
 
 ## Running an Assessment
 
@@ -76,12 +76,12 @@ Each scenario gets a score from 0-3:
 
 ### When to Run
 
-| Trigger | Scope |
-|---|---|
-| After editing a SKILL.md or reference | Targeted (edited skill + co-loaded) |
-| Before releasing template to new project | Full assessment |
-| After upgrading framework dependencies | Full assessment |
-| Monthly maintenance | 1 P0 scenario per skill minimum |
+| Trigger                                  | Scope                               |
+| ---------------------------------------- | ----------------------------------- |
+| After editing a SKILL.md or reference    | Targeted (edited skill + co-loaded) |
+| Before releasing template to new project | Full assessment                     |
+| After upgrading framework dependencies   | Full assessment                     |
+| Monthly maintenance                      | 1 P0 scenario per skill minimum     |
 
 ## Recording Results
 
@@ -93,15 +93,17 @@ Use this format in a plan file (`~/.claude/plans/assessment-{date}.md`):
 Context: {reason -- e.g., "after editing data SKILL.md", "monthly check"}
 
 | Skill | S-A | S-B | S-C | Median | Prev | Delta |
-|-------|-----|-----|-----|--------|------|-------|
+| ----- | --- | --- | --- | ------ | ---- | ----- |
 | ui    | 3   | 2   | 3   | 3.0    | 3.0  | 0     |
 | data  | 2   | 3   | 2   | 2.0    | 3.0  | -1.0  |
 
 ### Regressions
+
 - data: S-A dropped 3->2. Missing `StatusCodes` in API route output.
   Cause: removed HTTP status reference from SKILL.md line 51.
 
 ### Notes
+
 - {Observations, patterns, or follow-ups}
 ```
 
@@ -118,11 +120,11 @@ A **regression** = skill median score drops after a change.
 
 ## Assessment vs Validation
 
-| | Validation Checklist | Assessment |
-|---|---|---|
-| **Tests** | Structure, size, metadata | Behavioral output |
-| **When** | Every skill edit | After edits, before releases |
-| **Speed** | < 1 minute per skill | 5-10 minutes per scenario |
+|             | Validation Checklist             | Assessment                        |
+| ----------- | -------------------------------- | --------------------------------- |
+| **Tests**   | Structure, size, metadata        | Behavioral output                 |
+| **When**    | Every skill edit                 | After edits, before releases      |
+| **Speed**   | < 1 minute per skill             | 5-10 minutes per scenario         |
 | **Catches** | Missing files, oversized content | Wrong advice, missing conventions |
 
 Run validation first (fast). Run assessment when validation passes (slow).

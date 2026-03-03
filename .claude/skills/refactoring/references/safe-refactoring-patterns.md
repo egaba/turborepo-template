@@ -16,8 +16,12 @@ function processOrder(order: Order) {
 }
 
 // After
-function validateOrder(order: Order): ValidationResult { /* ... */ }
-function calculatePrice(order: Order): number { /* ... */ }
+function validateOrder(order: Order): ValidationResult {
+  /* ... */
+}
+function calculatePrice(order: Order): number {
+  /* ... */
+}
 function processOrder(order: Order) {
   const validation = validateOrder(order)
   const price = calculatePrice(order)

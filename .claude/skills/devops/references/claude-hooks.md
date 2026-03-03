@@ -4,13 +4,13 @@ Hooks are shell commands that execute automatically in response to Claude Code e
 
 ## Available Hook Events
 
-| Event | Fires When | Use Case |
-|---|---|---|
-| `PreToolUse` | Before a tool executes | Block dangerous operations, validate inputs |
-| `PostToolUse` | After a tool executes | Auto-format files, run linters, notify |
-| `SessionStart` | Session begins | Set up environment, check prerequisites |
-| `SessionEnd` | Session ends | Clean up, save state |
-| `Stop` | Agent finishes responding | Verification reminders, summary checks |
+| Event          | Fires When                | Use Case                                    |
+| -------------- | ------------------------- | ------------------------------------------- |
+| `PreToolUse`   | Before a tool executes    | Block dangerous operations, validate inputs |
+| `PostToolUse`  | After a tool executes     | Auto-format files, run linters, notify      |
+| `SessionStart` | Session begins            | Set up environment, check prerequisites     |
+| `SessionEnd`   | Session ends              | Clean up, save state                        |
+| `Stop`         | Agent finishes responding | Verification reminders, summary checks      |
 
 ## Configuration
 
@@ -32,15 +32,16 @@ Hooks are defined in `.claude/settings.json` (shared, committed) or `.claude/set
 ### Hook Format
 
 Each hook entry has:
+
 - **`matcher`** (optional): Regex pattern to match tool name or arguments. Omit to match all events of that type.
 - **`command`**: Shell command to execute. Has access to environment variables set by Claude Code.
 
 ### Environment Variables
 
-| Variable | Available In | Value |
-|---|---|---|
-| `CLAUDE_FILE_PATH` | `PostToolUse(Write\|Edit)` | Path of the written/edited file |
-| `CLAUDE_TOOL_NAME` | `PreToolUse`, `PostToolUse` | Name of the tool being used |
+| Variable           | Available In                | Value                           |
+| ------------------ | --------------------------- | ------------------------------- |
+| `CLAUDE_FILE_PATH` | `PostToolUse(Write\|Edit)`  | Path of the written/edited file |
+| `CLAUDE_TOOL_NAME` | `PreToolUse`, `PostToolUse` | Name of the tool being used     |
 
 ## Practical Examples for This Stack
 
@@ -111,13 +112,13 @@ Prevents accidental writes to `.env` files, `node_modules`, and lockfiles. Exit 
 
 ## Hooks vs CI
 
-| Concern | Hooks | CI (GitHub Actions) |
-|---|---|---|
-| **When** | During development, instant | On push/PR, async |
-| **Speed** | Milliseconds | Minutes |
-| **Scope** | Single file or reminder | Full repo verification |
+| Concern     | Hooks                          | CI (GitHub Actions)           |
+| ----------- | ------------------------------ | ----------------------------- |
+| **When**    | During development, instant    | On push/PR, async             |
+| **Speed**   | Milliseconds                   | Minutes                       |
+| **Scope**   | Single file or reminder        | Full repo verification        |
 | **Purpose** | Instant feedback, safety rails | Merge gating, full test suite |
-| **Failure** | Blocks single tool call | Blocks merge |
+| **Failure** | Blocks single tool call        | Blocks merge                  |
 
 Use hooks for fast, local feedback. Use CI for comprehensive verification before merge. They complement each other -- hooks catch issues early, CI catches everything.
 

@@ -21,6 +21,7 @@ const { data } = useSuspenseQuery({
 ```
 
 **Steps:**
+
 1. Add `<Suspense>` boundary with fallback in parent
 2. Add `<ErrorBoundary>` in parent
 3. Replace `useQuery` with `useSuspenseQuery`
@@ -46,6 +47,7 @@ http.get('/api/tasks', () => {
 ```
 
 **Steps:**
+
 1. Update `msw` package
 2. Replace `rest` -> `http`
 3. Replace `res(ctx.json())` -> `HttpResponse.json()`
@@ -53,6 +55,7 @@ http.get('/api/tasks', () => {
 5. Update handler signatures (no more `req, res, ctx` triple)
 
 **Request access in v2:**
+
 ```typescript
 http.post('/api/tasks', async ({ request }) => {
   const body = await request.json()
@@ -73,22 +76,26 @@ http.post('/api/tasks', async ({ request }) => {
 ## Common Upgrade Patterns
 
 **React 18 -> 19:**
+
 - Check for removed APIs (`ReactDOM.render`, legacy context)
 - Update `@types/react` and `@types/react-dom`
 - Test Suspense boundaries (behavior changes)
 
 **Next.js major:**
+
 - Read official migration guide first
 - Update `next.config` (config shape may change)
 - Test middleware (API often changes between majors)
 - Verify `app/` router behavior changes
 
 **DaisyUI major:**
+
 - Check theme/class name changes
 - Verify component rendering (class names may differ)
 - Update variant maps if class names changed
 
 **TypeScript major:**
+
 - Run `check-types` first to see new errors
 - Fix new strict errors (often catches real bugs)
 - Check for removed/changed compiler options

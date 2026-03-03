@@ -45,15 +45,17 @@ git diff main..HEAD
 ## Security Review
 
 ### Summary
+
 {Severity counts: X critical, Y high, Z medium}
 
 ### Findings
 
-| # | File | Finding | Severity | OWASP | Remediation |
-|---|------|---------|----------|-------|-------------|
-| 1 | {path}:{line} | {description} | CRITICAL | A03:Injection | {specific fix} |
+| #   | File          | Finding       | Severity | OWASP         | Remediation    |
+| --- | ------------- | ------------- | -------- | ------------- | -------------- |
+| 1   | {path}:{line} | {description} | CRITICAL | A03:Injection | {specific fix} |
 
 ### Passed Checks
+
 - {Check that passed with evidence}
 ```
 

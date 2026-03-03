@@ -1,12 +1,7 @@
 ---
 name: performance
 description: 'Web performance optimization — Core Web Vitals, bundle analysis, rendering performance, Lighthouse CI. Use when pages are slow, optimizing load times, or measuring performance.'
-globs:
-  [
-    '**/next.config.*',
-    '**/loading.tsx',
-    '**/layout.tsx',
-  ]
+globs: ['**/next.config.*', '**/loading.tsx', '**/layout.tsx']
 ---
 
 # Performance Optimization
@@ -22,11 +17,11 @@ Measure, identify bottlenecks, apply targeted fixes, and re-measure. Never optim
 
 ## Core Web Vitals Quick Reference
 
-| Metric  | Good    | Poor    | Measures                                   |
-| ------- | ------- | ------- | ------------------------------------------ |
+| Metric  | Good    | Poor    | Measures                                        |
+| ------- | ------- | ------- | ----------------------------------------------- |
 | **LCP** | < 2.5s  | > 4.0s  | Largest Contentful Paint — main content visible |
-| **CLS** | < 0.1   | > 0.25  | Cumulative Layout Shift — visual stability |
-| **INP** | < 200ms | > 500ms | Interaction to Next Paint — responsiveness |
+| **CLS** | < 0.1   | > 0.25  | Cumulative Layout Shift — visual stability      |
+| **INP** | < 200ms | > 500ms | Interaction to Next Paint — responsiveness      |
 
 ## Bundle Analysis
 
@@ -46,8 +41,8 @@ Server Components ship zero JS to the browser. Use `"use client"` only when inte
 
 ## React Query Caching
 
-| Option      | What It Controls                              | Default |
-| ----------- | --------------------------------------------- | ------- |
+| Option      | What It Controls                               | Default |
+| ----------- | ---------------------------------------------- | ------- |
 | `staleTime` | How long data is considered fresh (no refetch) | 0       |
 | `gcTime`    | How long inactive cache stays in memory        | 5 min   |
 
@@ -56,6 +51,7 @@ Set `staleTime` generously for data that rarely changes. Set short for real-time
 ## Memoization: Only When Measured
 
 Use `React.memo`, `useMemo`, `useCallback` ONLY with measured justification:
+
 - Profile first with React DevTools Profiler
 - Confirm unnecessary re-renders cause visible jank
 - Memoization has its own cost — wrong usage makes things slower
