@@ -4,13 +4,13 @@ Starting template for production error monitoring, performance tracking, and str
 
 ## Instrumentation Layers
 
-| Layer              | What to Capture                                                     | Next.js Hook Point                         |
-| ------------------ | ------------------------------------------------------------------- | ------------------------------------------ |
-| **Error tracking** | Unhandled exceptions, rejected promises, component render errors    | `instrumentation.ts`, error boundaries     |
-| **Performance**    | Core Web Vitals (LCP, CLS, INP), TTFB, route transition timing     | `reportWebVitals`, RUM SDK                 |
-| **API monitoring** | Response times, error rates, status code distribution               | Route handler middleware, `instrumentation.ts` |
-| **Logging**        | Structured server-side logs with request context                    | `instrumentation.ts`, Server Actions       |
-| **Alerting**       | Error rate spikes, latency degradation, deployment regressions      | Platform-configured                        |
+| Layer              | What to Capture                                                  | Next.js Hook Point                             |
+| ------------------ | ---------------------------------------------------------------- | ---------------------------------------------- |
+| **Error tracking** | Unhandled exceptions, rejected promises, component render errors | `instrumentation.ts`, error boundaries         |
+| **Performance**    | Core Web Vitals (LCP, CLS, INP), TTFB, route transition timing   | `reportWebVitals`, RUM SDK                     |
+| **API monitoring** | Response times, error rates, status code distribution            | Route handler middleware, `instrumentation.ts` |
+| **Logging**        | Structured server-side logs with request context                 | `instrumentation.ts`, Server Actions           |
+| **Alerting**       | Error rate spikes, latency degradation, deployment regressions   | Platform-configured                            |
 
 ## Next.js Instrumentation Entry Point
 
@@ -75,7 +75,10 @@ export const GET = withErrorHandling(async (request) => {
 import { captureException } from '@/lib/observability'
 import { useEffect } from 'react'
 
-export default function GlobalError({ error, reset }: Readonly<{ error: Error; reset: () => void }>) {
+export default function GlobalError({
+  error,
+  reset,
+}: Readonly<{ error: Error; reset: () => void }>) {
   useEffect(() => {
     captureException(error, { source: 'global-error-boundary' })
   }, [error])
@@ -86,7 +89,9 @@ export default function GlobalError({ error, reset }: Readonly<{ error: Error; r
         <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-bold">Something went wrong</h2>
-            <button className="btn btn-primary mt-4" onClick={reset}>Try again</button>
+            <button className="btn btn-primary mt-4" onClick={reset}>
+              Try again
+            </button>
           </div>
         </div>
       </body>
@@ -131,7 +136,7 @@ export function WebVitalsReporter() {
     // e.g., datadogRum.addTiming(metric.name, metric.value)
     // e.g., sendBeacon('/api/vitals', JSON.stringify(metric))
     const body = {
-      name: metric.name,     // CLS, FID, LCP, TTFB, INP
+      name: metric.name, // CLS, FID, LCP, TTFB, INP
       value: metric.value,
       rating: metric.rating, // 'good' | 'needs-improvement' | 'poor'
       id: metric.id,
@@ -145,12 +150,12 @@ export function WebVitalsReporter() {
 
 ### Thresholds to Alert On
 
-| Metric | Good     | Needs Improvement | Poor     |
-| ------ | -------- | ----------------- | -------- |
-| LCP    | < 2.5s   | 2.5s – 4.0s       | > 4.0s   |
-| CLS    | < 0.1    | 0.1 – 0.25        | > 0.25   |
-| INP    | < 200ms  | 200ms – 500ms     | > 500ms  |
-| TTFB   | < 800ms  | 800ms – 1.8s      | > 1.8s   |
+| Metric | Good    | Needs Improvement | Poor    |
+| ------ | ------- | ----------------- | ------- |
+| LCP    | < 2.5s  | 2.5s – 4.0s       | > 4.0s  |
+| CLS    | < 0.1   | 0.1 – 0.25        | > 0.25  |
+| INP    | < 200ms | 200ms – 500ms     | > 500ms |
+| TTFB   | < 800ms | 800ms – 1.8s      | > 1.8s  |
 
 ## Structured Logging
 
@@ -180,14 +185,14 @@ export function log(level: LogLevel, message: string, context?: Record<string, u
 
 ### What to Log
 
-| Event                  | Level  | Context to Include                              |
-| ---------------------- | ------ | ----------------------------------------------- |
-| API request received   | `info` | method, path, userId (if authed)                |
-| API response sent      | `info` | method, path, statusCode, durationMs            |
-| Auth failure           | `warn` | path, reason, IP (if available)                 |
-| Unhandled exception    | `error`| stack, requestId, userId, route                 |
-| External service call  | `info` | service, endpoint, durationMs, statusCode       |
-| External service error | `error`| service, endpoint, error, retryCount            |
+| Event                  | Level   | Context to Include                        |
+| ---------------------- | ------- | ----------------------------------------- |
+| API request received   | `info`  | method, path, userId (if authed)          |
+| API response sent      | `info`  | method, path, statusCode, durationMs      |
+| Auth failure           | `warn`  | path, reason, IP (if available)           |
+| Unhandled exception    | `error` | stack, requestId, userId, route           |
+| External service call  | `info`  | service, endpoint, durationMs, statusCode |
+| External service error | `error` | service, endpoint, error, retryCount      |
 
 ### What NOT to Log
 

@@ -157,6 +157,9 @@ pnpm turbo run lint --filter={app-name}
 
 pnpm turbo run check-types --filter={app-name}
 
+pnpm format:check                                  # Prettier formatting (runs in CI)
+pnpm format                                        # Auto-fix formatting
+
 pnpm turbo run storybook --filter=@repo/ui        # Storybook dev on port 6006
 pnpm turbo run build-storybook --filter=@repo/ui   # Build static Storybook
 ```
