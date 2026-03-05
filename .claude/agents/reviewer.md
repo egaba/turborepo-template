@@ -59,6 +59,7 @@ Scan changed files for common defects:
 pnpm turbo run check-types    # TypeScript
 pnpm turbo run lint            # Lint
 pnpm turbo run test:ci         # Tests
+pnpm format:check              # Prettier formatting
 ```
 
 Report the ACTUAL output of each command. Do not assume results.
@@ -75,6 +76,7 @@ Report the ACTUAL output of each command. Do not assume results.
 | TypeScript | Pass/Fail | {summary}            |
 | Lint       | Pass/Fail | {summary}            |
 | Tests      | Pass/Fail | {X passed, Y failed} |
+| Formatting | Pass/Fail | {summary}            |
 
 ### Findings
 
