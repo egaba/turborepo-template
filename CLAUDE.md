@@ -156,6 +156,9 @@ pnpm turbo run test:ci --filter={app-name}           # CI mode (non-interactive)
 pnpm turbo run lint --filter={app-name}
 
 pnpm turbo run check-types --filter={app-name}
+
+pnpm turbo run storybook --filter=@repo/ui        # Storybook dev on port 6006
+pnpm turbo run build-storybook --filter=@repo/ui   # Build static Storybook
 ```
 
 ## MCP Servers
